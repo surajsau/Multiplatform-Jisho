@@ -13,7 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import `in`.surajsau.jisho.android.ui.Navigation
 import `in`.surajsau.jisho.android.ui.favorite.FavoriteScreen
 import `in`.surajsau.jisho.android.ui.home.components.AppBottomNavBar
-import `in`.surajsau.jisho.android.ui.list.ListScreen
+import `in`.surajsau.jisho.android.ui.reference.ReferenceScreen
 import `in`.surajsau.jisho.android.ui.search.SearchScreen
 import `in`.surajsau.jisho.android.ui.settings.SettingsScreen
 import `in`.surajsau.jisho.model.KanjiQuery
@@ -62,9 +62,8 @@ fun HomeScreen(
             }
 
             composable(Navigation.Home.Lists.navKey) {
-                ListScreen(
+                ReferenceScreen(
                     modifier = Modifier.fillMaxSize(),
-                    navigateToKanjiList = navigateToKanjiList
                 )
             }
 

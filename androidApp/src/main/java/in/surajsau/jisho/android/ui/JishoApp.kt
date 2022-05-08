@@ -3,7 +3,7 @@ package `in`.surajsau.jisho.android.ui
 import `in`.surajsau.jisho.android.ui.details.DetailsScreen
 import `in`.surajsau.jisho.android.ui.download.DownloadScreen
 import `in`.surajsau.jisho.android.ui.home.HomeScreen
-import `in`.surajsau.jisho.android.ui.list.kanji.KanjiListScreen
+import `in`.surajsau.jisho.android.ui.reference.kanji.KanjiListScreen
 import `in`.surajsau.jisho.android.ui.sentence.details.SentenceDetailsScreen
 import `in`.surajsau.jisho.android.ui.sentence.list.SentenceListScreen
 import `in`.surajsau.jisho.android.ui.theme.DarkColors

@@ -1,4 +1,4 @@
-package `in`.surajsau.jisho.android.ui.list
+package `in`.surajsau.jisho.android.ui.reference
 
 import `in`.surajsau.jisho.android.ui.components.AppToolbar
 import `in`.surajsau.jisho.model.KanjiQuery
@@ -11,15 +11,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun ListScreen(
+fun ReferenceScreen(
     modifier: Modifier = Modifier,
-    navigateToKanjiList: (KanjiQuery) -> Unit,
 ) {
     Column(modifier = modifier) {
-        AppToolbar(
-            modifier = Modifier.fillMaxWidth(),
-            navigateUpIcon = { Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "") }
+        AppToolbar()
 
-        )
+        Column(modifier = Modifier) {
+
+        }
     }
 }

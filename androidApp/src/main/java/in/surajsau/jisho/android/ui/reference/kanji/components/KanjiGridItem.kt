@@ -1,4 +1,4 @@
-package `in`.surajsau.jisho.android.ui.list.kanji.components
+package `in`.surajsau.jisho.android.ui.reference.kanji.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
