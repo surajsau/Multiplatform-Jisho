@@ -1,0 +1,148 @@
+CREATE TABLE IF NOT EXISTS entry(
+    id INTEGER NOT NULL PRIMARY KEY,
+    keb TEXT,
+    ke_inf TEXT,
+    ke_pri TEXT,
+    re TEXT,
+    re_nokanji TEXT,
+    re_restr TEXT,
+    re_inf TEXT,
+    re_pri TEXT,
+    ant TEXT,
+    pos TEXT,
+    field TEXT,
+    dial TEXT,
+    gloss TEXT,
+    ex_text TEXT,
+    ex_sent TEXT,
+    note_id INTEGER
+);
+
+searchEntryWithKanji:
+SELECT id, keb, re, re_restr, gloss FROM entry WHERE keb LIKE :query;
+
+searchEntryWithReading:
+SELECT id, keb, re, re_restr, gloss FROM entry WHERE re LIKE :query;
+
+getEntry:
+SELECT * FROM entry WHERE id = :id;
+
+totalEntryCount:
+SELECT COUNT(*) FROM entry;
+
+updateEntryWithNote:
+UPDATE entry SET note_id = ? WHERE id = :id;
+
+CREATE TABLE IF NOT EXISTS kanji(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    literal TEXT NOT NULL,
+    radical TEXT,
+    grade TEXT,
+    stroke_count INTEGER,
+    variant TEXT,
+    freq INTEGER,
+    rad_name TEXT,
+    jlpt INTEGER,
+    dic_number TEXT,
+    reading TEXT,
+    meaning TEXT,
+    nanori TEXT,
+    q_code TEXT,
+    note_id INTEGER
+);
+
+selectKanji:
+SELECT * FROM kanji WHERE literal = :literal;
+
+getAllKanji:
+SELECT literal FROM kanji;
+
+getKanjiWithinFreqRange:
+SELECT literal FROM kanji WHERE freq >= :from AND freq <= :to;
+
+getKanjiForGrade:
+SELECT literal FROM kanji WHERE grade = :grade;
+
+searchKanjiWithReading:
+SELECT literal, reading, meaning, note_id FROM kanji WHERE reading LIKE :query;
+
+totalKanjiCount:
+SELECT COUNT(*) FROM kanji;
+
+CREATE TABLE IF NOT EXISTS notes(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    text TEXT
+);
+
+insertNote:
+INSERT INTO notes(text)
+VALUES (?);
+
+getLastInsertedNoteId:
+SELECT last_insert_rowid();
+
+removeNote:
+DELETE FROM notes WHERE id = :id;
+
+updateNote:
+UPDATE notes SET text=? WHERE id = :id;
+
+selectNote:
+SELECT * FROM notes WHERE id = :id;
+
+CREATE TABLE IF NOT EXISTS jlpt(word TEXT, level INTEGER);
+
+getAllForJlpt:
+SELECT word FROM jlpt WHERE level = :level;
+
+CREATE TABLE IF NOT EXISTS radk_kanji (data TEXT NOT NULL);
+CREATE INDEX IF NOT EXISTS radk_kanji_data_index ON radk_kanji (data);
+
+CREATE TABLE IF NOT EXISTS radk_kanji_radical (kanji_id INTEGER, radical_id INTEGER);
+CREATE INDEX IF NOT EXISTS radk_kanji_radical_id_index ON radk_kanji_radical (kanji_id,radical_id);
+
+CREATE TABLE IF NOT EXISTS radk_radicals (data TEXT NOT NULL, stroke_count INTEGER);
+CREATE INDEX IF NOT EXISTS radk_radicals_data_index ON radk_radicals (data);
+CREATE INDEX IF NOT EXISTS radk_radicals_stroke_count_index ON radk_radicals (stroke_count);
+
+CREATE TABLE IF NOT EXISTS sentence(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    japanese TEXT,
+    english TEXT,
+    note_id INTEGER
+);
+
+getLimitedSentencesWithKeyword:
+SELECT id, japanese, english FROM sentence WHERE japanese LIKE :query LIMIT :limit;
+
+getAllSentencesWithKeyword:
+SELECT id, japanese, english FROM sentence WHERE japanese LIKE :query;
+
+getCountOfSentencesWithKeyword:
+SELECT COUNT(*) FROM sentence WHERE japanese LIKE :query;
+
+updateSentenceWithNote:
+UPDATE sentence SET note_id = ? WHERE id = :id;
+
+getSentence:
+SELECT * FROM sentence WHERE id = :id;
+
+CREATE TABLE IF NOT EXISTS conjugation(
+    pos INTEGER,
+    conj INTEGER,
+    negative TEXT,
+    formal TEXT,
+    onum INTEGER,
+    stem INTEGER,
+    okurigana TEXT,
+    euphr TEXT,
+    euphk TEXT
+);
+
+getConjugationsForPos:
+SELECT * FROM conjugation WHERE pos = :pos;
+
+
+
+
+
