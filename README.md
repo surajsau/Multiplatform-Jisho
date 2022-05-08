@@ -27,6 +27,7 @@ Everything except from the UI layer (i.e., the domain and data layers) have been
 - [compose-neumorphism](https://github.com/sridhar-sp/compose-neumorphism) Used as a reference for custom implementation of Neumorphism in Jetpack Compose
 - [hackingswift](https://www.hackingwithswift.com) for anything SwiftUI
 - [droidkaigi 2021 App](https://github.com/DroidKaigi/conference-app-2021) for the Unidirectional ViewModel implementation
+- [yamagoya/jconj](https://github.com/yamagoya/jconj) for the verb adjective conjugation mapping
 
 ## Branches
 - `shared` : Any changes done outside the `iosApp` and `androidApp` modules
