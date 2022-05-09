@@ -16,12 +16,30 @@ struct ReferenceScreen: View {
                 
                 AppTopBar(navigateUpIcon: nil, title: "References")
                     .padding()
+                    .background(RoundedRectangle(cornerRadius: 0).fill(.blue))
                 
-                VStack {
+                VStack(spacing: 16) {
+                    NavigationLink {
+                        
+                    } label: {
+                        ReferenceRow(title: "Kana", description: "Hiragana & Katakana", color: Color(0xFF784F))
+                    }
                     
-                    ReferenceRow(title: "Kana", description: "Hiragana & Katakana", color: "Vocabulary resources for Japanese Language Proficiency Test")
+                    NavigationLink {
+                        KanjiResourceScreen()
+                    } label: {
+                        ReferenceRow(title: "Kanji", description: "Catalog of Kanji characters", color: Color(0xdb9d47))
+                    }
+                    
+                    NavigationLink {
+                        
+                    } label: {
+                        ReferenceRow(title: "JLPT", description: "Vocabulary resources for Japanese Language Proficiency Test", color: Color(0x3185fc))
+                    }
                 }
                 .padding()
+                
+                Spacer()
             }
         }
     }

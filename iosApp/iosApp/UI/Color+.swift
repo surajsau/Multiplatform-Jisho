@@ -20,9 +20,9 @@ public extension Color {
     
 }
 
-public extension Color {
+extension Color {
     
-    init(_ hex: UInt, alpha: Double) {
+    init(_ hex: UInt, alpha: Double = 1) {
         self.init(
             .sRGB,
             red: Double((hex >> 16) & 0xFF) / 255,

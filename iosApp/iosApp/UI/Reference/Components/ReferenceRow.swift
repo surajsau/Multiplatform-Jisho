@@ -12,33 +12,38 @@ struct ReferenceRow: View {
     let color: Color
     
     var body: some View {
-        HStack(alignment: .center) {
+        HStack {
             Circle()
                 .fill(self.color)
-                .frame(maxHeight: .infinity)
+                .frame(width: 48, height: 48)
                 .padding()
                 
             VStack(alignment: .leading) {
+                
                 Text(self.title)
-                    .font(.title2)
+                    .font(.title3)
                     .fontWeight(.semibold)
                     .foregroundColor(Color.Neomorph.text)
                 
                 Text(self.description)
-                    .font(.title3)
+                    .font(.caption)
                     .foregroundColor(Color.Neomorph.text)
             }
             
             Spacer()
         }
-        .padding()
         .neomorph()
-        .frame(height: 72)
     }
 }
 
 struct ReferenceRowPreview: PreviewProvider {
     static var previews: some View {
-        ReferenceRow(title: "Kana", description: "Japanese syllables (Hiragana & Katakana)", color: Color.blue)
+        ZStack {
+            Color.Neomorph.main
+                .edgesIgnoringSafeArea(.all)
+            
+            ReferenceRow(title: "Kana", description: "Japanese syllables (Hiragana & Katakana)", color: Color.blue)
+                .padding()
+        }
     }
 }
