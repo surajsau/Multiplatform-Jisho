@@ -11,7 +11,7 @@ import SwiftUI
 
 struct AppTopBar: View {
     
-    let navigateUpIcon: String
+    let navigateUpIcon: String?
     let title: String
     
     var onNavigateUpClicked: () -> Void = {}
@@ -20,15 +20,17 @@ struct AppTopBar: View {
         
         ZStack(alignment: .leading) {
             
-            Button(action: {
-                self.onNavigateUpClicked()
-            }) {
-                Image(systemName: self.navigateUpIcon)
-                    .font(.system(size: 24, weight: .medium))
-                    .foregroundColor(Color.Neomorph.text)
+            if let navigateUpIcon = self.navigateUpIcon {
+                Button(action: {
+                    self.onNavigateUpClicked()
+                }) {
+                    Image(systemName: navigateUpIcon)
+                        .font(.system(size: 24, weight: .medium))
+                        .foregroundColor(Color.Neomorph.text)
+                }
+                .padding()
+                .neomorph(isCircle: true)
             }
-            .padding()
-            .neomorph(isCircle: true)
             
             HStack {
                 Spacer()
