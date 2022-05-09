@@ -2,6 +2,7 @@ package `in`.surajsau.jisho.android.ui.details.components
 
 import `in`.surajsau.jisho.android.neomorphic.neomorph
 import `in`.surajsau.jisho.android.ui.theme.AppTheme
+import `in`.surajsau.jisho.android.ui.theme.sectionTitle
 import `in`.surajsau.jisho.viewmodel.DetailsViewModel
 import android.content.res.Configuration
 import androidx.compose.foundation.clickable
@@ -25,8 +26,7 @@ fun DetailsKanji (
     Column(modifier = modifier) {
         Text(
             text = "Kanjis in the word",
-            style = MaterialTheme.typography.h6,
-            fontWeight = FontWeight.Medium
+            style = MaterialTheme.typography.sectionTitle
         )
 
         Spacer(Modifier.height(16.dp))

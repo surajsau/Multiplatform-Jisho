@@ -95,6 +95,12 @@ object Navigation {
         }
     }
 
+    sealed class Resources(val key: String) {
+        object Kana: Resources("resource_kana")
+        object Jlpt: Resources("resource_jlpt")
+        object Kanji: Resources("resource_kanji")
+    }
+
     sealed class Home(
         val icon: ImageVector,
         val selectedIcon: ImageVector,

@@ -22,7 +22,7 @@ import `in`.surajsau.jisho.model.KanjiQuery
 fun HomeScreen(
     modifier: Modifier = Modifier,
     navigateToDetails: (Long, String) -> Unit,
-    navigateToKanjiList: (KanjiQuery) -> Unit,
+    navigateToResources: (Navigation.Resources) -> Unit,
 ) {
     val navController = rememberNavController()
 
@@ -64,6 +64,7 @@ fun HomeScreen(
             composable(Navigation.Home.Lists.navKey) {
                 ReferenceScreen(
                     modifier = Modifier.fillMaxSize(),
+                    onItemClicked = navigateToResources
                 )
             }
 

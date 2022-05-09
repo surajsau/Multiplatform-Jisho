@@ -4,7 +4,9 @@ import `in`.surajsau.jisho.android.neomorphic.neomorph
 import `in`.surajsau.jisho.android.ui.theme.AppTheme
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -13,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,7 +24,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ReferenceRow (
     modifier: Modifier = Modifier,
-    icon: ImageVector,
+    color: Color,
     title: String,
     description: String
 ) {
@@ -37,10 +40,9 @@ fun ReferenceRow (
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Image(
-                modifier = Modifier.size(48.dp),
-                imageVector = icon,
-                contentDescription = ""
+            Box(
+                modifier = Modifier.fillMaxHeight()
+                    .background(color = color, shape = CircleShape)
             )
 
             Column(
@@ -55,7 +57,8 @@ fun ReferenceRow (
                 )
 
                 Text(
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
                         .alpha(0.6f),
                     text = description,
                     style = MaterialTheme.typography.subtitle2,
@@ -85,14 +88,14 @@ private fun PreviewReferenceRow() {
         ) {
             ReferenceRow(
                 modifier = Modifier.fillMaxWidth(),
-                icon = Icons.Default.AccessAlarm,
+                color = Color.Red,
                 title = "Kana",
                 description = "Japanese syllables (Hiragana & Katakana)"
             )
 
             ReferenceRow(
                 modifier = Modifier.fillMaxWidth(),
-                icon = Icons.Default.AccessAlarm,
+                color = Color.Green,
                 title = "JLPT",
                 description = "Standardized test to evaluate language proficiency for non-native frequency"
             )
