@@ -4,16 +4,9 @@ import `in`.surajsau.jisho.expected.BaseViewModel
 import `in`.surajsau.jisho.model.KanjiQuery
 import `in`.surajsau.jisho.model.KanjiResult
 import `in`.surajsau.jisho.usecase.GetFilteredKanjis
+import `in`.surajsau.jisho.utils.Optional
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.filterNotNull
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
@@ -22,32 +15,23 @@ class KanjiListViewModel : BaseViewModel<KanjiListViewModel.State, KanjiListView
 
     private val getFilteredKanjis: GetFilteredKanjis = get()
 
-    private val _query = MutableStateFlow<KanjiQuery?>(null)
+    private val _query = MutableStateFlow<Optional<KanjiQuery>>(Optional.Empty)
 
     private val _items = MutableStateFlow<List<KanjiResult>>(emptyList())
     private val _effect = Channel<Effect>(Channel.UNLIMITED)
 
-    init {
-      scope.launch {
-          _query
-              .filterNotNull()
-              .map { getFilteredKanjis(it) }
-              .collect { _items.emit(it) }
-      }
-    }
-
     override val state: StateFlow<State>
         get() = combine(
-            _items,
-            _query,
+            _items.filterNot { it.isEmpty() },
+            _query.filterNot { it.isEmpty }.map { it.value!! },
         ) { items, query ->
             State(
                 items = items,
                 title = when (query) {
-                    is KanjiQuery.Grade -> "Kanjis for Grade ${query.value}"
+                    is KanjiQuery.Grade -> "Kanjis for Grade ${query.grade}"
+                    is KanjiQuery.AllSchool -> "All school Kanjis"
                     is KanjiQuery.Freq -> "Kanjis with frequency ${query.from}-${query.to}"
                     is KanjiQuery.All -> "All Kanjis"
-                    else -> ""
                 }
             )
         }.stateIn(scope, SharingStarted.WhileSubscribed(), State.Init)
@@ -59,7 +43,10 @@ class KanjiListViewModel : BaseViewModel<KanjiListViewModel.State, KanjiListView
         when (intent) {
             is Intent.InitWith -> {
                 scope.launch {
-                    _query.emit(intent.query)
+                    _query.emit(Optional.of(intent.query))
+
+                    val results = getFilteredKanjis(intent.query)
+                    _items.emit(results)
                 }
             }
 

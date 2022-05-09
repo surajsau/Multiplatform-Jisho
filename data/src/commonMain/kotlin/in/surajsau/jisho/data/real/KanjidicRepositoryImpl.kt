@@ -43,6 +43,10 @@ class KanjidicRepositoryImpl constructor(
         return@withContext queries.getKanjiForGrade(grade).executeAsList()
     }
 
+    override suspend fun getAllSchoolKanjis(): List<String> = withContext(dispatcherProvider.io) {
+        return@withContext queries.getKanjiWithGrades().executeAsList()
+    }
+
     override suspend fun searchForReading(query: String): List<KanjiQueryResult> = withContext(dispatcherProvider.io) {
         queries.searchKanjiWithReading(query).executeAsList()
         return@withContext emptyList<KanjiQueryResult>()

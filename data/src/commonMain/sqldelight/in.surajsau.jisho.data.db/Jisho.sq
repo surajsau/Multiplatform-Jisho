@@ -63,6 +63,9 @@ SELECT literal FROM kanji WHERE freq >= :from AND freq <= :to;
 getKanjiForGrade:
 SELECT literal FROM kanji WHERE grade = :grade;
 
+getKanjiWithGrades:
+SELECT literal FROM kanji WHERE grade IS NOT NULL;
+
 searchKanjiWithReading:
 SELECT literal, reading, meaning, note_id FROM kanji WHERE reading LIKE :query;
 
