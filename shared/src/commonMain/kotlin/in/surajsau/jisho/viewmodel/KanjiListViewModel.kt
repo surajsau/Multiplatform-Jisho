@@ -6,7 +6,15 @@ import `in`.surajsau.jisho.model.KanjiResult
 import `in`.surajsau.jisho.usecase.GetFilteredKanjis
 import `in`.surajsau.jisho.utils.Optional
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.filterNot
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
@@ -66,7 +74,7 @@ class KanjiListViewModel : BaseViewModel<KanjiListViewModel.State, KanjiListView
     }
 
     sealed interface Intent : VMIntent {
-        data class InitWith(val query: KanjiQuery): Intent
+        data class InitWith(val query: KanjiQuery) : Intent
 
         data class OnItemClicked(val item: KanjiResult) : Intent
     }
