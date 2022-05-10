@@ -1,4 +1,7 @@
 # Multiplatform-Jisho
+
+![Android](https://github.com/surajsau/Multiplatform-Jisho/actions/workflows/android_ci.yml/badge.svg?branch=android) ![iOS](https://github.com/surajsau/Multiplatform-Jisho/actions/workflows/ios_ci.yml/badge.svg?branch=ios)
+
 Kotlin Multiplatform Japanese Dictionary App.
 
 🚧 This is still a Work in Progress. Wishlist of features are listed up in the [Projects](https://github.com/users/surajsau/projects/1).
