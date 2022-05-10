@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import shared
 
 struct KanjiResourceScreen: View {
     
@@ -28,9 +29,7 @@ struct KanjiResourceScreen: View {
                         .foregroundColor(Color.Neomorph.text)
                     
                     let columns = [
-                        GridItem(.fixed(72), spacing: 24),
-                        GridItem(.fixed(72), spacing: 24),
-                        GridItem(.fixed(72))
+                        GridItem(.adaptive(minimum: 72), spacing: 24)
                     ]
                     
                     Text("小学校（1-6）")
@@ -40,7 +39,11 @@ struct KanjiResourceScreen: View {
                     
                     LazyVGrid(columns: columns, spacing: 24) {
                         ForEach(1...6, id: \.self) { grade in
-                            KanjiGradeItem(grade: "\(grade)")
+                            NavigationLink {
+                                KanjiListScreen(query: KanjiQueryGrade(grade: Int32(grade)))
+                            } label: {
+                                KanjiGradeItem(grade: "\(grade)")
+                            }
                         }
                     }
                     .padding(.vertical)
@@ -52,16 +55,27 @@ struct KanjiResourceScreen: View {
                     
                     LazyVGrid(columns: columns) {
                         ForEach(7...9, id: \.self) { grade in
-                            KanjiGradeItem(grade: "\(grade)")
+                            NavigationLink {
+                                KanjiListScreen(query: KanjiQueryGrade(grade: Int32(grade)))
+                            } label: {
+                                KanjiGradeItem(grade: "\(grade)")
+                            }
                         }
                     }
                     .padding(.vertical)
+                    
+                    NavigationLink {
+                        KanjiListScreen(query: KanjiQueryAllSchool.init())
+                    } label: {
+                        AllSchoolItem()
+                    }
                 }
                 .padding()
                 
                 Spacer()
             }
         }
+        .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
     }
 }

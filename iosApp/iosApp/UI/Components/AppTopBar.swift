@@ -25,7 +25,7 @@ struct AppTopBar: View {
                     self.onNavigateUpClicked()
                 }) {
                     Image(systemName: navigateUpIcon)
-                        .font(.system(size: 24, weight: .medium))
+                        .font(.system(size: 16, weight: .medium))
                         .foregroundColor(Color.Neomorph.text)
                 }
                 .padding()
@@ -36,7 +36,7 @@ struct AppTopBar: View {
                 Spacer()
                 
                 Text(self.title)
-                    .font(.title)
+                    .font(.title2)
                     .fontWeight(.bold)
                     .foregroundColor(Color.Neomorph.text)
                 

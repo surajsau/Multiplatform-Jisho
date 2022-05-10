@@ -16,7 +16,6 @@ struct ReferenceScreen: View {
                 
                 AppTopBar(navigateUpIcon: nil, title: "References")
                     .padding()
-                    .background(RoundedRectangle(cornerRadius: 0).fill(.blue))
                 
                 VStack(spacing: 16) {
                     NavigationLink {
@@ -42,5 +41,7 @@ struct ReferenceScreen: View {
                 Spacer()
             }
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
     }
 }
