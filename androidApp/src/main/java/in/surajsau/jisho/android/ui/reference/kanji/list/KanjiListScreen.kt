@@ -1,8 +1,8 @@
-package `in`.surajsau.jisho.android.ui.list.kanji
+package `in`.surajsau.jisho.android.ui.reference.kanji.list
 
 import `in`.surajsau.jisho.android.base.dispatch
 import `in`.surajsau.jisho.android.ui.components.AppToolbar
-import `in`.surajsau.jisho.android.ui.list.kanji.components.KanjiGridItem
+import `in`.surajsau.jisho.android.ui.reference.kanji.list.components.KanjiGridItem
 import `in`.surajsau.jisho.model.KanjiQuery
 import `in`.surajsau.jisho.viewmodel.KanjiListViewModel
 import androidx.compose.foundation.layout.Arrangement

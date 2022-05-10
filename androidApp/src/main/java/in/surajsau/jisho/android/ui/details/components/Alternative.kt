@@ -1,6 +1,7 @@
 package `in`.surajsau.jisho.android.ui.details.components
 
 import `in`.surajsau.jisho.android.ui.theme.AppTheme
+import `in`.surajsau.jisho.android.ui.theme.sectionTitle
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
@@ -22,8 +23,7 @@ fun DetailsAlternative (
     ) {
         Text(
             text = "Alternatives",
-            style = MaterialTheme.typography.h6,
-            fontWeight = FontWeight.Medium
+            style = MaterialTheme.typography.sectionTitle
         )
 
         Text(

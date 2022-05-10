@@ -1,6 +1,7 @@
 package `in`.surajsau.jisho.android.ui.details.components
 
 import `in`.surajsau.jisho.android.ui.theme.AppTheme
+import `in`.surajsau.jisho.android.ui.theme.sectionTitle
 import `in`.surajsau.jisho.viewmodel.DetailsViewModel
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.*
@@ -25,8 +26,7 @@ fun DetailsConjugations (
     ) {
         Text(
             text = "Conjugations (formal)",
-            style = MaterialTheme.typography.h6,
-            fontWeight = FontWeight.Medium
+            style = MaterialTheme.typography.sectionTitle
         )
 
         Column(
@@ -60,8 +60,7 @@ fun DetailsConjugations (
 
         Text(
             text = "Conjugations (informal)",
-            style = MaterialTheme.typography.h6,
-            fontWeight = FontWeight.Medium
+            style = MaterialTheme.typography.sectionTitle
         )
 
         Column(
@@ -95,8 +94,7 @@ fun DetailsConjugations (
 
         Text(
             text = "Other conjugations",
-            style = MaterialTheme.typography.h6,
-            fontWeight = FontWeight.Medium
+            style = MaterialTheme.typography.sectionTitle
         )
 
         Column(

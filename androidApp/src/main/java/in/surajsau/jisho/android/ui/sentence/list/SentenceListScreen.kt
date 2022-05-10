@@ -3,9 +3,7 @@ package `in`.surajsau.jisho.android.ui.sentence.list
 import `in`.surajsau.jisho.android.base.dispatch
 import `in`.surajsau.jisho.android.ui.components.AppToolbar
 import `in`.surajsau.jisho.android.ui.sentence.list.components.SentenceRow
-import `in`.surajsau.jisho.android.ui.theme.AppTheme
 import `in`.surajsau.jisho.viewmodel.SentenceListViewModel
-import android.content.res.Configuration
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -15,7 +13,6 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.get
 
