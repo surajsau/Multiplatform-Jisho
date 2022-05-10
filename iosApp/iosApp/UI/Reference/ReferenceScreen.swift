@@ -19,7 +19,7 @@ struct ReferenceScreen: View {
                 
                 VStack(spacing: 16) {
                     NavigationLink {
-                        
+                        KanaResourceScreen()
                     } label: {
                         ReferenceRow(title: "Kana", description: "Hiragana & Katakana", color: Color(0xFF784F))
                     }

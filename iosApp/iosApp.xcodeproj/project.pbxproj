@@ -52,6 +52,10 @@
 		4FF92DA92827DC5900639823 /* KMPNativeCoroutinesCombine in Frameworks */ = {isa = PBXBuildFile; productRef = 4FF92DA82827DC5900639823 /* KMPNativeCoroutinesCombine */; };
 		4FF92DAC2827DD8800639823 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4FF92DAB2827DD8800639823 /* FirebaseStorage */; };
 		4FF92DAE2827DD8800639823 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 4FF92DAD2827DD8800639823 /* FirebaseStorageCombine-Community */; };
+		4FFC6D53282A706F00AF642F /* KanaResourceScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC6D52282A706F00AF642F /* KanaResourceScreen.swift */; };
+		4FFC6D56282A730800AF642F /* JlptResourceScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC6D55282A730800AF642F /* JlptResourceScreen.swift */; };
+		4FFC6D59282A746800AF642F /* JlptRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC6D58282A746800AF642F /* JlptRow.swift */; };
+		4FFC6D5C282A77F500AF642F /* JlptListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC6D5B282A77F500AF642F /* JlptListScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -106,6 +110,10 @@
 		4FF92D8D2827C80100639823 /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		4FF92D902827C81E00639823 /* Dispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
 		4FF92D932827C87200639823 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4FFC6D52282A706F00AF642F /* KanaResourceScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanaResourceScreen.swift; sourceTree = "<group>"; };
+		4FFC6D55282A730800AF642F /* JlptResourceScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JlptResourceScreen.swift; sourceTree = "<group>"; };
+		4FFC6D58282A746800AF642F /* JlptRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JlptRow.swift; sourceTree = "<group>"; };
+		4FFC6D5B282A77F500AF642F /* JlptListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JlptListScreen.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -215,6 +223,8 @@
 		4FF92D4B2827C7D400639823 /* Reference */ = {
 			isa = PBXGroup;
 			children = (
+				4FFC6D54282A72EB00AF642F /* Jlpt */,
+				4FFC6D51282A705800AF642F /* Kana */,
 				4F75D9422828F22A00847932 /* Kanji */,
 				4F75D93D2828DD6700847932 /* Components */,
 				4FF92D502827C7D400639823 /* ReferenceScreen.swift */,
@@ -339,6 +349,40 @@
 				4FF92D8D2827C80100639823 /* DownloadManager.swift */,
 			);
 			path = Download;
+			sourceTree = "<group>";
+		};
+		4FFC6D51282A705800AF642F /* Kana */ = {
+			isa = PBXGroup;
+			children = (
+				4FFC6D52282A706F00AF642F /* KanaResourceScreen.swift */,
+			);
+			path = Kana;
+			sourceTree = "<group>";
+		};
+		4FFC6D54282A72EB00AF642F /* Jlpt */ = {
+			isa = PBXGroup;
+			children = (
+				4FFC6D5A282A77E100AF642F /* List */,
+				4FFC6D57282A745900AF642F /* Components */,
+				4FFC6D55282A730800AF642F /* JlptResourceScreen.swift */,
+			);
+			path = Jlpt;
+			sourceTree = "<group>";
+		};
+		4FFC6D57282A745900AF642F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				4FFC6D58282A746800AF642F /* JlptRow.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		4FFC6D5A282A77E100AF642F /* List */ = {
+			isa = PBXGroup;
+			children = (
+				4FFC6D5B282A77F500AF642F /* JlptListScreen.swift */,
+			);
+			path = List;
 			sourceTree = "<group>";
 		};
 		7555FF72242A565900829871 = {
@@ -501,11 +545,13 @@
 				4FF92D7D2827C7D400639823 /* AppTopBar.swift in Sources */,
 				4FF92D8E2827C80100639823 /* DownloadManager.swift in Sources */,
 				4FF92D7E2827C7D400639823 /* NeomorphModifier.swift in Sources */,
+				4FFC6D53282A706F00AF642F /* KanaResourceScreen.swift in Sources */,
 				4F75D9442828F24900847932 /* KanjiResourceScreen.swift in Sources */,
 				4FF92D732827C7D400639823 /* DetailsScreen.swift in Sources */,
 				4FF92D782827C7D400639823 /* Meanings.swift in Sources */,
 				4FF92D7C2827C7D400639823 /* SearchScreen.swift in Sources */,
 				4FF92D7A2827C7D400639823 /* SearchBar.swift in Sources */,
+				4FFC6D59282A746800AF642F /* JlptRow.swift in Sources */,
 				4FF92D762827C7D400639823 /* Sentences.swift in Sources */,
 				4FF92D712827C7D400639823 /* ReferenceScreen.swift in Sources */,
 				4FF92D922827C81E00639823 /* Dispatcher.swift in Sources */,
@@ -514,6 +560,7 @@
 				4FF92D892827C7DD00639823 /* UIApplication+.swift in Sources */,
 				4FF92D7B2827C7D400639823 /* SearchResultRow.swift in Sources */,
 				4FF92D722827C7D400639823 /* FavoritesScreen.swift in Sources */,
+				4FFC6D5C282A77F500AF642F /* JlptListScreen.swift in Sources */,
 				4FF92D812827C7D400639823 /* NoteTextField.swift in Sources */,
 				4FF92D942827C87200639823 /* AppDelegate.swift in Sources */,
 				4FF92D752827C7D400639823 /* Header.swift in Sources */,
@@ -522,6 +569,7 @@
 				4F75D94A282912B500847932 /* KanjiListScreen.swift in Sources */,
 				4FF92D832827C7D400639823 /* DownloadScreen.swift in Sources */,
 				4F75D93F2828DD7900847932 /* ReferenceRow.swift in Sources */,
+				4FFC6D56282A730800AF642F /* JlptResourceScreen.swift in Sources */,
 				4FF92D6D2827C7D400639823 /* SettingsScreen.swift in Sources */,
 				4FF92D6F2827C7D400639823 /* SentenceRow.swift in Sources */,
 				4FF92D842827C7D400639823 /* Color+.swift in Sources */,
