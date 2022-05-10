@@ -24,6 +24,7 @@ kotlin {
         val koin = "3.1.6"
         val coroutine = "1.6.0"
         val klogger = "2.2.0"
+        val resources = "0.19.1"
 
         val commonMain by getting {
             dependencies {
@@ -41,6 +42,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
+                api("dev.icerock.moko:resources-compose:$resources")
                 api("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1")
                 api("io.insert-koin:koin-android:$koin")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine")

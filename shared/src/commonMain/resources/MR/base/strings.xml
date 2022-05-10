@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="reference_kana_title">Kana</string>
+    <string name="reference_kanji_title">Kanji</string>
+    <string name="reference_jlpt_title">JLPT</string>
+
+    <string name="reference_kana_desc">Hiragana &amp; Katakana</string>
+    <string name="reference_kanji_desc">Catalog of Kanji characters</string>
+    <string name="reference_jlpt_desc">Vocabulary resources for Japanese Language Proficiency Test</string>
+</resources>

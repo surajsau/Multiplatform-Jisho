@@ -10,6 +10,7 @@ interface KanjidicRepository {
     suspend fun getAll(): List<String>
     suspend fun getKanjiWithinFrequency(from: Long, to: Long): List<String>
     suspend fun getKanjiForGrade(grade: String): List<String>
+    suspend fun getAllSchoolKanjis(): List<String>
 
     suspend fun searchForReading(query: String): List<KanjiQueryResult>
 }
