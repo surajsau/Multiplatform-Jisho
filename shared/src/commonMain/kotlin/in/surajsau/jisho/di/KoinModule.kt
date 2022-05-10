@@ -49,7 +49,7 @@ val UsecaseModule = module {
     factory { GetEntry(get()) }
     factory { GetKanji(get()) }
     factory { GetSentencesForWord(get()) }
-    factory { GetAllForJlptLevel(get()) }
+    factory { GetAllForJlptLevel(get(), get()) }
     factory { GetSentenceDetails(get(), get()) }
     factory { GetConjugations(get()) }
     factory { GetNumberOfSentencesForWord(get()) }

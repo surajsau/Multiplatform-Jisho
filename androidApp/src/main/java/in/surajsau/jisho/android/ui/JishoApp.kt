@@ -3,11 +3,13 @@ package `in`.surajsau.jisho.android.ui
 import `in`.surajsau.jisho.android.ui.details.DetailsScreen
 import `in`.surajsau.jisho.android.ui.download.DownloadScreen
 import `in`.surajsau.jisho.android.ui.home.HomeScreen
-import `in`.surajsau.jisho.android.ui.list.kanji.KanjiListScreen
+import `in`.surajsau.jisho.android.ui.reference.kanji.KanjiResourceScreen
+import `in`.surajsau.jisho.android.ui.reference.kanji.list.KanjiListScreen
 import `in`.surajsau.jisho.android.ui.sentence.details.SentenceDetailsScreen
 import `in`.surajsau.jisho.android.ui.sentence.list.SentenceListScreen
 import `in`.surajsau.jisho.android.ui.theme.DarkColors
 import `in`.surajsau.jisho.android.ui.theme.LightColors
+import `in`.surajsau.jisho.model.KanjiQuery
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
@@ -41,7 +43,9 @@ fun JishoApp() {
                 composable(Navigation.App.Home.key) {
                     HomeScreen(
                         modifier = Modifier.fillMaxSize(),
-                        navigateToKanjiList = {},
+                        navigateToResources = { resources ->
+                            navController.navigate(route = resources.key)
+                        },
                         navigateToDetails = { id, word ->
                             navController.navigate(route = Navigation.App.Details(id, word).route)
                         }
@@ -90,6 +94,16 @@ fun JishoApp() {
                     KanjiListScreen(
                         modifier = Modifier.fillMaxSize(),
                         query = Navigation.App.KanjiList.fromArgs(args),
+                        navigateBack = { navController.navigateUp() }
+                    )
+                }
+
+                composable(Navigation.Resources.Kanji.key) {
+                    KanjiResourceScreen(
+                        navigateToGradeList = { from, to ->
+                            val route = Navigation.App.KanjiList(query = KanjiQuery.Grade("")).route
+                            navController.navigate(route)
+                        },
                         navigateBack = { navController.navigateUp() }
                     )
                 }

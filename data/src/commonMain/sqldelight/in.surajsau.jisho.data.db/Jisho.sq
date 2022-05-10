@@ -18,6 +18,10 @@ CREATE TABLE IF NOT EXISTS entry(
     note_id INTEGER
 );
 
+insertEntry:
+INSERT INTO entry(id, keb, ke_inf, ke_pri, re, re_nokanji, re_restr, re_inf, re_pri, ant, pos, field, dial, gloss, ex_text, ex_sent, note_id)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
 searchEntryWithKanji:
 SELECT id, keb, re, re_restr, gloss FROM entry WHERE keb LIKE :query;
 
@@ -63,6 +67,9 @@ SELECT literal FROM kanji WHERE freq >= :from AND freq <= :to;
 getKanjiForGrade:
 SELECT literal FROM kanji WHERE grade = :grade;
 
+getKanjiWithGrades:
+SELECT literal FROM kanji WHERE grade IS NOT NULL;
+
 searchKanjiWithReading:
 SELECT literal, reading, meaning, note_id FROM kanji WHERE reading LIKE :query;
 
@@ -89,6 +96,9 @@ UPDATE notes SET text=? WHERE id = :id;
 
 selectNote:
 SELECT * FROM notes WHERE id = :id;
+
+getAllNotes:
+SELECT * FROM notes;
 
 CREATE TABLE IF NOT EXISTS jlpt(word TEXT, level INTEGER);
 

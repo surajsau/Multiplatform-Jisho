@@ -21,10 +21,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
+@Stable
 fun AppToolbar(
     modifier: Modifier = Modifier,
     title: String,
-    navigateUpIcon: ImageVector,
+    navigateUpIcon: ImageVector? = null,
     menu: @Composable (BoxScope.() -> Unit)? = null,
     onNavigateUp: () -> Unit = {}
 ) {
@@ -38,7 +39,7 @@ fun AppToolbar(
            )
        },
        navigateUpIcon = {
-           Icon(imageVector = navigateUpIcon, contentDescription = "")
+           navigateUpIcon?.let { Icon(imageVector = it, contentDescription = "") }
        },
        menu = { menu?.invoke(this) },
        onNavigateUp = onNavigateUp,
@@ -51,27 +52,25 @@ fun AppToolbar(
     modifier: Modifier = Modifier,
     title: @Composable BoxScope.() -> Unit = {},
     menu: @Composable (BoxScope.() -> Unit)? = null,
-    navigateUpIcon: @Composable (BoxScope.() -> Unit)? = null,
+    navigateUpIcon: @Composable (BoxScope.() -> Unit),
     onNavigateUp: () -> Unit = {}
 ) {
     Box(
         modifier = modifier
             .padding(all = 16.dp),
     ) {
-        navigateUpIcon?.let {
-            Box(
-                modifier = Modifier
-                    .align(Alignment.CenterStart)
-                    .clickable { onNavigateUp() }
-                    .neomorph(
-                        shape = NeomorphicShape.Oval,
-                        elevation = 8.dp,
-                        animatePress = true,
-                    )
-                    .padding(all = 12.dp),
-                contentAlignment = Alignment.Center
-            ) { it.invoke(this) }
-        }
+        Box(
+            modifier = Modifier
+                .align(Alignment.CenterStart)
+                .clickable { onNavigateUp() }
+                .neomorph(
+                    shape = NeomorphicShape.Oval,
+                    elevation = 8.dp,
+                    animatePress = true,
+                )
+                .padding(all = 12.dp),
+            contentAlignment = Alignment.Center
+        ) { navigateUpIcon(this) }
 
         Box(
             modifier = Modifier.align(Alignment.Center),

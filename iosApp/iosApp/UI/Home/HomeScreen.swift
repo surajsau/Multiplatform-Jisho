@@ -31,6 +31,12 @@ struct HomeScreen: View {
                             Label("Favorites", systemImage: "heart")
                         }
                         .navigationBarHidden(true)
+                    
+                    ReferenceScreen()
+                        .tabItem {
+                            Label("References", systemImage: "note.text")
+                        }
+                        .navigationBarHidden(true)
                 }
             }
         }

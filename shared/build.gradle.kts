@@ -4,7 +4,6 @@ plugins {
     id("com.android.library")
     id("com.rickclephas.kmp.nativecoroutines") version "0.11.4-new-mm"
     id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
-    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 kotlin {
@@ -30,7 +29,6 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api("io.insert-koin:koin-core:$koin")
-                api("dev.icerock.moko:resources:$resources")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine")
                 implementation(project(":data"))
                 implementation(project(":fake"))
@@ -96,9 +94,4 @@ ktlint {
         exclude("**/generated/**")
         include("**/kotlin/**")
     }
-}
-
-multiplatformResources {
-    multiplatformResourcesPackage = "in.surajsau.jisho"
-    multiplatformResourcesClassName = "Res"
 }
