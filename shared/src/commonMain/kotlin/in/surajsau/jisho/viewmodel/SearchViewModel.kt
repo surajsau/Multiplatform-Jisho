@@ -1,9 +1,9 @@
 package `in`.surajsau.jisho.viewmodel
 
+import `in`.surajsau.jisho.expected.BaseViewModel
 import `in`.surajsau.jisho.model.SearchResult
 import `in`.surajsau.jisho.usecase.SearchForKanji
 import `in`.surajsau.jisho.usecase.SearchForReading
-import `in`.surajsau.jisho.expected.BaseViewModel
 import `in`.surajsau.jisho.utils.isKanji
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow

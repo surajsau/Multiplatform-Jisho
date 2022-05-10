@@ -1,7 +1,7 @@
 package `in`.surajsau.jisho.viewmodel
 
 import `in`.surajsau.jisho.expected.BaseViewModel
-import `in`.surajsau.jisho.model.JlptResult
+import `in`.surajsau.jisho.model.SearchResult
 import `in`.surajsau.jisho.usecase.GetAllForJlptLevel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -17,58 +17,66 @@ import org.koin.core.component.get
 
 class JlptListViewModel : BaseViewModel<JlptListViewModel.State, JlptListViewModel.Intent, JlptListViewModel.Effect>(), KoinComponent {
 
-  private val getAllForJlptLevel: GetAllForJlptLevel = get()
+    private val getAllForJlptLevel: GetAllForJlptLevel = get()
 
-  private val _items = MutableStateFlow<List<JlptResult>>(emptyList())
-  private val _effectChannel = Channel<Effect>(Channel.UNLIMITED)
-  private val _isLoading = MutableStateFlow(false)
+    private val _items = MutableStateFlow<List<SearchResult>>(emptyList())
+    private val _title = MutableStateFlow("")
+    private val _effectChannel = Channel<Effect>(Channel.UNLIMITED)
+    private val _isLoading = MutableStateFlow(false)
 
-  override val state: StateFlow<State>
-    get() = combine(_items, _isLoading) { items, isLoading ->
-      State(
-        items = items,
-        isLoading = isLoading
-      )
-    }.stateIn(scope, SharingStarted.WhileSubscribed(), State.Init)
+    override val state: StateFlow<State>
+        get() = combine(
+            _title,
+            _items,
+            _isLoading
+        ) { title, items, isLoading ->
+            State(
+                title = title,
+                items = items,
+                isLoading = isLoading
+            )
+        }.stateIn(scope, SharingStarted.WhileSubscribed(), State.Init)
 
-  override fun onIntent(intent: Intent) {
-    when (intent) {
-      is Intent.OnItemClicked -> {
-        _effectChannel.trySend(Effect.NavigateToDetails(intent.value))
-      }
+    override fun onIntent(intent: Intent) {
+        when (intent) {
+            is Intent.OnItemClicked -> {
+                _effectChannel.trySend(Effect.NavigateToDetails(intent.value))
+            }
 
-      is Intent.InitWith -> {
-        scope.launch {
-          _isLoading.emit(true)
+            is Intent.InitWith -> {
+                scope.launch {
+                    _title.emit("JLPT N${intent.level}")
+                    _isLoading.emit(true)
 
-          val items = getAllForJlptLevel(intent.level)
-          _isLoading.emit(false)
-          _items.emit(items)
+                    val items = getAllForJlptLevel(intent.level)
+                    _isLoading.emit(false)
+                    _items.emit(items)
+                }
+            }
         }
-      }
     }
-  }
 
-  override val effect: Flow<Effect>
-    get() = _effectChannel.receiveAsFlow()
+    override val effect: Flow<Effect>
+        get() = _effectChannel.receiveAsFlow()
 
-  data class State(
-    val items: List<JlptResult>,
-    val isLoading: Boolean,
-  ): VMState {
+    data class State(
+        val title: String,
+        val items: List<SearchResult>,
+        val isLoading: Boolean,
+    ) : VMState {
 
-    companion object {
-      val Init = State(emptyList(), false)
+        companion object {
+            val Init = State("", emptyList(), false)
+        }
     }
-  }
 
-  sealed interface Intent: VMIntent {
-    data class InitWith(val level: Int): Intent
+    sealed interface Intent : VMIntent {
+        data class InitWith(val level: Int) : Intent
 
-    data class OnItemClicked(val value: String): Intent
-  }
+        data class OnItemClicked(val value: String) : Intent
+    }
 
-  sealed interface Effect: VMEffect {
-    data class NavigateToDetails(val item: String): Effect
-  }
+    sealed interface Effect : VMEffect {
+        data class NavigateToDetails(val item: String) : Effect
+    }
 }
