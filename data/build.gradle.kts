@@ -35,6 +35,7 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine")
             }
         }
         val androidMain by getting {
@@ -44,7 +45,14 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine")
             }
         }
-        val androidTest by getting
+        val androidTest by getting {
+            dependencies {
+                implementation("androidx.test.ext:junit-ktx:1.1.3")
+                implementation("org.robolectric:robolectric:4.7.3")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine")
+                implementation("com.squareup.sqldelight:sqlite-driver:$sqldelight")
+            }
+        }
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
@@ -83,6 +91,9 @@ kotlin.targets.withType(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarge
         binaryOptions["memoryModel"] = "experimental"
     }
 }
+dependencies {
+    implementation("androidx.test:core-ktx:1.4.0")
+}
 
 ktlint {
     verbose.set(true)
@@ -99,5 +110,16 @@ sqldelight {
     database("Jisho") {
         packageName = "in.surajsau.jisho.data.db"
         sourceFolders = listOf("sqldelight")
+    }
+}
+
+ktlint {
+    verbose.set(true)
+    outputToConsole.set(true)
+    enableExperimentalRules.set(true)
+    disabledRules.set(setOf("final-newline", "filename"))
+    filter {
+        exclude("**/generated/**")
+        include("**/kotlin/**")
     }
 }
