@@ -60,13 +60,28 @@ object Navigation {
             }
         }
 
+        data class JlptList(val level: Int): App(Key) {
+
+            val route: String
+                get() = "jlpt_list/$level"
+
+            companion object {
+                const val Key = "jlpt_list/{level}"
+
+                fun fromArgs(extras: Bundle): Int {
+                    return extras.getString("level")!!.toInt()
+                }
+            }
+        }
+
         data class KanjiList(val query: KanjiQuery) : App(Key) {
             val route: String
                 get() {
                     return when (query) {
                         is KanjiQuery.All -> "kanji/all"
                         is KanjiQuery.Freq -> "kanji/freq?from=${query.from}&to=${query.to}"
-                        is KanjiQuery.Grade -> "kanji/grade?grade=${query.value}"
+                        is KanjiQuery.Grade -> "kanji/grade?grade=${query.grade}"
+                        is KanjiQuery.AllSchool -> "kanji/grade-all"
                     }
                 }
 
@@ -83,11 +98,12 @@ object Navigation {
                             KanjiQuery.Freq(from.toLong(), to.toLong())
                         }
                         "grade" -> {
-                            val grade= extras.getString("grade")!!
+                            val grade= extras.getString("grade")!!.toInt()
                             KanjiQuery.Grade(grade)
                         }
-
+                        "grade-all" -> KanjiQuery.AllSchool
                         "all" -> KanjiQuery.All
+
                         else -> KanjiQuery.All
                     }
                 }
