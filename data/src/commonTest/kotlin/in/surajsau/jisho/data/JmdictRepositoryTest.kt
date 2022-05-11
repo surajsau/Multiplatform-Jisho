@@ -10,6 +10,8 @@ import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
+import kotlin.test.assertNull
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class JmdictRepositoryTest {
@@ -96,5 +98,25 @@ class JmdictRepositoryTest {
         assertEquals(result[1].kanjiString, "目にあう;目に遭う;めに遭う;目に会う;めに会う")
         assertEquals(result[1].readingString, "めにあう")
         assertEquals(result[1].glossString, "to go through-None|to suffer-None|to experience (something unpleasant)-None")
+    }
+
+    @Test
+    fun `test getForKanjiOrReading`() = runTest {
+        val repository = JmdictRepositoryImpl(
+            db = db,
+            dispatcherProvider = TestDispatcherProvider(testScheduler)
+        )
+
+        val kanjiMatchResult = repository.getForKanjiOrReading("%会う%")
+        assertNotNull(kanjiMatchResult)
+        assertEquals(kanjiMatchResult.kanjiString, "会う;逢う;遭う;遇う")
+        assertEquals(kanjiMatchResult.readingString, "あう")
+
+        val readingMatchResult = repository.getForKanjiOrReading("%ざいがいしさん%")
+        assertNotNull(readingMatchResult)
+        assertEquals(readingMatchResult.kanjiString, "在外資産")
+
+        val emptyResult = repository.getForKanjiOrReading("%ご%")
+        assertNull(emptyResult)
     }
 }

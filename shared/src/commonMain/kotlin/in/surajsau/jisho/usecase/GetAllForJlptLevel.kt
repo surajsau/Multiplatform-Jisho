@@ -1,20 +1,20 @@
 package `in`.surajsau.jisho.usecase
 
-import `in`.surajsau.jisho.data.repository.JlptRepository
 import `in`.surajsau.jisho.data.repository.JmdictRepository
+import `in`.surajsau.jisho.data.repository.KanjidicRepository
 import `in`.surajsau.jisho.mapper.mapToSearchResult
-import `in`.surajsau.jisho.model.SearchResult
+import `in`.surajsau.jisho.model.JlptResult
 
 internal class GetAllForJlptLevel(
-    private val repository: JlptRepository,
+    private val kanjidicRepository: KanjidicRepository,
     private val jmdictRepository: JmdictRepository,
 ) {
 
-    suspend operator fun invoke(level: Int): List<SearchResult> {
-        return repository.getForLevel(level = level.toLong())
-            .map { word ->
-                val entry = jmdictRepository.searchForKanji(query = word).firstOrNull()
-                entry?.mapToSearchResult(word) ?: throw Exception("Result not found matching $word")
-            }
+    suspend operator fun invoke(level: Int): List<JlptResult> {
+        val kanjis = kanjidicRepository.getKanjiForJlpt(level.toLong())
+        val entries = jmdictRepository.getEntriesForJlpt(level.toLong())
+
+        return (kanjis.map { it.mapToSearchResult() } + entries.map { it.mapToSearchResult("") })
+            .map { JlptResult(it.value, it.meanings, it.reading) }
     }
 }

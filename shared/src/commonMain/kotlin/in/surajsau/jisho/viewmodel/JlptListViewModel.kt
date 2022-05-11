@@ -49,6 +49,9 @@ class JlptListViewModel : BaseViewModel<JlptListViewModel.State, JlptListViewMod
                     _isLoading.emit(true)
 
                     val items = getAllForJlptLevel(intent.level)
+                        .filterNot { it.isEmpty }
+                        .map { it.value!! }
+
                     _isLoading.emit(false)
                     _items.emit(items)
                 }

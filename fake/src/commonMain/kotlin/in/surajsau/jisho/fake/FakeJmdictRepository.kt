@@ -446,4 +446,12 @@ class FakeJmdictRepository : JmdictRepository {
             ),
         )
     }
+
+    override suspend fun getEntriesForJlpt(level: Long): List<JmdictQueryResult> {
+        return emptyList()
+    }
+
+    override suspend fun getForKanjiOrReading(query: String): JmdictQueryResult? {
+        return null
+    }
 }
