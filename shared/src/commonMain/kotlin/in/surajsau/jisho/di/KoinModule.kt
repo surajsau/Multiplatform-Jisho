@@ -3,13 +3,11 @@ package `in`.surajsau.jisho.di
 import `in`.surajsau.jisho.data.DatabaseModule
 import `in`.surajsau.jisho.data.DispatcherModule
 import `in`.surajsau.jisho.data.real.ConjugationRepositoryImpl
-import `in`.surajsau.jisho.data.real.JlptRepositoryImpl
 import `in`.surajsau.jisho.data.real.JmdictRepositoryImpl
 import `in`.surajsau.jisho.data.real.KanjidicRepositoryImpl
 import `in`.surajsau.jisho.data.real.NotesRepositoryImpl
 import `in`.surajsau.jisho.data.real.SentenceRepositoryImpl
 import `in`.surajsau.jisho.data.repository.ConjugationRepository
-import `in`.surajsau.jisho.data.repository.JlptRepository
 import `in`.surajsau.jisho.data.repository.JmdictRepository
 import `in`.surajsau.jisho.data.repository.KanjidicRepository
 import `in`.surajsau.jisho.data.repository.NotesRepository
@@ -76,7 +74,6 @@ val RepositoryModule = module {
     factory<SentenceRepository> { SentenceRepositoryImpl(get(), get()) }
     factory<NotesRepository> { NotesRepositoryImpl(get(), get()) }
     factory<KanjidicRepository> { KanjidicRepositoryImpl(get(), get()) }
-    factory<JlptRepository> { JlptRepositoryImpl(get(), get()) }
     factory<ConjugationRepository> { ConjugationRepositoryImpl(get(), get()) }
 }
 

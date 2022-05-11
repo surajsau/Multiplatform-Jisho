@@ -12,5 +12,7 @@ interface KanjidicRepository {
     suspend fun getKanjiForGrade(grade: String): List<String>
     suspend fun getAllSchoolKanjis(): List<String>
 
+    suspend fun getKanjiForJlpt(level: Long): List<KanjiQueryResult>
+
     suspend fun searchForReading(query: String): List<KanjiQueryResult>
 }

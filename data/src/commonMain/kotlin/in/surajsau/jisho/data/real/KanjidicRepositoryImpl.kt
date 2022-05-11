@@ -52,6 +52,12 @@ class KanjidicRepositoryImpl constructor(
         return@withContext emptyList<KanjiQueryResult>()
     }
 
+    override suspend fun getKanjiForJlpt(level: Long): List<KanjiQueryResult> = withContext(dispatcherProvider.io) {
+        return@withContext queries.getKanjiWithJlpt(query = level) { literal, reading, meaning ->
+            KanjiQueryResult(literal, reading!!, meaning!!)
+        }.executeAsList()
+    }
+
     override suspend fun get(literal: String) = withContext(dispatcherProvider.io) {
         val query = queries.selectKanji(literal = literal)
         val result = query.executeAsOneOrNull() ?: throw DataNotFoundException("$query")
