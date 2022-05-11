@@ -8,6 +8,7 @@ interface JmdictRepository {
     suspend fun searchForReading(query: String): List<JmdictQueryResult>
 
     suspend fun getForKanjiOrReading(query: String): JmdictQueryResult?
+    suspend fun getEntriesForJlpt(level: Long): List<JmdictQueryResult>
 
     suspend fun getEntry(id: Long): Entry
 

@@ -68,8 +68,8 @@ class JmdictRepositoryImpl constructor(
         )
     }
 
-    override suspend fun getForKanjiOrReading(query: String): JmdictQueryResult? {
-        return queries.getEntryWithKanjiOrReading(query = query) { id, keb, re, restr, gloss ->
+    override suspend fun getForKanjiOrReading(query: String): JmdictQueryResult? = withContext(dispatcherProvider.io) {
+        return@withContext queries.getEntryWithKanjiOrReading(query = query) { id, keb, re, restr, gloss ->
             JmdictQueryResult(
                 id = id,
                 kanjiString = keb ?: "",
@@ -78,6 +78,18 @@ class JmdictRepositoryImpl constructor(
                 readingRestrictionString = restr ?: "",
             )
         }.executeAsOneOrNull()
+    }
+
+    override suspend fun getEntriesForJlpt(level: Long): List<JmdictQueryResult> = withContext(dispatcherProvider.io) {
+        return@withContext queries.getEntriesWithJlpt(query = level) { id, keb, re, restr, gloss ->
+            JmdictQueryResult(
+                id = id,
+                kanjiString = keb ?: "",
+                readingString = re ?: "",
+                glossString = gloss ?: "",
+                readingRestrictionString = restr ?: "",
+            )
+        }.executeAsList()
     }
 
     override suspend fun totalCount(): Long = withContext(dispatcherProvider.io) {

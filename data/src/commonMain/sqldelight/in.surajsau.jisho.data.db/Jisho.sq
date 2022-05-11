@@ -15,7 +15,8 @@ CREATE TABLE IF NOT EXISTS entry(
     gloss TEXT,
     ex_text TEXT,
     ex_sent TEXT,
-    note_id INTEGER
+    note_id INTEGER,
+    jlpt INTEGER
 );
 
 insertEntry:
@@ -30,6 +31,9 @@ SELECT id, keb, re, re_restr, gloss FROM entry WHERE keb LIKE :query;
 
 searchEntryWithReading:
 SELECT id, keb, re, re_restr, gloss FROM entry WHERE re LIKE :query;
+
+getEntriesWithJlpt:
+SELECT id, keb, re, re_restr, gloss FROM entry WHERE jlpt = :query;
 
 getEntry:
 SELECT * FROM entry WHERE id = :id;
@@ -73,6 +77,9 @@ SELECT literal FROM kanji WHERE grade = :grade;
 getKanjiWithGrades:
 SELECT literal FROM kanji WHERE grade IS NOT NULL;
 
+getKanjiWithJlpt:
+SELECT literal, reading, meaning FROM kanji WHERE jlpt = :query;
+
 searchKanjiWithReading:
 SELECT literal, reading, meaning, note_id FROM kanji WHERE reading LIKE :query;
 
@@ -102,11 +109,6 @@ SELECT * FROM notes WHERE id = :id;
 
 getAllNotes:
 SELECT * FROM notes;
-
-CREATE TABLE IF NOT EXISTS jlpt(word TEXT, level INTEGER);
-
-getAllForJlpt:
-SELECT word FROM jlpt WHERE level = :level;
 
 CREATE TABLE IF NOT EXISTS radk_kanji (data TEXT NOT NULL);
 CREATE INDEX IF NOT EXISTS radk_kanji_data_index ON radk_kanji (data);
