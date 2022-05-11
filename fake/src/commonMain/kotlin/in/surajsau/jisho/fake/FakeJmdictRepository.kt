@@ -446,4 +446,8 @@ class FakeJmdictRepository : JmdictRepository {
             ),
         )
     }
+
+    override suspend fun getForKanjiOrReading(query: String): JmdictQueryResult? {
+        return null
+    }
 }

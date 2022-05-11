@@ -22,6 +22,9 @@ insertEntry:
 INSERT INTO entry(id, keb, ke_inf, ke_pri, re, re_nokanji, re_restr, re_inf, re_pri, ant, pos, field, dial, gloss, ex_text, ex_sent, note_id)
 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 
+getEntryWithKanjiOrReading:
+SELECT id, keb, re, re_restr, gloss FROM entry WHERE keb LIKE :query OR re LIKE :query LIMIT 1;
+
 searchEntryWithKanji:
 SELECT id, keb, re, re_restr, gloss FROM entry WHERE keb LIKE :query;
 
