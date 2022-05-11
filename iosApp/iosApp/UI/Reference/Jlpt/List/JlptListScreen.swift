@@ -56,6 +56,7 @@ struct JlptListScreen: View {
             }
         }
         .onAppear {
+            print("onAppear")
             self.dispatcher.with(intent: JlptListViewModelIntentInitWith(level: Int32(self.level)))
         }
         .navigationBarHidden(true)

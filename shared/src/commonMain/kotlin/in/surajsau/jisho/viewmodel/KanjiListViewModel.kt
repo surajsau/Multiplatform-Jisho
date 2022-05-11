@@ -5,6 +5,7 @@ import `in`.surajsau.jisho.model.KanjiQuery
 import `in`.surajsau.jisho.model.KanjiResult
 import `in`.surajsau.jisho.usecase.GetFilteredKanjis
 import `in`.surajsau.jisho.utils.Optional
+import io.github.aakira.napier.Napier
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,6 +14,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filterNot
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -33,7 +35,7 @@ class KanjiListViewModel : BaseViewModel<KanjiListViewModel.State, KanjiListView
             _items.filterNot { it.isEmpty() },
             _query.filterNot { it.isEmpty }.map { it.value!! },
         ) { items, query ->
-            State(
+            val state = State(
                 items = items,
                 title = when (query) {
                     is KanjiQuery.Grade -> "Kanjis for Grade ${query.grade}"
@@ -42,18 +44,23 @@ class KanjiListViewModel : BaseViewModel<KanjiListViewModel.State, KanjiListView
                     is KanjiQuery.All -> "All Kanjis"
                 }
             )
+            Napier.d("State: $state")
+            state
         }.stateIn(scope, SharingStarted.WhileSubscribed(), State.Init)
 
     override val effect: Flow<Effect>
         get() = _effect.receiveAsFlow()
 
     override fun onIntent(intent: Intent) {
+        Napier.d("onIntent: $intent")
+
         when (intent) {
             is Intent.InitWith -> {
                 scope.launch {
                     _query.emit(Optional.of(intent.query))
 
                     val results = getFilteredKanjis(intent.query)
+
                     _items.emit(results)
                 }
             }

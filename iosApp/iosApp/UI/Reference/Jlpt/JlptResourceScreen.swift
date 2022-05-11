@@ -10,6 +10,8 @@ import SwiftUI
 
 struct JlptResourceScreen: View {
     
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
         ZStack {
             
@@ -17,8 +19,10 @@ struct JlptResourceScreen: View {
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
-                AppTopBar(navigateUpIcon: "arrow.backward", title: "JLPT")
-                    .padding()
+                AppTopBar(navigateUpIcon: "arrow.backward", title: "JLPT") {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+                .padding()
                 
                 VStack(spacing: 24) {
                     NavigationLink {

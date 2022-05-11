@@ -25,10 +25,12 @@ kotlin {
         val coroutine = "1.6.0"
         val klogger = "2.2.0"
         val resources = "0.19.1"
+        val logging = "2.5.0"
 
         val commonMain by getting {
             dependencies {
                 api("io.insert-koin:koin-core:$koin")
+                implementation("io.github.aakira:napier:$logging")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine")
                 implementation(project(":data"))
                 implementation(project(":fake"))

@@ -11,15 +11,20 @@ import shared
 
 struct KanjiResourceScreen: View {
     
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
         
         ZStack {
+            
             Color.Neomorph.main
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
                 
-                AppTopBar(navigateUpIcon: "arrow.backward", title: "Kanji")
+                AppTopBar(navigateUpIcon: "arrow.backward", title: "Kanji") {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
                     .padding()
                 
                 VStack(alignment: .leading) {
@@ -48,7 +53,7 @@ struct KanjiResourceScreen: View {
                     }
                     .padding(.vertical)
                     
-                    Text("小学校（1-6）")
+                    Text("中学校（7-9）")
                         .font(.title2)
                         .fontWeight(.semibold)
                         .foregroundColor(Color.Neomorph.text)
