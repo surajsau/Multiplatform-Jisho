@@ -12,8 +12,9 @@ internal class GetAllForJlptLevel(
 
     suspend operator fun invoke(level: Int): List<SearchResult> {
         return repository.getForLevel(level = level.toLong())
+            .map { it.replace("\n", "") }
             .map { word ->
-                val entry = jmdictRepository.searchForKanji(query = word).firstOrNull()
+                val entry = jmdictRepository.getForKanjiOrReading("%$word%")
                 entry?.mapToSearchResult(word) ?: throw Exception("Result not found matching $word")
             }
     }

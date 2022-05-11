@@ -68,6 +68,18 @@ class JmdictRepositoryImpl constructor(
         )
     }
 
+    override suspend fun getForKanjiOrReading(query: String): JmdictQueryResult? {
+        return queries.getEntryWithKanjiOrReading(query = query) { id, keb, re, restr, gloss ->
+            JmdictQueryResult(
+                id = id,
+                kanjiString = keb ?: "",
+                readingString = re ?: "",
+                glossString = gloss ?: "",
+                readingRestrictionString = restr ?: "",
+            )
+        }.executeAsOneOrNull()
+    }
+
     override suspend fun totalCount(): Long = withContext(dispatcherProvider.io) {
         return@withContext queries.totalEntryCount().executeAsOneOrNull() ?: 0L
     }
