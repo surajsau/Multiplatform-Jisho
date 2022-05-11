@@ -4,13 +4,15 @@ import `in`.surajsau.jisho.android.base.dispatch
 import `in`.surajsau.jisho.android.ui.components.AppToolbar
 import `in`.surajsau.jisho.android.ui.search.components.SearchResultRow
 import `in`.surajsau.jisho.viewmodel.JlptListViewModel
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
@@ -42,20 +44,27 @@ fun JlptListScreen(
             onNavigateUp = navigateBack
         )
 
-        LazyColumn(
-            modifier = Modifier.fillMaxWidth()
-                .padding(vertical = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(6.dp),
-            contentPadding = PaddingValues(horizontal = 16.dp),
-        ) {
-            items(state.items) { item ->
-                SearchResultRow(
-                    modifier = Modifier.fillMaxWidth(),
-                    result = item,
-                    onItemClicked = {
-                        navigateToDetails(item.id, item.value)
-                    }
-                )
+        if (state.isLoading) {
+            Box(modifier = Modifier.fillMaxSize()) {
+                CircularProgressIndicator()
+            }
+
+        } else {
+            LazyColumn(
+                modifier = Modifier.fillMaxWidth(),
+                contentPadding = PaddingValues(horizontal = 16.dp),
+            ) {
+                items(state.items) { item ->
+                    SearchResultRow(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp),
+                        result = item,
+                        onItemClicked = {
+                            navigateToDetails(item.id, item.value)
+                        }
+                    )
+                }
             }
         }
     }

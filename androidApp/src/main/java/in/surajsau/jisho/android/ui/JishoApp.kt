@@ -108,7 +108,8 @@ fun JishoApp() {
                         level = Navigation.App.JlptList.fromArgs(args),
                         navigateToDetails = { id, word ->
                             navController.navigate(Navigation.App.Details(id, word).route)
-                        }
+                        },
+                        navigateBack = { navController.navigateUp() }
                     )
                 }
 
