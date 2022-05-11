@@ -11,6 +11,8 @@ import shared
 
 struct JlptListScreen: View {
     
+    @Environment(\.presentationMode) var presentationMode
+    
     @ObservedObject private var dispatcher = Dispatcher(viewModel: JlptListViewModel.init())
     
     let level: Int
@@ -23,12 +25,33 @@ struct JlptListScreen: View {
             
             VStack {
 
-                AppTopBar(navigateUpIcon: "arrow.backward", title: self.dispatcher.state?.title ?? "")
-                    .padding()
+                AppTopBar(navigateUpIcon: "arrow.backward", title: self.dispatcher.state?.title ?? "") {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+                .padding()
                 
                 if let state = self.dispatcher.state {
                     
-                    
+                    if state.isLoading {
+                        ProgressView()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    } else {
+                        ScrollView(.vertical) {
+                            LazyVStack(spacing: 14) {
+                                ForEach(state.items, id: \.self) { result in
+                                    NavigationLink {
+                                        DetailsScreen(id: result.id, word: result.value)
+                                    } label: {
+                                        SearchResultRow(model: result)
+                                    }
+                                    .buttonStyle(.plain)
+                                }
+                            }
+                            .padding(.vertical)
+                        }
+                        
+                        Spacer()
+                    }
                 }
             }
         }

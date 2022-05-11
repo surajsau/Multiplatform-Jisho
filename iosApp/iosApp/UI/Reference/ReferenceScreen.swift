@@ -31,7 +31,7 @@ struct ReferenceScreen: View {
                     }
                     
                     NavigationLink {
-                        
+                        JlptResourceScreen()
                     } label: {
                         ReferenceRow(title: "JLPT", description: "Vocabulary resources for Japanese Language Proficiency Test", color: Color(0x3185fc))
                     }
