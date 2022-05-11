@@ -2,22 +2,28 @@ package `in`.surajsau.jisho.android.ui.reference.components
 
 import `in`.surajsau.jisho.android.neomorphic.neomorph
 import `in`.surajsau.jisho.android.ui.theme.AppTheme
+import `in`.surajsau.jisho.android.ui.theme.cardDescription
+import `in`.surajsau.jisho.android.ui.theme.cardTitle
 import android.content.res.Configuration
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccessAlarm
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
@@ -41,7 +47,8 @@ fun ReferenceRow (
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Box(
-                modifier = Modifier.fillMaxHeight()
+                modifier = Modifier
+                    .size(size = 48.dp)
                     .background(color = color, shape = CircleShape)
             )
 
@@ -52,8 +59,7 @@ fun ReferenceRow (
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = title,
-                    style = MaterialTheme.typography.subtitle1,
-                    fontWeight = FontWeight.SemiBold
+                    style = MaterialTheme.typography.cardTitle
                 )
 
                 Text(
@@ -61,7 +67,7 @@ fun ReferenceRow (
                         .fillMaxWidth()
                         .alpha(0.6f),
                     text = description,
-                    style = MaterialTheme.typography.subtitle2,
+                    style = MaterialTheme.typography.cardDescription,
                     maxLines = 2
                 )
             }

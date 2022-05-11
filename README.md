@@ -1,6 +1,7 @@
 # Multiplatform-Jisho
 
-![Android](https://github.com/surajsau/Multiplatform-Jisho/actions/workflows/android_ci.yml/badge.svg?branch=android) ![iOS](https://github.com/surajsau/Multiplatform-Jisho/actions/workflows/ios_ci.yml/badge.svg?branch=ios)
+![Android](https://github.com/surajsau/Multiplatform-Jisho/actions/workflows/android_ci.yml/badge.svg?branch=android) 
+![iOS](https://github.com/surajsau/Multiplatform-Jisho/actions/workflows/ios_ci.yml/badge.svg?branch=ios)
 
 Kotlin Multiplatform Japanese Dictionary App.
 

@@ -5,7 +5,11 @@ import `in`.surajsau.jisho.android.neomorphic.neomorph
 import `in`.surajsau.jisho.android.ui.theme.AppTheme
 import android.content.res.Configuration
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -34,8 +38,8 @@ fun AppToolbar(
        title = {
            Text(
                text = title,
-               style = MaterialTheme.typography.h5,
-               fontWeight = FontWeight.Medium
+               style = MaterialTheme.typography.h6,
+               fontWeight = FontWeight.SemiBold
            )
        },
        navigateUpIcon = {

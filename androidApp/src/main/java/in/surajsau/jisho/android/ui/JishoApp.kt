@@ -3,6 +3,8 @@ package `in`.surajsau.jisho.android.ui
 import `in`.surajsau.jisho.android.ui.details.DetailsScreen
 import `in`.surajsau.jisho.android.ui.download.DownloadScreen
 import `in`.surajsau.jisho.android.ui.home.HomeScreen
+import `in`.surajsau.jisho.android.ui.reference.jlpt.JlptResourceScreen
+import `in`.surajsau.jisho.android.ui.reference.jlpt.list.JlptListScreen
 import `in`.surajsau.jisho.android.ui.reference.kanji.KanjiResourceScreen
 import `in`.surajsau.jisho.android.ui.reference.kanji.list.KanjiListScreen
 import `in`.surajsau.jisho.android.ui.sentence.details.SentenceDetailsScreen
@@ -98,10 +100,39 @@ fun JishoApp() {
                     )
                 }
 
+                composable(Navigation.App.JlptList.Key) {
+                    val args = it.arguments ?: return@composable
+
+                    JlptListScreen(
+                        modifier = Modifier.fillMaxSize(),
+                        level = Navigation.App.JlptList.fromArgs(args),
+                        navigateToDetails = { id, word ->
+                            navController.navigate(Navigation.App.Details(id, word).route)
+                        },
+                        navigateBack = { navController.navigateUp() }
+                    )
+                }
+
                 composable(Navigation.Resources.Kanji.key) {
                     KanjiResourceScreen(
-                        navigateToGradeList = { from, to ->
-                            val route = Navigation.App.KanjiList(query = KanjiQuery.Grade("")).route
+                        modifier = Modifier.fillMaxSize(),
+                        navigateToGradeList = { grade ->
+                            val route = Navigation.App.KanjiList(query = KanjiQuery.Grade(grade)).route
+                            navController.navigate(route)
+                        },
+                        navigateToAllGradesList = {
+                            val route = Navigation.App.KanjiList(query = KanjiQuery.AllSchool).route
+                            navController.navigate(route)
+                        },
+                        navigateBack = { navController.navigateUp() }
+                    )
+                }
+
+                composable(Navigation.Resources.Jlpt.key) {
+                    JlptResourceScreen(
+                        modifier = Modifier.fillMaxSize(),
+                        navigateToJlptLevel = { level ->
+                            val route = Navigation.App.JlptList(level = level).route
                             navController.navigate(route)
                         },
                         navigateBack = { navController.navigateUp() }

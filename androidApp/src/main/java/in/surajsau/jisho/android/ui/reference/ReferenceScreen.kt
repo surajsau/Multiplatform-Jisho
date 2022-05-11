@@ -3,15 +3,11 @@ package `in`.surajsau.jisho.android.ui.reference
 import `in`.surajsau.jisho.android.ui.Navigation
 import `in`.surajsau.jisho.android.ui.components.AppToolbar
 import `in`.surajsau.jisho.android.ui.reference.components.ReferenceRow
-import `in`.surajsau.jisho.model.KanjiQuery
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Icon
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -45,7 +41,7 @@ fun ReferenceScreen(
 
             ReferenceRow(
                 modifier = Modifier.fillMaxWidth()
-                    .clickable { onItemClicked(Navigation.Resources.Jlpt) },
+                    .clickable { onItemClicked(Navigation.Resources.Kanji) },
                 color = Color(0xFFdb9d47),
                 title = "Kanji",
                 description = "Catalog of Kanji characters"
