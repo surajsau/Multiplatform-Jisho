@@ -16,7 +16,9 @@ CREATE TABLE IF NOT EXISTS entry(
     ex_text TEXT,
     ex_sent TEXT,
     note_id INTEGER,
-    jlpt INTEGER
+    jlpt INTEGER,
+    bucket_id INTEGER,
+    FOREIGN KEY(bucket_id) REFERENCES buckets(id) ON DELETE SET NULL
 );
 
 insertEntry:
@@ -59,7 +61,9 @@ CREATE TABLE IF NOT EXISTS kanji(
     meaning TEXT,
     nanori TEXT,
     q_code TEXT,
-    note_id INTEGER
+    note_id INTEGER,
+    bucket_id INTEGER,
+    FOREIGN KEY(bucket_id) REFERENCES buckets(id) ON DELETE SET NULL
 );
 
 selectKanji:
@@ -156,6 +160,33 @@ CREATE TABLE IF NOT EXISTS conjugation(
 
 getConjugationsForPos:
 SELECT * FROM conjugation WHERE pos = :pos;
+
+CREATE TABLE IF NOT EXISTS buckets(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT
+);
+
+insertBucket:
+INSERT INTO buckets(name) VALUES(?);
+
+getAllBuckets:
+SELECT * FROM buckets;
+
+removeBucket:
+DELETE FROM buckets WHERE id = :id;
+
+updateEntryBucket:
+UPDATE entry SET bucket_id = :bucket WHERE id = :id;
+
+updateKanjiBucket:
+UPDATE kanji SET bucket_id = :bucket WHERE id = :id;
+
+getEntriesOfBucket:
+SELECT id, keb, re, re_restr, gloss FROM entry WHERE bucket_id = :bucket;
+
+getKanjisOfBucket:
+SELECT literal, reading, meaning FROM kanji WHERE bucket_id = :bucket;
+
 
 
 
