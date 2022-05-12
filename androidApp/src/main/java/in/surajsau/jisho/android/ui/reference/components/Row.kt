@@ -22,7 +22,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import `in`.surajsau.jisho.android.neomorphic.neomorph
+import `in`.surajsau.jisho.android.neomorphic.clickableNeomorph
 import `in`.surajsau.jisho.android.ui.theme.AppTheme
 import `in`.surajsau.jisho.android.ui.theme.cardDescription
 import `in`.surajsau.jisho.android.ui.theme.cardTitle
@@ -32,12 +32,13 @@ fun ReferenceRow(
     modifier: Modifier = Modifier,
     color: Color,
     title: String,
-    description: String
+    description: String,
+    onItemClicked: () -> Unit,
 ) {
     Column(
         modifier = modifier
+            .clickableNeomorph(onClick = onItemClicked)
             .height(72.dp)
-            .neomorph()
             .padding(horizontal = 16.dp)
     ) {
         Row(
@@ -96,14 +97,14 @@ private fun PreviewReferenceRow() {
                 color = Color.Red,
                 title = "Kana",
                 description = "Japanese syllables (Hiragana & Katakana)"
-            )
+            ) {}
 
             ReferenceRow(
                 modifier = Modifier.fillMaxWidth(),
                 color = Color.Green,
                 title = "JLPT",
                 description = "Standardized test to evaluate language proficiency for non-native frequency"
-            )
+            ) {}
         }
     }
 }

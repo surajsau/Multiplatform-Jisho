@@ -1,5 +1,6 @@
 package `in`.surajsau.jisho.android.ui.search.components
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,7 +23,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import `in`.surajsau.jisho.android.R
 import `in`.surajsau.jisho.android.neomorphic.clickableNeomorph
-import `in`.surajsau.jisho.android.ui.theme.DarkColors
 import `in`.surajsau.jisho.android.ui.theme.LightColors
 import `in`.surajsau.jisho.model.SearchResult
 
@@ -74,7 +74,14 @@ fun SearchResultRow(
     }
 }
 
-@Preview(name = "Light")
+@Preview(
+    name = "Night Mode",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
+@Preview(
+    name = "Day Mode",
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
+)
 @Composable
 private fun previewSearchResult() {
     MaterialTheme(colors = LightColors) {
@@ -97,48 +104,7 @@ private fun previewSearchResult() {
                     )
                 )
 
-                Spacer(modifier = Modifier.height(8.dp))
-
-                SearchResultRow(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
-                    result = SearchResult(
-                        id = 0L,
-                        value = "楽しい",
-                        reading = "たのしい",
-                        meanings = "fun・to have fun・enjoy"
-                    )
-                )
-            }
-        }
-    }
-}
-
-@Preview("Dark")
-@Composable
-private fun previewSearchResultDark() {
-    MaterialTheme(colors = DarkColors) {
-        Surface {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(300.dp),
-                verticalArrangement = Arrangement.Center,
-            ) {
-                SearchResultRow(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
-                    result = SearchResult(
-                        id = 0L,
-                        value = "楽しい",
-                        reading = "たのしい",
-                        meanings = "fun・to have fun・enjoy"
-                    )
-                )
-
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(Modifier.height(16.dp))
 
                 SearchResultRow(
                     modifier = Modifier

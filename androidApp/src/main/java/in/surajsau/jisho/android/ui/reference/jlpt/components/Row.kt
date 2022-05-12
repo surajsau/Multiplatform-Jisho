@@ -1,5 +1,9 @@
 package `in`.surajsau.jisho.android.ui.reference.jlpt.components
 
+import `in`.surajsau.jisho.android.neomorphic.clickableNeomorph
+import `in`.surajsau.jisho.android.ui.theme.AppTheme
+import `in`.surajsau.jisho.android.ui.theme.cardDescription
+import `in`.surajsau.jisho.android.ui.theme.cardTitle
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -15,20 +19,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import `in`.surajsau.jisho.android.neomorphic.neomorph
-import `in`.surajsau.jisho.android.ui.theme.AppTheme
-import `in`.surajsau.jisho.android.ui.theme.cardDescription
-import `in`.surajsau.jisho.android.ui.theme.cardTitle
 
 @Composable
 fun JlptRow(
     modifier: Modifier = Modifier,
     title: String,
     description: String,
+    onItemClicked: () -> Unit,
 ) {
     Column(
         modifier = modifier
-            .neomorph()
+            .clickableNeomorph(onClick = onItemClicked)
             .padding(horizontal = 16.dp, vertical = 12.dp),
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.spacedBy(8.dp)
@@ -62,7 +63,7 @@ private fun PreviewJlptRowItem() {
                 modifier = Modifier.fillMaxWidth().padding(16.dp),
                 title = "N5",
                 description = "Understanding of some basic Japanese"
-            )
+            ) {}
         }
     }
 }

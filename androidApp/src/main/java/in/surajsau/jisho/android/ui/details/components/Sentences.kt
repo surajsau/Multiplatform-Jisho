@@ -18,6 +18,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import `in`.surajsau.jisho.android.neomorphic.clickableNeomorph
 import `in`.surajsau.jisho.android.neomorphic.neomorph
 import `in`.surajsau.jisho.android.ui.theme.AppTheme
 import `in`.surajsau.jisho.android.ui.theme.sectionTitle
@@ -46,9 +47,8 @@ fun DetailsSentence(
             model.items.forEach { item ->
                 Column(
                     modifier = Modifier
-                        .clickable { onItemClicked(item.id) }
+                        .clickableNeomorph { onItemClicked(item.id) }
                         .fillMaxWidth()
-                        .neomorph()
                         .padding(horizontal = 16.dp, vertical = 12.dp),
                 ) {
                     Text(

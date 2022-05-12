@@ -20,18 +20,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import `in`.surajsau.jisho.android.neomorphic.neomorph
+import `in`.surajsau.jisho.android.neomorphic.clickableNeomorph
 import `in`.surajsau.jisho.android.ui.theme.AppTheme
 
 @Composable
 fun KanjiGradeItem(
     modifier: Modifier = Modifier,
     grade: String,
+    onItemClicked: () -> Unit
 ) {
     Box(
         modifier = modifier
+            .clickableNeomorph(onClick = onItemClicked)
             .aspectRatio(1f)
-            .neomorph()
     ) {
         Text(
             modifier = Modifier.align(Alignment.Center),
@@ -44,10 +45,13 @@ fun KanjiGradeItem(
 }
 
 @Composable
-fun AllSchoolItem(modifier: Modifier) {
+fun AllSchoolItem(
+    modifier: Modifier,
+    onItemClicked: () -> Unit,
+) {
     Box(
         modifier = modifier
-            .neomorph()
+            .clickableNeomorph(onClick = onItemClicked)
             .padding(horizontal = 16.dp, vertical = 12.dp)
     ) {
         Text(
@@ -81,11 +85,11 @@ private fun PreviewKanjiGradeItem() {
             KanjiGradeItem(
                 modifier = Modifier.width(72.dp),
                 grade = "1"
-            )
+            ) {}
 
             Spacer(Modifier.height(16.dp))
 
-            AllSchoolItem(modifier = Modifier.fillMaxWidth())
+            AllSchoolItem(modifier = Modifier.fillMaxWidth()) {}
         }
     }
 }

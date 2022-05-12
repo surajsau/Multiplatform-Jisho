@@ -1,7 +1,6 @@
 package `in`.surajsau.jisho.android.ui.components
 
 import android.content.res.Configuration
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxSize
@@ -67,10 +66,10 @@ fun AppToolbar(
         Box(
             modifier = Modifier
                 .align(Alignment.CenterStart)
-                .clickable { onNavigateUp() }
                 .clickableNeomorph(
                     shape = NeomorphicShape.Oval,
                     elevation = 8.dp,
+                    onClick = onNavigateUp
                 )
                 .padding(all = 12.dp),
             contentAlignment = Alignment.Center

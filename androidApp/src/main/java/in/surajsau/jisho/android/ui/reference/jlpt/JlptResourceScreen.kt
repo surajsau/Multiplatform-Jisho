@@ -1,6 +1,5 @@
 package `in`.surajsau.jisho.android.ui.reference.jlpt
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -34,42 +33,42 @@ fun JlptResourceScreen(
         ) {
             JlptRow(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable { navigateToJlptLevel(5) },
+                    .fillMaxWidth(),
                 title = "N5",
-                description = "Understanding of some Basic Japanese"
+                description = "Understanding of some Basic Japanese",
+                onItemClicked = { navigateToJlptLevel(5) }
             )
 
             JlptRow(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable { navigateToJlptLevel(4) },
+                    .fillMaxWidth(),
                 title = "N4",
-                description = "Understanding of Basic Japanese"
+                description = "Understanding of Basic Japanese",
+                onItemClicked = { navigateToJlptLevel(4) }
             )
 
             JlptRow(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable { navigateToJlptLevel(3) },
+                    .fillMaxWidth(),
                 title = "N3",
-                description = "Understanding of some Japanese used in everyday situations to some degre"
+                description = "Understanding of some Japanese used in everyday situations to some degree",
+                onItemClicked = { navigateToJlptLevel(3) }
             )
 
             JlptRow(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable { navigateToJlptLevel(2) },
+                    .fillMaxWidth(),
                 title = "N2",
-                description = "Understanding of some Japanese used in everyday situations and irregular circumstances to some degree"
+                description = "Understanding of some Japanese used in everyday situations and irregular circumstances to some degree",
+                onItemClicked = { navigateToJlptLevel(2) }
             )
 
             JlptRow(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable { navigateToJlptLevel(1) },
+                    .fillMaxWidth(),
                 title = "N1",
-                description = "Understanding of Japanese even in irregular circumstances"
+                description = "Understanding of Japanese even in irregular circumstances",
+                onItemClicked = { navigateToJlptLevel(1) }
             )
         }
     }

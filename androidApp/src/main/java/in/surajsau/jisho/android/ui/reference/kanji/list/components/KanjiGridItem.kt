@@ -1,6 +1,5 @@
 package `in`.surajsau.jisho.android.ui.reference.kanji.list.components
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,7 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import `in`.surajsau.jisho.android.neomorphic.NeomorphicShape
-import `in`.surajsau.jisho.android.neomorphic.neomorph
+import `in`.surajsau.jisho.android.neomorphic.clickableNeomorph
 import `in`.surajsau.jisho.android.ui.theme.LightColors
 import `in`.surajsau.jisho.model.KanjiResult
 
@@ -30,9 +29,11 @@ fun KanjiGridItem(
 ) {
     Column(
         modifier = modifier
-            .aspectRatio(1f)
-            .clickable { onItemClicked() }
-            .neomorph(shape = NeomorphicShape.RoundedCorner(8.dp)),
+            .clickableNeomorph(
+                shape = NeomorphicShape.RoundedCorner(8.dp),
+                onClick = onItemClicked
+            )
+            .aspectRatio(1f),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {

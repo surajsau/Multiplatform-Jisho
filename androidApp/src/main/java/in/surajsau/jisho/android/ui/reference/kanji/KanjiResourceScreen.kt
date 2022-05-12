@@ -1,6 +1,9 @@
 package `in`.surajsau.jisho.android.ui.reference.kanji
 
-import androidx.compose.foundation.clickable
+import `in`.surajsau.jisho.android.ui.components.AppToolbar
+import `in`.surajsau.jisho.android.ui.reference.kanji.components.AllSchoolItem
+import `in`.surajsau.jisho.android.ui.reference.kanji.components.KanjiGradeItem
+import `in`.surajsau.jisho.android.ui.theme.sectionTitle
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -19,10 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import `in`.surajsau.jisho.android.ui.components.AppToolbar
-import `in`.surajsau.jisho.android.ui.reference.kanji.components.AllSchoolItem
-import `in`.surajsau.jisho.android.ui.reference.kanji.components.KanjiGradeItem
-import `in`.surajsau.jisho.android.ui.theme.sectionTitle
 
 @Composable
 fun KanjiResourceScreen(
@@ -69,9 +68,9 @@ fun KanjiResourceScreen(
                 items(6) {
                     KanjiGradeItem(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable { navigateToGradeList(it) },
-                        grade = "$it"
+                            .fillMaxWidth(),
+                        grade = "$it",
+                        onItemClicked = { navigateToGradeList(it) }
                     )
                 }
             }
@@ -95,17 +94,16 @@ fun KanjiResourceScreen(
                     val grade = it + 7
                     KanjiGradeItem(
                         modifier = Modifier
-                            .width(56.dp)
-                            .clickable { navigateToGradeList(grade) },
-                        grade = "$grade"
+                            .width(56.dp),
+                        grade = "$grade",
+                        onItemClicked = { navigateToGradeList(grade) }
                     )
                 }
             }
 
             AllSchoolItem(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable { navigateToAllGradesList() },
+                modifier = Modifier.fillMaxWidth(),
+                onItemClicked = { navigateToAllGradesList() }
             )
         }
     }

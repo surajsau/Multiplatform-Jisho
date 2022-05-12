@@ -1,6 +1,5 @@
 package `in`.surajsau.jisho.android.ui.reference
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -30,27 +29,27 @@ fun ReferenceScreen(
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
             ReferenceRow(
-                modifier = Modifier.fillMaxWidth()
-                    .clickable { onItemClicked(NavigationItem.Resources.Kana) },
+                modifier = Modifier.fillMaxWidth(),
                 color = Color(0xFFff784f),
                 title = "Kana",
-                description = "Hiragana & Katakana"
+                description = "Hiragana & Katakana",
+                onItemClicked = { onItemClicked(NavigationItem.Resources.Kana) }
             )
 
             ReferenceRow(
-                modifier = Modifier.fillMaxWidth()
-                    .clickable { onItemClicked(NavigationItem.Resources.Kanji) },
+                modifier = Modifier.fillMaxWidth(),
                 color = Color(0xFFdb9d47),
                 title = "Kanji",
-                description = "Catalog of Kanji characters"
+                description = "Catalog of Kanji characters",
+                onItemClicked = { onItemClicked(NavigationItem.Resources.Kanji) }
             )
 
             ReferenceRow(
-                modifier = Modifier.fillMaxWidth()
-                    .clickable { onItemClicked(NavigationItem.Resources.Jlpt) },
+                modifier = Modifier.fillMaxWidth(),
                 color = Color(0xFF3185fc),
                 title = "JLPT",
-                description = "Vocabulary resources for Japanese Language Proficiency Test"
+                description = "Vocabulary resources for Japanese Language Proficiency Test",
+                onItemClicked = { onItemClicked(NavigationItem.Resources.Jlpt) }
             )
         }
     }
