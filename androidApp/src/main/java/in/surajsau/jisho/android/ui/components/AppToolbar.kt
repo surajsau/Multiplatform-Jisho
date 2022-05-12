@@ -1,8 +1,5 @@
 package `in`.surajsau.jisho.android.ui.components
 
-import `in`.surajsau.jisho.android.neomorphic.NeomorphicShape
-import `in`.surajsau.jisho.android.neomorphic.neomorph
-import `in`.surajsau.jisho.android.ui.theme.AppTheme
 import android.content.res.Configuration
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -23,6 +20,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import `in`.surajsau.jisho.android.neomorphic.NeomorphicShape
+import `in`.surajsau.jisho.android.neomorphic.clickableNeomorph
+import `in`.surajsau.jisho.android.neomorphic.neomorph
+import `in`.surajsau.jisho.android.ui.theme.AppTheme
 
 @Composable
 @Stable
@@ -33,21 +34,21 @@ fun AppToolbar(
     menu: @Composable (BoxScope.() -> Unit)? = null,
     onNavigateUp: () -> Unit = {}
 ) {
-   AppToolbar(
-       modifier = modifier,
-       title = {
-           Text(
-               text = title,
-               style = MaterialTheme.typography.h6,
-               fontWeight = FontWeight.SemiBold
-           )
-       },
-       navigateUpIcon = {
-           navigateUpIcon?.let { Icon(imageVector = it, contentDescription = "") }
-       },
-       menu = { menu?.invoke(this) },
-       onNavigateUp = onNavigateUp,
-   )
+    AppToolbar(
+        modifier = modifier,
+        title = {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.h6,
+                fontWeight = FontWeight.SemiBold
+            )
+        },
+        navigateUpIcon = {
+            navigateUpIcon?.let { Icon(imageVector = it, contentDescription = "") }
+        },
+        menu = { menu?.invoke(this) },
+        onNavigateUp = onNavigateUp,
+    )
 }
 
 @Composable
@@ -67,10 +68,9 @@ fun AppToolbar(
             modifier = Modifier
                 .align(Alignment.CenterStart)
                 .clickable { onNavigateUp() }
-                .neomorph(
+                .clickableNeomorph(
                     shape = NeomorphicShape.Oval,
                     elevation = 8.dp,
-                    animatePress = true,
                 )
                 .padding(all = 12.dp),
             contentAlignment = Alignment.Center

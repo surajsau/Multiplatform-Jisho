@@ -10,19 +10,18 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import `in`.surajsau.jisho.android.ui.Navigation
+import `in`.surajsau.jisho.android.ui.NavigationItem
 import `in`.surajsau.jisho.android.ui.favorite.FavoriteScreen
 import `in`.surajsau.jisho.android.ui.home.components.AppBottomNavBar
 import `in`.surajsau.jisho.android.ui.reference.ReferenceScreen
 import `in`.surajsau.jisho.android.ui.search.SearchScreen
 import `in`.surajsau.jisho.android.ui.settings.SettingsScreen
-import `in`.surajsau.jisho.model.KanjiQuery
 
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
     navigateToDetails: (Long, String) -> Unit,
-    navigateToResources: (Navigation.Resources) -> Unit,
+    navigateToResources: (NavigationItem.Resources) -> Unit,
 ) {
     val navController = rememberNavController()
 
@@ -48,27 +47,28 @@ fun HomeScreen(
             modifier = Modifier
                 .padding(padding)
                 .fillMaxSize(),
-            startDestination = Navigation.Home.Search.navKey, navController = navController
+            startDestination = NavigationItem.Home.Search.navKey,
+            navController = navController
         ) {
-            composable(Navigation.Home.Search.navKey) {
+            composable(NavigationItem.Home.Search.navKey) {
                 SearchScreen(
                     modifier = Modifier.fillMaxSize(),
                     onItemClicked = navigateToDetails,
                 )
             }
 
-            composable(Navigation.Home.Favorite.navKey) {
+            composable(NavigationItem.Home.Favorite.navKey) {
                 FavoriteScreen(modifier = Modifier.fillMaxSize())
             }
 
-            composable(Navigation.Home.Lists.navKey) {
+            composable(NavigationItem.Home.Lists.navKey) {
                 ReferenceScreen(
                     modifier = Modifier.fillMaxSize(),
                     onItemClicked = navigateToResources
                 )
             }
 
-            composable(Navigation.Home.Settings.navKey) {
+            composable(NavigationItem.Home.Settings.navKey) {
                 SettingsScreen(modifier = Modifier.fillMaxSize())
             }
         }

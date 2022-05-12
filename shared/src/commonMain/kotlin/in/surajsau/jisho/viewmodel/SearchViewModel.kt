@@ -38,10 +38,11 @@ class SearchViewModel : BaseViewModel<SearchViewModel.State, SearchViewModel.Int
                     } else {
                         searchForReading(text = searchTerm)
                     }
-                    if (results.isEmpty())
+                    if (results.isEmpty()) {
                         State.EmptyResult
-                    else
+                    } else {
                         State.Results(value = results)
+                    }
                 }
                 .collect { _state.tryEmit(it) }
         }

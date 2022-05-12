@@ -1,11 +1,11 @@
 package `in`.surajsau.jisho.android.ui.details
 
-import `in`.surajsau.jisho.android.base.dispatch
-import `in`.surajsau.jisho.android.ui.components.AppToolbar
-import `in`.surajsau.jisho.android.ui.details.components.*
-import `in`.surajsau.jisho.android.ui.details.model.DetailsModel
-import `in`.surajsau.jisho.viewmodel.DetailsViewModel
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -14,6 +14,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import `in`.surajsau.jisho.android.base.dispatch
+import `in`.surajsau.jisho.android.ui.components.AppToolbar
+import `in`.surajsau.jisho.android.ui.details.components.DetailsAlternative
+import `in`.surajsau.jisho.android.ui.details.components.DetailsConjugations
+import `in`.surajsau.jisho.android.ui.details.components.DetailsHeader
+import `in`.surajsau.jisho.android.ui.details.components.DetailsKanji
+import `in`.surajsau.jisho.android.ui.details.components.DetailsMeaning
+import `in`.surajsau.jisho.android.ui.details.components.DetailsSentence
+import `in`.surajsau.jisho.android.ui.details.model.DetailsModel
+import `in`.surajsau.jisho.viewmodel.DetailsViewModel
 import org.koin.androidx.compose.get
 
 @Composable
@@ -25,7 +35,6 @@ fun DetailsScreen(
     navigateToSentenceList: (String) -> Unit,
     navigateBack: () -> Unit = {},
 ) {
-
     val (state, intent, _) = dispatch(viewModel)
 
     LaunchedEffect(model) {
@@ -33,7 +42,6 @@ fun DetailsScreen(
     }
 
     Column(modifier = modifier) {
-
         AppToolbar(
             modifier = Modifier.fillMaxWidth(),
             title = "",

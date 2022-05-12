@@ -1,5 +1,14 @@
 package `in`.surajsau.jisho.android.ui
 
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import `in`.surajsau.jisho.android.ui.details.DetailsScreen
 import `in`.surajsau.jisho.android.ui.download.DownloadScreen
 import `in`.surajsau.jisho.android.ui.home.HomeScreen
@@ -12,15 +21,6 @@ import `in`.surajsau.jisho.android.ui.sentence.list.SentenceListScreen
 import `in`.surajsau.jisho.android.ui.theme.DarkColors
 import `in`.surajsau.jisho.android.ui.theme.LightColors
 import `in`.surajsau.jisho.model.KanjiQuery
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun JishoApp() {
@@ -33,106 +33,106 @@ fun JishoApp() {
             NavHost(
                 modifier = Modifier.fillMaxSize(),
                 navController = navController,
-                startDestination = Navigation.App.Download.key,
+                startDestination = NavigationItem.App.Download.key,
             ) {
-                composable(Navigation.App.Download.key) {
+                composable(NavigationItem.App.Download.key) {
                     DownloadScreen(
                         modifier = Modifier.fillMaxSize(),
-                        onDownloadComplete = { navController.navigate(Navigation.App.Home.key) }
+                        onDownloadComplete = { navController.navigate(NavigationItem.App.Home.key) }
                     )
                 }
 
-                composable(Navigation.App.Home.key) {
+                composable(NavigationItem.App.Home.key) {
                     HomeScreen(
                         modifier = Modifier.fillMaxSize(),
                         navigateToResources = { resources ->
                             navController.navigate(route = resources.key)
                         },
                         navigateToDetails = { id, word ->
-                            navController.navigate(route = Navigation.App.Details(id, word).route)
+                            navController.navigate(route = NavigationItem.App.Details(id, word).route)
                         }
                     )
                 }
 
-                composable(Navigation.App.Details.Key) {
+                composable(NavigationItem.App.Details.Key) {
                     val args = it.arguments ?: return@composable
 
                     DetailsScreen(
                         modifier = Modifier.fillMaxSize(),
-                        model = Navigation.App.Details.fromArgs(args),
+                        model = NavigationItem.App.Details.fromArgs(args),
                         navigateToSentenceList = { word ->
-                            navController.navigate(route = Navigation.App.SentenceList(word).route)
+                            navController.navigate(route = NavigationItem.App.SentenceList(word).route)
                         },
                         navigateToSentenceDetails = { id ->
-                            navController.navigate(route = Navigation.App.SentenceDetails(id).route)
+                            navController.navigate(route = NavigationItem.App.SentenceDetails(id).route)
                         },
                         navigateBack = { navController.navigateUp() }
                     )
                 }
 
-                composable(Navigation.App.SentenceList.Key) {
+                composable(NavigationItem.App.SentenceList.Key) {
                     val args = it.arguments ?: return@composable
                     SentenceListScreen(
                         modifier = Modifier.fillMaxSize(),
-                        word = Navigation.App.SentenceList.fromArgs(args),
+                        word = NavigationItem.App.SentenceList.fromArgs(args),
                         navigateBack = { navController.navigateUp() },
                         navigateToDetails = { id ->
-                            navController.navigate(route = Navigation.App.SentenceDetails(id).route)
+                            navController.navigate(route = NavigationItem.App.SentenceDetails(id).route)
                         }
                     )
                 }
 
-                composable(Navigation.App.SentenceDetails.Key) {
+                composable(NavigationItem.App.SentenceDetails.Key) {
                     val args = it.arguments ?: return@composable
                     SentenceDetailsScreen(
                         modifier = Modifier.fillMaxSize(),
-                        id = Navigation.App.SentenceDetails.fromArgs(args),
+                        id = NavigationItem.App.SentenceDetails.fromArgs(args),
                         navigateBack = { navController.navigateUp() }
                     )
                 }
 
-                composable(Navigation.App.KanjiList.Key) {
+                composable(NavigationItem.App.KanjiList.Key) {
                     val args = it.arguments ?: return@composable
                     KanjiListScreen(
                         modifier = Modifier.fillMaxSize(),
-                        query = Navigation.App.KanjiList.fromArgs(args),
+                        query = NavigationItem.App.KanjiList.fromArgs(args),
                         navigateBack = { navController.navigateUp() }
                     )
                 }
 
-                composable(Navigation.App.JlptList.Key) {
+                composable(NavigationItem.App.JlptList.Key) {
                     val args = it.arguments ?: return@composable
 
                     JlptListScreen(
                         modifier = Modifier.fillMaxSize(),
-                        level = Navigation.App.JlptList.fromArgs(args),
+                        level = NavigationItem.App.JlptList.fromArgs(args),
                         navigateToDetails = { id, word ->
-                            navController.navigate(Navigation.App.Details(id, word).route)
+                            navController.navigate(NavigationItem.App.Details(id, word).route)
                         },
                         navigateBack = { navController.navigateUp() }
                     )
                 }
 
-                composable(Navigation.Resources.Kanji.key) {
+                composable(NavigationItem.Resources.Kanji.key) {
                     KanjiResourceScreen(
                         modifier = Modifier.fillMaxSize(),
                         navigateToGradeList = { grade ->
-                            val route = Navigation.App.KanjiList(query = KanjiQuery.Grade(grade)).route
+                            val route = NavigationItem.App.KanjiList(query = KanjiQuery.Grade(grade)).route
                             navController.navigate(route)
                         },
                         navigateToAllGradesList = {
-                            val route = Navigation.App.KanjiList(query = KanjiQuery.AllSchool).route
+                            val route = NavigationItem.App.KanjiList(query = KanjiQuery.AllSchool).route
                             navController.navigate(route)
                         },
                         navigateBack = { navController.navigateUp() }
                     )
                 }
 
-                composable(Navigation.Resources.Jlpt.key) {
+                composable(NavigationItem.Resources.Jlpt.key) {
                     JlptResourceScreen(
                         modifier = Modifier.fillMaxSize(),
                         navigateToJlptLevel = { level ->
-                            val route = Navigation.App.JlptList(level = level).route
+                            val route = NavigationItem.App.JlptList(level = level).route
                             navController.navigate(route)
                         },
                         navigateBack = { navController.navigateUp() }

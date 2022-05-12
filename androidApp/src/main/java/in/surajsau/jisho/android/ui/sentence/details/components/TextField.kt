@@ -1,7 +1,5 @@
 package `in`.surajsau.jisho.android.ui.sentence.details.components
 
-import `in`.surajsau.jisho.android.neomorphic.neomorph
-import `in`.surajsau.jisho.android.ui.theme.AppTheme
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,9 +15,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import `in`.surajsau.jisho.android.neomorphic.neomorph
+import `in`.surajsau.jisho.android.ui.theme.AppTheme
 
 @Composable
-fun NotesTextField (
+fun NotesTextField(
     modifier: Modifier = Modifier,
     value: String,
     onValueChanged: (String) -> Unit,

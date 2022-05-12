@@ -1,10 +1,13 @@
 package `in`.surajsau.jisho.android.ui.details.components
 
-import `in`.surajsau.jisho.android.ui.theme.AppTheme
-import `in`.surajsau.jisho.android.ui.theme.sectionTitle
-import `in`.surajsau.jisho.viewmodel.DetailsViewModel
 import android.content.res.Configuration
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -13,13 +16,15 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import `in`.surajsau.jisho.android.ui.theme.AppTheme
+import `in`.surajsau.jisho.android.ui.theme.sectionTitle
+import `in`.surajsau.jisho.viewmodel.DetailsViewModel
 
 @Composable
-fun DetailsConjugations (
+fun DetailsConjugations(
     modifier: Modifier = Modifier,
     model: DetailsViewModel.Conjugation,
 ) {
-
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -149,15 +154,17 @@ private fun ConjugationRow(
     value: String
 ) {
     Row(modifier = modifier) {
-        Text(modifier = Modifier
-            .fillMaxWidth(0.4f)
-            .alpha(0.6f),
+        Text(
+            modifier = Modifier
+                .fillMaxWidth(0.4f)
+                .alpha(0.6f),
             style = MaterialTheme.typography.body2,
             text = title,
             fontWeight = FontWeight.SemiBold,
         )
 
-        Text(modifier = Modifier
+        Text(
+            modifier = Modifier
                 .fillMaxWidth(0.6f),
             style = MaterialTheme.typography.body2,
             text = value,
@@ -177,9 +184,10 @@ private fun ConjugationRow(
 @Composable
 private fun PreviewDetailsConjugations() {
     AppTheme {
-        Box(modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
         ) {
             DetailsConjugations(
                 modifier = Modifier.fillMaxSize(),
@@ -187,14 +195,13 @@ private fun PreviewDetailsConjugations() {
                     presentFormal = "怒ります",
                     presentFormalNegative = "怒りません",
                     pastFormal = "怒りました",
-                    pastFormalNegative= "怒りませんでした",
+                    pastFormalNegative = "怒りませんでした",
                     presentInformal = "怒る",
                     presentInformalNegative = "怒らない",
                     pastInformal = "怒った",
                     pastInformalNegative = "怒りなかった",
                     te = "怒って"
                 ).apply {
-
                 }
             )
         }

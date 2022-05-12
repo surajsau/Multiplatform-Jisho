@@ -37,8 +37,9 @@ private fun ContentDrawScope.drawBackground(
     shape: NeomorphicShape
 ) {
     drawIntoCanvas { canvas ->
-        if (elevation <= 0f)
+        if (elevation <= 0f) {
             return@drawIntoCanvas
+        }
 
         val blurRadius = elevation * 0.95f
         val displacement = elevation * 0.6f
@@ -93,8 +94,9 @@ private fun ContentDrawScope.drawForeground(
     shape: NeomorphicShape,
 ) {
     drawIntoCanvas { canvas ->
-        if (elevation <= 0f)
+        if (elevation <= 0f) {
             return@drawIntoCanvas
+        }
 
         val blurRadius = elevation * 0.6f
         val strokeWidth = elevation * 0.95f
@@ -141,7 +143,9 @@ private fun ContentDrawScope.drawForeground(
 
                 val visiblePath = Path().also {
                     it.moveTo(0f, 0f)
-                    it.addRoundRect(RoundRect(0f, 0f, size.width, size.height, cornerRadius, cornerRadius))
+                    it.addRoundRect(
+                        RoundRect(0f, 0f, size.width, size.height, cornerRadius, cornerRadius)
+                    )
                 }
 
                 canvas.clipPath(visiblePath)

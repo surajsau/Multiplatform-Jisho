@@ -14,10 +14,6 @@ import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -58,11 +54,9 @@ fun SearchBar(
 @Preview
 @Composable
 private fun previewSearchBar() {
-
     MaterialTheme(colors = DarkColors) {
         Surface {
             Box(modifier = Modifier.fillMaxSize()) {
-
                 SearchBar(
                     modifier = Modifier.fillMaxWidth()
                         .padding(16.dp)

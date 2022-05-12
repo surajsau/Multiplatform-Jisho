@@ -10,9 +10,9 @@ import `in`.surajsau.jisho.model.SearchResult
 
 fun JmdictQueryResult.mapToSearchResult(searchTerm: String): SearchResult {
     val id = this.id
-    val value = if (this.kanjiString.isEmpty())
+    val value = if (this.kanjiString.isEmpty()) {
         this.readingString
-    else {
+    } else {
         val kanjis = this.kanjiString.split(";")
         kanjis.firstOrNull { it.contains(searchTerm) } ?: kanjis.first()
     }

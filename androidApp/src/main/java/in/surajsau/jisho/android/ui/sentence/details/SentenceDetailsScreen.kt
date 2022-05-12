@@ -1,16 +1,21 @@
 package `in`.surajsau.jisho.android.ui.sentence.details
 
-import `in`.surajsau.jisho.android.base.dispatch
-import `in`.surajsau.jisho.android.ui.components.AppToolbar
-import `in`.surajsau.jisho.android.ui.sentence.details.components.NotesTextField
-import `in`.surajsau.jisho.viewmodel.SentenceDetailViewModel
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import `in`.surajsau.jisho.android.base.dispatch
+import `in`.surajsau.jisho.android.ui.components.AppToolbar
+import `in`.surajsau.jisho.android.ui.sentence.details.components.NotesTextField
+import `in`.surajsau.jisho.viewmodel.SentenceDetailViewModel
 import org.koin.androidx.compose.get
 
 @Composable
@@ -29,7 +34,6 @@ fun SentenceDetailsScreen(
     }
 
     Column(modifier = modifier) {
-
         AppToolbar(
             navigateUpIcon = Icons.Default.ArrowBack,
             title = "",
@@ -46,6 +50,5 @@ fun SentenceDetailsScreen(
             value = notesText,
             onValueChanged = { notesText = it }
         )
-
     }
 }

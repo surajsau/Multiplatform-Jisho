@@ -1,11 +1,9 @@
 package `in`.surajsau.jisho.android.ui.sentence.list
 
-import `in`.surajsau.jisho.android.base.dispatch
-import `in`.surajsau.jisho.android.ui.components.AppToolbar
-import `in`.surajsau.jisho.android.ui.sentence.list.components.SentenceRow
-import `in`.surajsau.jisho.viewmodel.SentenceListViewModel
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -14,17 +12,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import `in`.surajsau.jisho.android.base.dispatch
+import `in`.surajsau.jisho.android.ui.components.AppToolbar
+import `in`.surajsau.jisho.android.ui.sentence.list.components.SentenceRow
+import `in`.surajsau.jisho.viewmodel.SentenceListViewModel
 import org.koin.androidx.compose.get
 
 @Composable
-fun SentenceListScreen (
+fun SentenceListScreen(
     modifier: Modifier = Modifier,
     word: String,
     viewModel: SentenceListViewModel = get(),
     navigateToDetails: (Long) -> Unit,
     navigateBack: () -> Unit = {},
 ) {
-
     val (state, intent, _) = dispatch(viewModel)
 
     LaunchedEffect(Unit) {
@@ -40,7 +41,6 @@ fun SentenceListScreen (
         )
 
         LazyColumn(modifier = Modifier.fillMaxWidth()) {
-
             items(state.sentences) { sentence ->
                 SentenceRow(
                     modifier = Modifier.fillMaxWidth()

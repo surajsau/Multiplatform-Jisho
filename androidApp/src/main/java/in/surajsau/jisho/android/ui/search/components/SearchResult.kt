@@ -1,11 +1,5 @@
 package `in`.surajsau.jisho.android.ui.search.components
 
-import `in`.surajsau.jisho.android.R
-import `in`.surajsau.jisho.android.neomorphic.neomorph
-import `in`.surajsau.jisho.android.ui.theme.DarkColors
-import `in`.surajsau.jisho.android.ui.theme.LightColors
-import `in`.surajsau.jisho.model.SearchResult
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,6 +20,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import `in`.surajsau.jisho.android.R
+import `in`.surajsau.jisho.android.neomorphic.clickableNeomorph
+import `in`.surajsau.jisho.android.ui.theme.DarkColors
+import `in`.surajsau.jisho.android.ui.theme.LightColors
+import `in`.surajsau.jisho.model.SearchResult
 
 @Composable
 fun SearchResultRow(
@@ -35,10 +34,8 @@ fun SearchResultRow(
 ) {
     Column(
         modifier = modifier
-            .clickable { onItemClicked() }
-            .neomorph()
+            .clickableNeomorph { onItemClicked() }
     ) {
-
         Spacer(modifier = Modifier.height(12.dp))
 
         Row(
@@ -80,15 +77,17 @@ fun SearchResultRow(
 @Preview(name = "Light")
 @Composable
 private fun previewSearchResult() {
-
     MaterialTheme(colors = LightColors) {
         Surface {
             Column(
-                modifier = Modifier.fillMaxWidth().height(300.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(300.dp),
                 verticalArrangement = Arrangement.Center,
             ) {
                 SearchResultRow(
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
                         .padding(horizontal = 16.dp),
                     result = SearchResult(
                         id = 0L,
@@ -101,7 +100,8 @@ private fun previewSearchResult() {
                 Spacer(modifier = Modifier.height(8.dp))
 
                 SearchResultRow(
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
                         .padding(horizontal = 16.dp),
                     result = SearchResult(
                         id = 0L,
@@ -118,15 +118,17 @@ private fun previewSearchResult() {
 @Preview("Dark")
 @Composable
 private fun previewSearchResultDark() {
-
     MaterialTheme(colors = DarkColors) {
         Surface {
             Column(
-                modifier = Modifier.fillMaxWidth().height(300.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(300.dp),
                 verticalArrangement = Arrangement.Center,
             ) {
                 SearchResultRow(
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
                         .padding(horizontal = 16.dp),
                     result = SearchResult(
                         id = 0L,
@@ -139,7 +141,8 @@ private fun previewSearchResultDark() {
                 Spacer(modifier = Modifier.height(8.dp))
 
                 SearchResultRow(
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
                         .padding(horizontal = 16.dp),
                     result = SearchResult(
                         id = 0L,

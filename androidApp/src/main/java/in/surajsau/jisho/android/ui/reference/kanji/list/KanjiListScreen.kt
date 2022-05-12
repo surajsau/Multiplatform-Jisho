@@ -1,10 +1,5 @@
 package `in`.surajsau.jisho.android.ui.reference.kanji.list
 
-import `in`.surajsau.jisho.android.base.dispatch
-import `in`.surajsau.jisho.android.ui.components.AppToolbar
-import `in`.surajsau.jisho.android.ui.reference.kanji.list.components.KanjiGridItem
-import `in`.surajsau.jisho.model.KanjiQuery
-import `in`.surajsau.jisho.viewmodel.KanjiListViewModel
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -18,6 +13,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import `in`.surajsau.jisho.android.base.dispatch
+import `in`.surajsau.jisho.android.ui.components.AppToolbar
+import `in`.surajsau.jisho.android.ui.reference.kanji.list.components.KanjiGridItem
+import `in`.surajsau.jisho.model.KanjiQuery
+import `in`.surajsau.jisho.viewmodel.KanjiListViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.compose.get
@@ -29,7 +29,6 @@ fun KanjiListScreen(
     viewModel: KanjiListViewModel = get(),
     navigateBack: () -> Unit = {}
 ) {
-
     val (state, intent, effect) = dispatch(viewModel)
 
     LaunchedEffect(Unit) {

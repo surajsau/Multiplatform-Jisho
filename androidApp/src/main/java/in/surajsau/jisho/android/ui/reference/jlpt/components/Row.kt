@@ -1,9 +1,5 @@
 package `in`.surajsau.jisho.android.ui.reference.jlpt.components
 
-import `in`.surajsau.jisho.android.neomorphic.neomorph
-import `in`.surajsau.jisho.android.ui.theme.AppTheme
-import `in`.surajsau.jisho.android.ui.theme.cardDescription
-import `in`.surajsau.jisho.android.ui.theme.cardTitle
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,14 +15,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import `in`.surajsau.jisho.android.neomorphic.neomorph
+import `in`.surajsau.jisho.android.ui.theme.AppTheme
+import `in`.surajsau.jisho.android.ui.theme.cardDescription
+import `in`.surajsau.jisho.android.ui.theme.cardTitle
 
 @Composable
-fun JlptRow (
+fun JlptRow(
     modifier: Modifier = Modifier,
     title: String,
     description: String,
 ) {
-
     Column(
         modifier = modifier
             .neomorph()

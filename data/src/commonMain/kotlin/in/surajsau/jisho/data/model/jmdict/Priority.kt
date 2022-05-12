@@ -1,6 +1,6 @@
 package `in`.surajsau.jisho.data.model.jmdict
 
-data class Priority (val value: String) {
+data class Priority(val value: String) {
 
     val isCommon: Boolean
         get() {

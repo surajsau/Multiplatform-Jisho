@@ -1,9 +1,5 @@
 package `in`.surajsau.jisho.android.ui.reference.jlpt.list
 
-import `in`.surajsau.jisho.android.base.dispatch
-import `in`.surajsau.jisho.android.ui.components.AppToolbar
-import `in`.surajsau.jisho.android.ui.search.components.SearchResultRow
-import `in`.surajsau.jisho.viewmodel.JlptListViewModel
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -19,6 +15,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import `in`.surajsau.jisho.android.base.dispatch
+import `in`.surajsau.jisho.android.ui.components.AppToolbar
+import `in`.surajsau.jisho.android.ui.search.components.SearchResultRow
+import `in`.surajsau.jisho.viewmodel.JlptListViewModel
 import org.koin.androidx.compose.get
 
 @Composable
@@ -29,7 +29,6 @@ fun JlptListScreen(
     navigateToDetails: (id: Long, word: String) -> Unit,
     navigateBack: () -> Unit = {}
 ) {
-
     val (state, intent, _) = dispatch(viewModel)
 
     LaunchedEffect(Unit) {
@@ -48,7 +47,6 @@ fun JlptListScreen(
             Box(modifier = Modifier.fillMaxSize()) {
                 CircularProgressIndicator()
             }
-
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxWidth(),

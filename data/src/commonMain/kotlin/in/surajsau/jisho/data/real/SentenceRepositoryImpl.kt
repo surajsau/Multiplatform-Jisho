@@ -9,7 +9,7 @@ import kotlinx.coroutines.withContext
 class SentenceRepositoryImpl constructor(
     jisho: Jisho,
     private val dispatcherProvider: DispatcherProvider,
-): SentenceRepository {
+) : SentenceRepository {
 
     private val queries = jisho.jishoQueries
 
@@ -38,5 +38,4 @@ class SentenceRepositoryImpl constructor(
     override suspend fun getCountOfSentencesFor(query: String): Long = withContext(dispatcherProvider.io) {
         return@withContext queries.getCountOfSentencesWithKeyword(query).executeAsOne()
     }
-
 }

@@ -74,7 +74,7 @@ class JmdictRepositoryTest {
         assertEquals(result.readings.size, 1)
         assertEquals(result.senses.size, 1)
         assertEquals(result.senses[0].glosses.size, 1)
-        assertEquals(result.kanjis[0].value , "たくあん漬け")
+        assertEquals(result.kanjis[0].value, "たくあん漬け")
         assertEquals(result.kanjis[1].value, "沢庵漬")
         assertEquals(result.kanjis[2].value, "沢庵漬け")
         assertEquals(result.kanjis[3].value, "たくあん漬")

@@ -1,9 +1,5 @@
 package `in`.surajsau.jisho.android.ui.reference.kanji
 
-import `in`.surajsau.jisho.android.ui.components.AppToolbar
-import `in`.surajsau.jisho.android.ui.reference.kanji.components.AllSchoolItem
-import `in`.surajsau.jisho.android.ui.reference.kanji.components.KanjiGradeItem
-import `in`.surajsau.jisho.android.ui.theme.sectionTitle
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,6 +19,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import `in`.surajsau.jisho.android.ui.components.AppToolbar
+import `in`.surajsau.jisho.android.ui.reference.kanji.components.AllSchoolItem
+import `in`.surajsau.jisho.android.ui.reference.kanji.components.KanjiGradeItem
+import `in`.surajsau.jisho.android.ui.theme.sectionTitle
 
 @Composable
 fun KanjiResourceScreen(
@@ -32,7 +32,6 @@ fun KanjiResourceScreen(
     navigateBack: () -> Unit,
 ) {
     Column(modifier = modifier) {
-
         AppToolbar(
             modifier = Modifier.fillMaxWidth(),
             navigateUpIcon = Icons.Default.ArrowBack,

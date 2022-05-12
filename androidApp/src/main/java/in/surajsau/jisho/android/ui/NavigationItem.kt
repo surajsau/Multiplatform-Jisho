@@ -1,7 +1,5 @@
 package `in`.surajsau.jisho.android.ui
 
-import `in`.surajsau.jisho.android.ui.details.model.DetailsModel
-import `in`.surajsau.jisho.model.KanjiQuery
 import android.os.Bundle
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bookmark
@@ -13,8 +11,10 @@ import androidx.compose.material.icons.outlined.ListAlt
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
+import `in`.surajsau.jisho.android.ui.details.model.DetailsModel
+import `in`.surajsau.jisho.model.KanjiQuery
 
-object Navigation {
+object NavigationItem {
     sealed class App(val key: String) {
         object Download : App("download")
         object Home : App("home")
@@ -34,7 +34,7 @@ object Navigation {
             }
         }
 
-        data class SentenceList(val word: String): App(Key) {
+        data class SentenceList(val word: String) : App(Key) {
             val route: String
                 get() = "sentence_list/$word"
 
@@ -47,7 +47,7 @@ object Navigation {
             }
         }
 
-        data class SentenceDetails(val id: Long): App(Key) {
+        data class SentenceDetails(val id: Long) : App(Key) {
             val route: String
                 get() = "sentence_details/$id"
 
@@ -60,7 +60,7 @@ object Navigation {
             }
         }
 
-        data class JlptList(val level: Int): App(Key) {
+        data class JlptList(val level: Int) : App(Key) {
 
             val route: String
                 get() = "jlpt_list/$level"
@@ -98,7 +98,7 @@ object Navigation {
                             KanjiQuery.Freq(from.toLong(), to.toLong())
                         }
                         "grade" -> {
-                            val grade= extras.getString("grade")!!.toInt()
+                            val grade = extras.getString("grade")!!.toInt()
                             KanjiQuery.Grade(grade)
                         }
                         "grade-all" -> KanjiQuery.AllSchool
@@ -112,9 +112,9 @@ object Navigation {
     }
 
     sealed class Resources(val key: String) {
-        object Kana: Resources("resource_kana")
-        object Jlpt: Resources("resource_jlpt")
-        object Kanji: Resources("resource_kanji")
+        object Kana : Resources("resource_kana")
+        object Jlpt : Resources("resource_jlpt")
+        object Kanji : Resources("resource_kanji")
     }
 
     sealed class Home(
@@ -123,9 +123,29 @@ object Navigation {
         val title: String,
         val navKey: String
     ) {
-        object Search : Home(icon = Icons.Outlined.Search, selectedIcon = Icons.Filled.Search, title = "Search", navKey = "search")
-        object Lists : Home(icon = Icons.Outlined.ListAlt, selectedIcon = Icons.Filled.ListAlt, title = "Lists", navKey = "list")
-        object Favorite : Home(icon = Icons.Outlined.Bookmark, selectedIcon = Icons.Filled.Bookmark, title = "Saved", navKey = "favorite")
-        object Settings : Home(icon = Icons.Outlined.Settings, selectedIcon = Icons.Filled.Settings, title = "Settings", navKey = "settings")
+        object Search : Home(
+            icon = Icons.Outlined.Search,
+            selectedIcon = Icons.Filled.Search,
+            title = "Search",
+            navKey = "search"
+        )
+        object Lists : Home(
+            icon = Icons.Outlined.ListAlt,
+            selectedIcon = Icons.Filled.ListAlt,
+            title = "Lists",
+            navKey = "list"
+        )
+        object Favorite : Home(
+            icon = Icons.Outlined.Bookmark,
+            selectedIcon = Icons.Filled.Bookmark,
+            title = "Saved",
+            navKey = "favorite"
+        )
+        object Settings : Home(
+            icon = Icons.Outlined.Settings,
+            selectedIcon = Icons.Filled.Settings,
+            title = "Settings",
+            navKey = "settings"
+        )
     }
 }

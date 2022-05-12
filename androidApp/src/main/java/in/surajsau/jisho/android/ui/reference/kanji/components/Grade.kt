@@ -1,9 +1,16 @@
 package `in`.surajsau.jisho.android.ui.reference.kanji.components
 
-import `in`.surajsau.jisho.android.neomorphic.neomorph
-import `in`.surajsau.jisho.android.ui.theme.AppTheme
 import android.content.res.Configuration
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -13,15 +20,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import `in`.surajsau.jisho.android.neomorphic.neomorph
+import `in`.surajsau.jisho.android.ui.theme.AppTheme
 
 @Composable
-fun KanjiGradeItem (
+fun KanjiGradeItem(
     modifier: Modifier = Modifier,
     grade: String,
 ) {
-    Box(modifier = modifier
-        .aspectRatio(1f)
-        .neomorph()
+    Box(
+        modifier = modifier
+            .aspectRatio(1f)
+            .neomorph()
     ) {
         Text(
             modifier = Modifier.align(Alignment.Center),
@@ -35,9 +45,10 @@ fun KanjiGradeItem (
 
 @Composable
 fun AllSchoolItem(modifier: Modifier) {
-    Box(modifier = modifier
-        .neomorph()
-        .padding(horizontal = 16.dp, vertical = 12.dp)
+    Box(
+        modifier = modifier
+            .neomorph()
+            .padding(horizontal = 16.dp, vertical = 12.dp)
     ) {
         Text(
             modifier = Modifier

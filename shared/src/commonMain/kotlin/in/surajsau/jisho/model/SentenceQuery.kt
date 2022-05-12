@@ -7,4 +7,3 @@ data class SentenceQuery(
     val query: String
         get() = "%$word%"
 }
-

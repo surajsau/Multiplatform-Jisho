@@ -1,9 +1,5 @@
 package `in`.surajsau.jisho.android.ui.reference.components
 
-import `in`.surajsau.jisho.android.neomorphic.neomorph
-import `in`.surajsau.jisho.android.ui.theme.AppTheme
-import `in`.surajsau.jisho.android.ui.theme.cardDescription
-import `in`.surajsau.jisho.android.ui.theme.cardTitle
 import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -26,15 +22,18 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import `in`.surajsau.jisho.android.neomorphic.neomorph
+import `in`.surajsau.jisho.android.ui.theme.AppTheme
+import `in`.surajsau.jisho.android.ui.theme.cardDescription
+import `in`.surajsau.jisho.android.ui.theme.cardTitle
 
 @Composable
-fun ReferenceRow (
+fun ReferenceRow(
     modifier: Modifier = Modifier,
     color: Color,
     title: String,
     description: String
 ) {
-
     Column(
         modifier = modifier
             .height(72.dp)

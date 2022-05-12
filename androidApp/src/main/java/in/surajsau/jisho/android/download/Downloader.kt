@@ -56,10 +56,11 @@ class Downloader(private val context: Context) {
             bos.close()
         }.onFailure { it.printStackTrace() }
 
-        if (result.isSuccess)
+        if (result.isSuccess) {
             cont.resume(FileStatus.Extracted)
-        else
+        } else {
             cont.resume(FileStatus.Error(Exception(result.exceptionOrNull()!!)))
+        }
     }
 
     companion object {

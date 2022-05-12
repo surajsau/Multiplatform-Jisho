@@ -1,10 +1,5 @@
 package `in`.surajsau.jisho.android.ui.search
 
-import `in`.surajsau.jisho.android.base.dispatch
-import `in`.surajsau.jisho.android.ui.search.components.SearchBar
-import `in`.surajsau.jisho.android.ui.search.components.SearchResultRow
-import `in`.surajsau.jisho.viewmodel.SearchViewModel
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,6 +15,10 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
+import `in`.surajsau.jisho.android.base.dispatch
+import `in`.surajsau.jisho.android.ui.search.components.SearchBar
+import `in`.surajsau.jisho.android.ui.search.components.SearchResultRow
+import `in`.surajsau.jisho.viewmodel.SearchViewModel
 import org.koin.androidx.compose.get
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -36,7 +35,6 @@ fun SearchScreen(
     val keyboardController = LocalSoftwareKeyboardController.current
 
     Column(modifier = modifier) {
-
         SearchBar(
             modifier = Modifier
                 .fillMaxWidth()
@@ -55,11 +53,11 @@ fun SearchScreen(
                         .fillMaxWidth()
                         .padding(vertical = 16.dp),
                     contentPadding = PaddingValues(horizontal = 16.dp),
-                    verticalArrangement = Arrangement.spacedBy(6.dp)
                 ) {
                     items(state.value) {
                         SearchResultRow(
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier.fillMaxWidth()
+                                .padding(vertical = 8.dp),
                             result = it,
                             onItemClicked = {
                                 keyboardController?.hide()

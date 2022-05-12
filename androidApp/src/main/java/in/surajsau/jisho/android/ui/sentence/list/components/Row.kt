@@ -1,10 +1,13 @@
 package `in`.surajsau.jisho.android.ui.sentence.list.components
 
-import `in`.surajsau.jisho.android.neomorphic.neomorph
-import `in`.surajsau.jisho.android.ui.theme.AppTheme
-import `in`.surajsau.jisho.model.SentenceResult
 import android.content.res.Configuration
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -13,15 +16,18 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import `in`.surajsau.jisho.android.neomorphic.neomorph
+import `in`.surajsau.jisho.android.ui.theme.AppTheme
+import `in`.surajsau.jisho.model.SentenceResult
 
 @Composable
-fun SentenceRow (
+fun SentenceRow(
     modifier: Modifier = Modifier,
     model: SentenceResult,
 ) {
     Column(
         modifier = modifier
-            .neomorph(animatePress = true)
+            .neomorph()
             .padding(horizontal = 16.dp, vertical = 12.dp),
     ) {
         Text(

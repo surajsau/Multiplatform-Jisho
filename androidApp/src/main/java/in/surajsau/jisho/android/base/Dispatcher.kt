@@ -16,10 +16,9 @@ data class Dispatcher<State : VMState, Intent : VMIntent, Effect : VMEffect>(
 )
 
 @Composable
-inline fun<State : VMState, Intent : VMIntent, Effect : VMEffect> dispatch(
+inline fun <State : VMState, Intent : VMIntent, Effect : VMEffect> dispatch(
     viewModel: UnidirectionalViewModel<State, Intent, Effect>
 ): Dispatcher<State, Intent, Effect> {
-
     val state by viewModel.state.collectAsState()
 
     val intent: (Intent) -> Unit = { viewModel.onIntent(it) }

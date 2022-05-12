@@ -1,9 +1,5 @@
 package `in`.surajsau.jisho.android.ui.home.components
 
-import `in`.surajsau.jisho.android.neomorphic.NeomorphicShape
-import `in`.surajsau.jisho.android.neomorphic.neomorph
-import `in`.surajsau.jisho.android.ui.Navigation
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -16,11 +12,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import `in`.surajsau.jisho.android.neomorphic.NeomorphicShape
+import `in`.surajsau.jisho.android.neomorphic.clickableNeomorph
+import `in`.surajsau.jisho.android.ui.NavigationItem
 
 @Composable
 fun NavBarItem(
     modifier: Modifier = Modifier,
-    item: Navigation.Home,
+    item: NavigationItem.Home,
     isSelected: Boolean = false,
     onItemClick: () -> Unit,
 ) {
@@ -30,13 +29,12 @@ fun NavBarItem(
     ) {
         Icon(
             modifier = Modifier
-                .clickable { onItemClick() }
                 .size(48.dp)
-                .neomorph(
+                .clickableNeomorph(
                     shape = NeomorphicShape.Oval,
                     isPressed = isSelected,
                     elevation = 6.dp,
-                )
+                ) { onItemClick() }
                 .padding(12.dp),
             imageVector = if (isSelected) item.selectedIcon else item.icon,
             contentDescription = item.title

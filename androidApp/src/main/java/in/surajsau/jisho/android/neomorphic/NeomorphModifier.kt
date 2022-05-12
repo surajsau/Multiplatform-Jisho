@@ -1,13 +1,11 @@
 package `in`.surajsau.jisho.android.neomorphic
 
-import `in`.surajsau.jisho.android.ui.theme.darkShadow
-import `in`.surajsau.jisho.android.ui.theme.lightShadow
-import `in`.surajsau.jisho.android.ui.theme.neomorphicBackground
 import android.view.MotionEvent
 import androidx.compose.animation.core.FastOutLinearInEasing
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -25,20 +23,20 @@ import androidx.compose.ui.graphics.drawscope.ContentDrawScope
 import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import `in`.surajsau.jisho.android.ui.theme.darkShadow
+import `in`.surajsau.jisho.android.ui.theme.lightShadow
+import `in`.surajsau.jisho.android.ui.theme.neomorphicBackground
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun Modifier.neomorph(
+fun Modifier.clickableNeomorph(
     lightShadowColor: Color? = null,
     darkShadowColor: Color? = null,
     elevation: Dp = 4.dp,
     lightSource: LightSource = LightSource.TopLeft,
     isPressed: Boolean = false,
-    animatePress: Boolean = false,
-    shape: NeomorphicShape = NeomorphicShape.RoundedCorner(4.dp)
+    shape: NeomorphicShape = NeomorphicShape.RoundedCorner(4.dp),
+    onClick: () -> Unit = {},
 ): Modifier = composed {
-    val lightColor = lightShadowColor ?: MaterialTheme.colors.lightShadow
-    val darkColor = darkShadowColor ?: MaterialTheme.colors.darkShadow
-
     var isPressedDown by remember { mutableStateOf(false) }
 
     val currentElevation by animateDpAsState(
@@ -51,35 +49,53 @@ fun Modifier.neomorph(
         animationSpec = tween(durationMillis = 100, easing = FastOutLinearInEasing)
     )
 
-    apply {
-        if (animatePress) {
-            this.pointerInteropFilter {
-                when (it.action) {
-                    MotionEvent.ACTION_DOWN -> isPressedDown = true
-                    MotionEvent.ACTION_UP -> isPressedDown = false
-                }
-                return@pointerInteropFilter true
+    this
+        .pointerInteropFilter {
+            when (it.action) {
+                MotionEvent.ACTION_DOWN -> isPressedDown = true
+                MotionEvent.ACTION_UP -> isPressedDown = false
             }
+            return@pointerInteropFilter true
         }
-    }
-        .then(object : DrawModifier {
-            override fun ContentDrawScope.draw() {
-                val style = NeomorphicStyle(lightColor, darkColor, currentElevation, lightSource)
-                when {
-                    isPressed -> drawForeground(shape, style)
-                    else -> drawBackground(shape, style)
-                }
-                drawContent()
+        .clickable { onClick() }
+        .padding(all = intrinsicPadding)
+        .then(
+            Modifier.neomorph(
+                lightShadowColor = lightShadowColor,
+                darkShadowColor = darkShadowColor,
+                elevation = currentElevation,
+                lightSource = lightSource,
+                isPressed = isPressed,
+                shape = shape
+            )
+        )
+}
+
+fun Modifier.neomorph(
+    lightShadowColor: Color? = null,
+    darkShadowColor: Color? = null,
+    elevation: Dp = 4.dp,
+    lightSource: LightSource = LightSource.TopLeft,
+    isPressed: Boolean = false,
+    shape: NeomorphicShape = NeomorphicShape.RoundedCorner(4.dp)
+): Modifier = composed {
+    val lightColor = lightShadowColor ?: MaterialTheme.colors.lightShadow
+    val darkColor = darkShadowColor ?: MaterialTheme.colors.darkShadow
+
+    this.then(object : DrawModifier {
+        override fun ContentDrawScope.draw() {
+            val style = NeomorphicStyle(lightColor, darkColor, elevation, lightSource)
+            when {
+                isPressed -> drawForeground(shape, style)
+                else -> drawBackground(shape, style)
             }
-        })
-        .apply {
-            if (animatePress)
-                this.padding(all = intrinsicPadding)
+            drawContent()
         }
+    })
         .background(
-            color = if (isPressed)
+            color = if (isPressed) {
                 Color.Transparent
-            else MaterialTheme.colors.neomorphicBackground,
+            } else MaterialTheme.colors.neomorphicBackground,
             shape = when (shape) {
                 is NeomorphicShape.Oval -> CircleShape
                 is NeomorphicShape.RoundedCorner -> RoundedCornerShape(size = shape.corner)

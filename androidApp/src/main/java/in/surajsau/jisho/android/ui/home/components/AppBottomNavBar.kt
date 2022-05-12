@@ -1,7 +1,5 @@
 package `in`.surajsau.jisho.android.ui.home.components
 
-import `in`.surajsau.jisho.android.ui.Navigation
-import `in`.surajsau.jisho.android.ui.theme.LightColors
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -19,19 +17,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import `in`.surajsau.jisho.android.ui.NavigationItem
+import `in`.surajsau.jisho.android.ui.theme.LightColors
 
 @Composable
 fun AppBottomNavBar(
     modifier: Modifier = Modifier,
-    onItemSelected: (Navigation.Home) -> Unit
+    onItemSelected: (NavigationItem.Home) -> Unit
 ) {
-
     val items = remember {
         listOf(
-            Navigation.Home.Search,
-            Navigation.Home.Favorite,
-            Navigation.Home.Lists,
-            Navigation.Home.Settings
+            NavigationItem.Home.Search,
+            NavigationItem.Home.Favorite,
+            NavigationItem.Home.Lists,
+            NavigationItem.Home.Settings
         )
     }
 
@@ -39,7 +38,7 @@ fun AppBottomNavBar(
         modifier = modifier.padding(vertical = 16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly,
     ) {
-        var currentSelection by remember { mutableStateOf<Navigation.Home>(Navigation.Home.Search) }
+        var currentSelection by remember { mutableStateOf<NavigationItem.Home>(NavigationItem.Home.Search) }
 
         items.forEach { item ->
             NavBarItem(
@@ -56,7 +55,6 @@ fun AppBottomNavBar(
 @Preview
 @Composable
 private fun previewAppBottomNavBar() {
-
     MaterialTheme(colors = LightColors) {
         Surface {
             Box(modifier = Modifier.fillMaxSize()) {

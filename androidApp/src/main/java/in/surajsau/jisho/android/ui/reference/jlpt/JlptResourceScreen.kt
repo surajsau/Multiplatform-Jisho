@@ -1,7 +1,5 @@
 package `in`.surajsau.jisho.android.ui.reference.jlpt
 
-import `in`.surajsau.jisho.android.ui.components.AppToolbar
-import `in`.surajsau.jisho.android.ui.reference.jlpt.components.JlptRow
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,6 +10,8 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import `in`.surajsau.jisho.android.ui.components.AppToolbar
+import `in`.surajsau.jisho.android.ui.reference.jlpt.components.JlptRow
 
 @Composable
 fun JlptResourceScreen(
@@ -19,9 +19,7 @@ fun JlptResourceScreen(
     navigateToJlptLevel: (Int) -> Unit,
     navigateBack: () -> Unit = {},
 ) {
-
     Column(modifier = modifier) {
-
         AppToolbar(
             modifier = Modifier.fillMaxWidth(),
             navigateUpIcon = Icons.Default.ArrowBack,

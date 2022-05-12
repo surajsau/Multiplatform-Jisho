@@ -71,7 +71,7 @@ ktlint {
     outputToConsole.set(true)
     enableExperimentalRules.set(true)
     android.set(true)
-    disabledRules.set(setOf("final-newline"))
+    disabledRules.set(setOf("final-newline", "import-ordering"))
     filter {
         exclude("**/generated/**")
         include("**/kotlin/**")
