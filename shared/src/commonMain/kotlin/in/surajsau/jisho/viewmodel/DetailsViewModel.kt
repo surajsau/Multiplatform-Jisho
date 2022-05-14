@@ -1,16 +1,20 @@
 package `in`.surajsau.jisho.viewmodel
 
-import `in`.surajsau.jisho.data.model.jmdict.Entry
 import `in`.surajsau.jisho.data.model.kanjidic.Literal
 import `in`.surajsau.jisho.expected.BaseViewModel
+import `in`.surajsau.jisho.model.BucketQuery
+import `in`.surajsau.jisho.model.BucketResult
 import `in`.surajsau.jisho.model.ConjugationResult
+import `in`.surajsau.jisho.model.EntryResult
 import `in`.surajsau.jisho.model.SentenceQuery
 import `in`.surajsau.jisho.model.SentenceResult
+import `in`.surajsau.jisho.usecase.AddToBucket
 import `in`.surajsau.jisho.usecase.GetConjugations
 import `in`.surajsau.jisho.usecase.GetEntry
 import `in`.surajsau.jisho.usecase.GetKanji
 import `in`.surajsau.jisho.usecase.GetNumberOfSentencesForWord
 import `in`.surajsau.jisho.usecase.GetSentencesForWord
+import `in`.surajsau.jisho.usecase.RemoveFromBucket
 import `in`.surajsau.jisho.utils.Optional
 import `in`.surajsau.jisho.utils.isKanji
 import kotlinx.coroutines.channels.Channel
@@ -34,8 +38,10 @@ class DetailsViewModel : BaseViewModel<DetailsViewModel.State, DetailsViewModel.
     private val getSentencesForWord: GetSentencesForWord = get()
     private val getNumberOfSentencesForWord: GetNumberOfSentencesForWord = get()
     private val getConjugations: GetConjugations = get()
+    private val addToBucket: AddToBucket = get()
+    private val removeFromBucket: RemoveFromBucket = get()
 
-    private val _entry = MutableStateFlow<Optional<Entry>>(Optional.Empty)
+    private val _entry = MutableStateFlow<Optional<EntryResult>>(Optional.Empty)
 
     private val _sentences = MutableStateFlow<List<SentenceResult>>(emptyList())
     private val _totalSentences = MutableStateFlow<Optional<Int>>(Optional.Empty)
@@ -85,7 +91,8 @@ class DetailsViewModel : BaseViewModel<DetailsViewModel.State, DetailsViewModel.
                 meanings = meanings,
                 kanjis = kanjis,
                 sentences = sentences,
-                conjugations = conjugation
+                conjugations = conjugation,
+                bucket = entry.bucket
             )
         }
             .stateIn(scope, SharingStarted.WhileSubscribed(), State.Init)
@@ -123,6 +130,23 @@ class DetailsViewModel : BaseViewModel<DetailsViewModel.State, DetailsViewModel.
                         pos = entry.senses[0].particleOfSpeeches[0]
                     )?.let(this@DetailsViewModel::map)
                     _conjugation.emit(Optional.of(conjugations))
+                }
+            }
+
+            is Intent.AddToBookmark -> {
+                val id = _entry.value.value?.id ?: return
+
+                scope.launch {
+                    addToBucket(query = BucketQuery.Entry(id = id, bucketId = intent.bookmarkId))
+                }
+            }
+
+            is Intent.RemoveFromBookmark -> {
+                val id = _entry.value.value?.id ?: return
+
+                scope.launch {
+                    // bucket id isn't necessary for removing
+                    removeFromBucket(query = BucketQuery.Entry(id = id, bucketId = -1))
                 }
             }
         }
@@ -167,6 +191,7 @@ class DetailsViewModel : BaseViewModel<DetailsViewModel.State, DetailsViewModel.
         val kanjis: List<KanjiItem>,
         val sentences: Sentences,
         val conjugations: Conjugation?,
+        val bucket: BucketResult?,
     ) : VMState {
 
         val showAlternative: Boolean
@@ -191,7 +216,8 @@ class DetailsViewModel : BaseViewModel<DetailsViewModel.State, DetailsViewModel.
                 meanings = emptyList(),
                 kanjis = emptyList(),
                 sentences = Sentences(emptyList(), 0),
-                conjugations = null
+                conjugations = null,
+                bucket = null
             )
         }
     }
@@ -241,10 +267,10 @@ class DetailsViewModel : BaseViewModel<DetailsViewModel.State, DetailsViewModel.
     }
 
     sealed interface Intent : VMIntent {
-        data class InitWith(
-            val id: Long,
-            val word: String,
-        ) : Intent
+        data class InitWith(val id: Long, val word: String) : Intent
+
+        data class AddToBookmark(val bookmarkId: Long): Intent
+        object RemoveFromBookmark: Intent
     }
 
     sealed interface Effect : VMEffect

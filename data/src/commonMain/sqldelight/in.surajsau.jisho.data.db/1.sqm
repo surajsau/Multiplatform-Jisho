@@ -1,0 +1,4 @@
+ALTER TABLE entry ADD COLUMN bucket_id INTEGER;
+ALTER TABLE kanji ADD COLUMN bucket_id INTEGER;
+
+INSERT INTO buckets(name) VALUES("Bookmarks");
