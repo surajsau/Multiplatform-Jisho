@@ -38,28 +38,27 @@ android {
 }
 
 dependencies {
-    val compose = "1.2.0-alpha07"
     val firebase = "29.3.1"
-    val accompanist = "0.13.0"
-    val navigation = "2.4.2"
-    val koin = "3.1.6"
 
     implementation(project(":shared"))
 
-    implementation("androidx.compose.ui:ui:$compose")
-    implementation("androidx.activity:activity-compose:1.4.0")
-    implementation("androidx.compose.ui:ui-tooling:$compose")
-    implementation("androidx.compose.foundation:foundation:$compose")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1")
-    implementation("com.google.android.material:compose-theme-adapter:1.1.7")
-    implementation("androidx.compose.material:material:$compose")
-    implementation("androidx.compose.material:material-icons-core:$compose")
-    implementation("androidx.compose.material:material-icons-extended:$compose")
-    implementation("com.google.accompanist:accompanist-coil:$accompanist")
-    implementation("com.google.accompanist:accompanist-swiperefresh:$accompanist")
-    implementation("androidx.navigation:navigation-compose:$navigation")
+    implementation(libs.compose.ui)
+    implementation(libs.compose.activity)
+    implementation(libs.compose.tooling)
+    implementation(libs.compose.foundation)
+    implementation(libs.compose.navigation)
 
-    implementation("io.insert-koin:koin-androidx-compose:$koin")
+    implementation(libs.androidx.viewmodel.compose)
+
+    implementation(libs.material.compose.core)
+    implementation(libs.material.compose.theme)
+    implementation(libs.material.compose.icons.core)
+    implementation(libs.material.compose.icons.extended)
+
+    implementation(libs.accompanist.coil)
+    implementation(libs.accompanist.swiperefresh)
+
+    implementation(libs.koin.android)
 
     implementation(platform("com.google.firebase:firebase-bom:$firebase"))
     implementation("com.google.firebase:firebase-analytics-ktx")

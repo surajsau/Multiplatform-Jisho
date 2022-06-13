@@ -20,37 +20,34 @@ kotlin {
     }
 
     sourceSets {
-        val sqldelight = "1.5.3"
-        val koin = "3.1.6"
-        val coroutine = "1.6.0"
 
         val commonMain by getting {
             dependencies {
-                api("io.insert-koin:koin-core:$koin")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine")
-                implementation("com.squareup.sqldelight:runtime:$sqldelight")
-                implementation("com.squareup.sqldelight:coroutines-extensions:$sqldelight")
+                api(libs.koin.core)
+                implementation(libs.coroutines.core)
+                implementation(libs.sqldelight.runtime)
+                implementation(libs.sqldelight.coroutines.extensions)
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine")
+                implementation(libs.coroutines.test)
             }
         }
         val androidMain by getting {
             dependencies {
-                api("io.insert-koin:koin-android:$koin")
-                implementation("com.squareup.sqldelight:android-driver:$sqldelight")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine")
+                api(libs.koin.android)
+                implementation(libs.sqldelight.driver.android)
+                implementation(libs.coroutines.android)
             }
         }
         val androidTest by getting {
             dependencies {
                 implementation("androidx.test.ext:junit-ktx:1.1.3")
                 implementation("org.robolectric:robolectric:4.7.3")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine")
-                implementation("com.squareup.sqldelight:sqlite-driver:$sqldelight")
+                implementation(libs.coroutines.test)
+                implementation(libs.sqldelight.driver.common)
             }
         }
         val iosX64Main by getting
@@ -58,7 +55,7 @@ kotlin {
         val iosSimulatorArm64Main by getting
         val iosMain by creating {
             dependencies {
-                implementation("com.squareup.sqldelight:native-driver:$sqldelight")
+                implementation(libs.sqldelight.driver.native)
             }
             dependsOn(commonMain)
             iosX64Main.dependsOn(this)

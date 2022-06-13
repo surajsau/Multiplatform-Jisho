@@ -29,9 +29,9 @@ kotlin {
 
         val commonMain by getting {
             dependencies {
-                api("io.insert-koin:koin-core:$koin")
-                implementation("io.github.aakira:napier:$logging")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine")
+                api(libs.koin.core)
+                implementation(libs.napier.core)
+                implementation(libs.coroutines.core)
                 implementation(project(":data"))
                 implementation(project(":fake"))
             }
@@ -39,15 +39,14 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine")
+                implementation(libs.coroutines.test)
             }
         }
         val androidMain by getting {
             dependencies {
-                api("dev.icerock.moko:resources-compose:$resources")
-                api("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1")
-                api("io.insert-koin:koin-android:$koin")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine")
+                api(libs.androidx.viewmodel)
+                api(libs.koin.android)
+                implementation(libs.coroutines.android)
             }
         }
         val androidTest by getting
