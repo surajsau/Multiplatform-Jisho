@@ -50,11 +50,11 @@ fun DownloadScreen(
 
             showProgress = true
 
-            if (downloader.downloadFile("data.gz") is FileStatus.Error) {
+            if (downloader.downloadFile("jmdict.db.gz") is FileStatus.Error) {
                 return@withContext
             }
 
-            if ((downloader.extractFile("data.gz") is FileStatus.Error)) {
+            if ((downloader.extractFile("jmdict.db.gz") is FileStatus.Error)) {
                 return@withContext
             }
 
