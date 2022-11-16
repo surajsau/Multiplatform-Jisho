@@ -33,9 +33,23 @@ dependencies {
 
     implementation(project(":shared"))
 
+    implementation(project(":core:utils"))
+    implementation(project(":core:ui"))
+    implementation(project(":core:navigation"))
+
+    implementation(project(":feature:download"))
+    implementation(project(":feature:search"))
+    implementation(project(":feature:reference"))
+    implementation(project(":feature:reference:jlpt"))
+    implementation(project(":feature:reference:kanji"))
+    implementation(project(":feature:details"))
+    implementation(project(":feature:favorites"))
+    implementation(project(":feature:sentence:details"))
+    implementation(project(":feature:sentence:list"))
+    implementation(project(":feature:settings"))
+
     implementation(platform("com.google.firebase:firebase-bom:$firebase"))
     implementation("com.google.firebase:firebase-analytics-ktx")
-    implementation("com.google.firebase:firebase-storage-ktx")
 
     implementation(libs.compose.icons.core)
     implementation(libs.compose.icons.extended)
