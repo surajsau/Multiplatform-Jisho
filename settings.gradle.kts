@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google()
         gradlePluginPortal()
@@ -7,7 +8,8 @@ pluginManagement {
 }
 
 rootProject.name = "Jisho"
-include(":androidApp")
-include(":shared")
-include(":data")
-include(":fake")
+
+enableFeaturePreview("VERSION_CATALOGS")
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+include(":androidApp", ":shared", ":data", ":fake")

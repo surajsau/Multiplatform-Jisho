@@ -2,6 +2,7 @@ package `in`.surajsau.jisho.viewmodel
 
 import `in`.surajsau.jisho.expected.BaseViewModel
 import `in`.surajsau.jisho.model.BucketResult
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -17,6 +18,12 @@ class BucketsListViewModel : BaseViewModel<BucketsListViewModel.State, BucketsLi
         get() = _buckets
             .map { State(buckets = it) }
             .stateIn(scope, SharingStarted.WhileSubscribed(), State.Init)
+    override val effect: Flow<Effect>
+        get() = TODO("Not yet implemented")
+
+    override fun onIntent(intent: Intent) {
+        TODO("Not yet implemented")
+    }
 
     data class State(
         val buckets: List<BucketResult>,

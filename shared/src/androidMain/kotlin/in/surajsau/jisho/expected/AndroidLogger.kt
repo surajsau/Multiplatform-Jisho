@@ -1,6 +1,6 @@
 package `in`.surajsau.jisho.expected
 
-import `in`.surajsau.jisho.data.BuildConfig
+import `in`.surajsau.jisho.shared.BuildConfig
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 
