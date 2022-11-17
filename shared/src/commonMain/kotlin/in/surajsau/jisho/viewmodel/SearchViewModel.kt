@@ -38,10 +38,14 @@ class SearchViewModel : BaseViewModel<SearchViewModel.State, SearchViewModel.Int
                     } else {
                         searchForReading(text = searchTerm)
                     }
+
                     if (results.isEmpty()) {
-                        State.EmptyResult
+                        State.EmptyResult(searchText = searchTerm)
                     } else {
-                        State.Results(value = results)
+                        State.Results(
+                            searchText = searchTerm,
+                            value = results
+                        )
                     }
                 }
                 .collect { _state.tryEmit(it) }
@@ -63,9 +67,12 @@ class SearchViewModel : BaseViewModel<SearchViewModel.State, SearchViewModel.Int
         get() = _effectChannel.receiveAsFlow()
 
     sealed interface State : VMState {
-        data class Results(val value: List<SearchResult>) : State
+        data class Results(
+            val searchText: String,
+            val value: List<SearchResult>
+        ) : State
 
-        object EmptyResult : State
+        data class EmptyResult(val searchText: String) : State
         object None : State
     }
     sealed interface Intent : VMIntent {
