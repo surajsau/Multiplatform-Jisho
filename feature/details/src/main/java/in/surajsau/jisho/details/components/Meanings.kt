@@ -9,14 +9,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import `in`.surajsau.jisho.ui.neomorphic.neomorph
 import `in`.surajsau.jisho.ui.theme.sectionTitle
 import `in`.surajsau.jisho.viewmodel.DetailsViewModel
 
@@ -44,13 +43,13 @@ internal fun DetailsMeaning(
                     Text(
                         modifier = Modifier.alpha(0.6f),
                         text = item.pos,
-                        style = MaterialTheme.typography.body2,
+                        style = MaterialTheme.typography.bodyMedium,
                     )
 
                     Text(
                         modifier = Modifier.fillMaxWidth(),
                         text = item.value,
-                        style = MaterialTheme.typography.body1,
+                        style = MaterialTheme.typography.bodyMedium,
                     )
 
                     Spacer(Modifier.height(8.dp))
@@ -58,11 +57,7 @@ internal fun DetailsMeaning(
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(4.dp)
-                            .neomorph(
-                                isPressed = true,
-                                elevation = 2.dp,
-                            ),
+                            .height(4.dp),
                     )
                 }
             }
@@ -80,7 +75,7 @@ internal fun DetailsMeaning(
 )
 @Composable
 private fun PreviewMeanings() {
-    `in`.surajsau.jisho.ui.theme.AppTheme {
+    `in`.surajsau.jisho.ui.theme.JishoTheme {
         DetailsMeaning(
             modifier = Modifier
                 .fillMaxSize()

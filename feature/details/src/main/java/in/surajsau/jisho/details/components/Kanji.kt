@@ -11,14 +11,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import `in`.surajsau.jisho.ui.neomorphic.neomorph
 import `in`.surajsau.jisho.ui.theme.sectionTitle
 import `in`.surajsau.jisho.viewmodel.DetailsViewModel
 
@@ -45,21 +44,20 @@ internal fun DetailsKanji(
                     modifier = Modifier
                         .clickable { onItemClicked(item) }
                         .fillMaxWidth()
-                        .neomorph()
                         .padding(horizontal = 16.dp, vertical = 12.dp),
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     Text(
                         modifier = Modifier.alpha(0.6f),
                         text = item.value,
-                        style = MaterialTheme.typography.body2,
+                        style = MaterialTheme.typography.bodyMedium,
                         maxLines = 1,
                     )
 
                     Text(
                         modifier = Modifier.fillMaxWidth(),
                         text = item.meaning,
-                        style = MaterialTheme.typography.body2,
+                        style = MaterialTheme.typography.bodyMedium,
                         maxLines = 1,
                     )
                 }
@@ -78,7 +76,7 @@ internal fun DetailsKanji(
 )
 @Composable
 private fun PreviewKanjis() {
-    `in`.surajsau.jisho.ui.theme.AppTheme {
+    `in`.surajsau.jisho.ui.theme.JishoTheme {
         Box(modifier = Modifier.fillMaxSize()) {
             DetailsKanji(
                 modifier = Modifier

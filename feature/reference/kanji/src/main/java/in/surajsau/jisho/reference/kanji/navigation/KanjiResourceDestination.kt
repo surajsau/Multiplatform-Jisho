@@ -4,6 +4,10 @@ import android.os.Bundle
 import `in`.surajsau.jisho.model.KanjiQuery
 import `in`.surajsau.jisho.navigation.AppDestination
 
+object KanjiResourceDestination : AppDestination {
+    override val route: String = "kanji-resource"
+}
+
 data class KanjiListDestination(val query: KanjiQuery) : AppDestination {
     override val route: String
         get() {

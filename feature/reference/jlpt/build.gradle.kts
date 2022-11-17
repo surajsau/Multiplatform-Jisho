@@ -6,8 +6,8 @@ android.namespace = "in.surajsau.jisho.reference.jlpt"
 
 dependencies {
     implementation(project(":shared"))
-    implementation(project(":core:ui"))
-    implementation(project(":core:navigation"))
-    implementation(project(":core:neumorphic"))
-    implementation(project(":shared"))
+    implementation(projects.core.ui)
+    implementation(projects.core.utils)
+    implementation(projects.core.navigation)
+    implementation(projects.core.model)
 }

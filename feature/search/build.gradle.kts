@@ -5,9 +5,9 @@ plugins {
 android.namespace = "in.surajsau.jisho.search"
 
 dependencies {
+    implementation(projects.core.model)
     implementation(project(":core:utils"))
     implementation(project(":core:ui"))
     implementation(project(":core:navigation"))
-    implementation(project(":core:neumorphic"))
     implementation(project(":shared"))
 }

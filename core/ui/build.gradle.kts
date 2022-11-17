@@ -5,5 +5,5 @@ plugins {
 android.namespace = "in.surajsau.jisho.neumorphic"
 
 dependencies {
-    implementation(project(":core:neumorphic"))
+    implementation(projects.core.model)
 }

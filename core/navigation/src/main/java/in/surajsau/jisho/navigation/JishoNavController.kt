@@ -41,6 +41,8 @@ class JishoNavController(
 
             else -> navHostController.navigate(destination.route)
         }
+
+        currentDestination = destination
     }
 
     fun navigateBack() {

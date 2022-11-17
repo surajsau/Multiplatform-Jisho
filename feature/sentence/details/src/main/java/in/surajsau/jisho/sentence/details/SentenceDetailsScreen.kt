@@ -14,7 +14,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import `in`.surajsau.jisho.utils.dispatch
 import `in`.surajsau.jisho.sentence.details.components.NotesTextField
-import `in`.surajsau.jisho.ui.component.AppToolbar
 import `in`.surajsau.jisho.viewmodel.SentenceDetailViewModel
 import org.koin.androidx.compose.get
 
@@ -22,8 +21,7 @@ import org.koin.androidx.compose.get
 fun SentenceDetailsScreen(
     modifier: Modifier = Modifier,
     id: Long,
-    viewModel: SentenceDetailViewModel = get(),
-    navigateBack: () -> Unit = {}
+    viewModel: SentenceDetailViewModel = get()
 ) {
     val (state, intent, _) = dispatch(viewModel)
 
@@ -34,12 +32,6 @@ fun SentenceDetailsScreen(
     }
 
     Column(modifier = modifier) {
-        AppToolbar(
-            navigateUpIcon = Icons.Default.ArrowBack,
-            title = "",
-            onNavigateUp = navigateBack
-        )
-
         Text(text = state.japanese)
 
         Text(text = state.english)

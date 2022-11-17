@@ -1,9 +1,7 @@
 package `in`.surajsau.jisho.details.components
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -15,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import `in`.surajsau.jisho.ui.theme.AppTheme
+import `in`.surajsau.jisho.ui.theme.JishoTheme
 import `in`.surajsau.jisho.viewmodel.DetailsViewModel
 
 @Composable
@@ -43,7 +41,7 @@ internal fun DetailsHeader(
 @Preview
 @Composable
 private fun PreviewDetailsHeader() {
-    AppTheme {
+    JishoTheme {
         Surface {
             DetailsHeader(
                 modifier = Modifier

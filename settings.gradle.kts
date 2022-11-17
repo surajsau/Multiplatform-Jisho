@@ -16,7 +16,7 @@ include(
     ":androidApp",
     ":shared",
     ":core:navigation",
-    ":core:neumorphic",
+    ":core:preference",
     ":core:ui",
     ":core:utils",
     ":data",
@@ -32,3 +32,7 @@ include(
     ":feature:sentence:list",
     ":feature:settings"
 )
+include(":core:model")
+include(":core:model")
+include(":core:app")
+include(":feature:acknowledgement")

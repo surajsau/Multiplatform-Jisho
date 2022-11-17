@@ -13,20 +13,21 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import `in`.surajsau.jisho.neumorphic.clickableNeomorph
-import `in`.surajsau.jisho.ui.theme.AppTheme
+import `in`.surajsau.jisho.ui.theme.JishoTheme
 import `in`.surajsau.jisho.ui.theme.cardDescription
 import `in`.surajsau.jisho.ui.theme.cardTitle
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ReferenceRow(
     modifier: Modifier = Modifier,
@@ -35,14 +36,14 @@ fun ReferenceRow(
     description: String,
     onItemClicked: () -> Unit,
 ) {
-    Column(
-        modifier = modifier
-            .clickableNeomorph(onClick = onItemClicked)
-            .height(72.dp)
-            .padding(horizontal = 16.dp)
+    Card(
+        modifier = modifier.height(72.dp),
+        onClick = onItemClicked
     ) {
         Row(
-            modifier = Modifier.fillMaxHeight(),
+            modifier = Modifier
+                .fillMaxHeight()
+                .padding(horizontal = 16.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
@@ -63,9 +64,7 @@ fun ReferenceRow(
                 )
 
                 Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .alpha(0.6f),
+                    modifier = Modifier.fillMaxWidth(),
                     text = description,
                     style = MaterialTheme.typography.cardDescription,
                     maxLines = 2
@@ -87,7 +86,7 @@ fun ReferenceRow(
 )
 @Composable
 private fun PreviewReferenceRow() {
-    AppTheme {
+    JishoTheme {
         Column(
             modifier = Modifier
                 .fillMaxSize()

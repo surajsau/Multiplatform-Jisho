@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import `in`.surajsau.jisho.ui.theme.AppTheme
+import `in`.surajsau.jisho.ui.theme.JishoTheme
 import `in`.surajsau.jisho.ui.theme.sectionTitle
 
 @Composable
@@ -47,7 +47,7 @@ internal fun DetailsAlternative(
 )
 @Composable
 private fun PreviewDetailsAlternative() {
-    AppTheme {
+    JishoTheme {
         Box(modifier = Modifier.fillMaxSize()) {
             DetailsAlternative(
                 modifier = Modifier,

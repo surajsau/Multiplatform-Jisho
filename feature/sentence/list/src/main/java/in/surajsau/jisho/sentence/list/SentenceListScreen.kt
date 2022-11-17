@@ -13,7 +13,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import `in`.surajsau.jisho.sentence.list.components.SentenceRow
-import `in`.surajsau.jisho.ui.component.AppToolbar
 import `in`.surajsau.jisho.utils.dispatch
 import `in`.surajsau.jisho.viewmodel.SentenceListViewModel
 import org.koin.androidx.compose.get
@@ -23,8 +22,7 @@ fun SentenceListScreen(
     modifier: Modifier = Modifier,
     word: String,
     viewModel: SentenceListViewModel = get(),
-    navigateToDetails: (Long) -> Unit,
-    navigateBack: () -> Unit = {},
+    navigateToDetails: (Long) -> Unit
 ) {
     val (state, intent, _) = dispatch(viewModel)
 
@@ -33,13 +31,6 @@ fun SentenceListScreen(
     }
 
     Column(modifier = modifier) {
-        AppToolbar(
-            modifier = Modifier.fillMaxWidth(),
-            navigateUpIcon = Icons.Default.ArrowBack,
-            title = "Sentences for $word",
-            onNavigateUp = navigateBack
-        )
-
         LazyColumn(modifier = Modifier.fillMaxWidth()) {
             items(state.sentences) { sentence ->
                 SentenceRow(

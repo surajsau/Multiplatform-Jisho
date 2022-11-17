@@ -8,8 +8,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -157,7 +157,7 @@ private fun ConjugationRow(
             modifier = Modifier
                 .fillMaxWidth(0.4f)
                 .alpha(0.6f),
-            style = MaterialTheme.typography.body2,
+            style = MaterialTheme.typography.bodyMedium,
             text = title,
             fontWeight = FontWeight.SemiBold,
         )
@@ -165,7 +165,7 @@ private fun ConjugationRow(
         Text(
             modifier = Modifier
                 .fillMaxWidth(0.6f),
-            style = MaterialTheme.typography.body2,
+            style = MaterialTheme.typography.bodyMedium,
             text = value,
             fontWeight = FontWeight.SemiBold,
         )
@@ -182,7 +182,7 @@ private fun ConjugationRow(
 )
 @Composable
 private fun PreviewDetailsConjugations() {
-    `in`.surajsau.jisho.ui.theme.AppTheme {
+    `in`.surajsau.jisho.ui.theme.JishoTheme {
         Box(
             modifier = Modifier
                 .fillMaxSize()

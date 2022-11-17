@@ -8,8 +8,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
@@ -21,7 +19,6 @@ import `in`.surajsau.jisho.details.components.DetailsKanji
 import `in`.surajsau.jisho.details.components.DetailsMeaning
 import `in`.surajsau.jisho.details.components.DetailsSentence
 import `in`.surajsau.jisho.details.model.DetailsModel
-import `in`.surajsau.jisho.ui.component.AppToolbar
 import `in`.surajsau.jisho.utils.dispatch
 import `in`.surajsau.jisho.viewmodel.DetailsViewModel
 import org.koin.androidx.compose.get
@@ -33,7 +30,6 @@ fun DetailsScreen(
     viewModel: DetailsViewModel = get(),
     navigateToSentenceDetails: (Long) -> Unit,
     navigateToSentenceList: (String) -> Unit,
-    navigateBack: () -> Unit = {},
 ) {
     val (state, intent, _) = dispatch(viewModel)
 
@@ -41,70 +37,57 @@ fun DetailsScreen(
         intent(DetailsViewModel.Intent.InitWith(model.id, model.word))
     }
 
-    Column(modifier = modifier) {
-        AppToolbar(
-            modifier = Modifier.fillMaxWidth(),
-            title = "",
-            navigateUpIcon = Icons.Default.ArrowBack,
-            onNavigateUp = navigateBack
-        )
-
+    Column(modifier = modifier.padding(horizontal = 16.dp)) {
         Column(
-            modifier = modifier
-                .padding(horizontal = 16.dp)
-                .weight(1f)
+            modifier = Modifier
+                .fillMaxWidth()
+                .verticalScroll(state = rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .verticalScroll(state = rememberScrollState()),
-                verticalArrangement = Arrangement.spacedBy(24.dp)
-            ) {
-                DetailsHeader(
+            DetailsHeader(
+                modifier = Modifier.fillMaxWidth(),
+                model = state.header
+            )
+
+            if (state.showAlternative) {
+                DetailsAlternative(
                     modifier = Modifier.fillMaxWidth(),
-                    model = state.header
+                    text = state.alternatives
                 )
-
-                if (state.showAlternative) {
-                    DetailsAlternative(
-                        modifier = Modifier.fillMaxWidth(),
-                        text = state.alternatives
-                    )
-                }
-
-                if (state.showMeanings) {
-                    DetailsMeaning(
-                        modifier = Modifier.fillMaxWidth(),
-                        items = state.meanings
-                    )
-                }
-
-                if (state.showKanji) {
-                    DetailsKanji(
-                        modifier = Modifier.fillMaxWidth(),
-                        items = state.kanjis
-                    ) { kanji -> // do nothing
-                    }
-                }
-
-                if (state.showSentences) {
-                    DetailsSentence(
-                        modifier = Modifier.fillMaxWidth(),
-                        model = state.sentences,
-                        onItemClicked = navigateToSentenceDetails,
-                        onShowMoreClicked = { navigateToSentenceList(model.word) },
-                    )
-                }
-
-                if (state.showConjugation) {
-                    DetailsConjugations(
-                        modifier = Modifier.fillMaxWidth(),
-                        model = state.conjugations!!
-                    )
-                }
-
-                Spacer(Modifier.height(36.dp))
             }
+
+            if (state.showMeanings) {
+                DetailsMeaning(
+                    modifier = Modifier.fillMaxWidth(),
+                    items = state.meanings
+                )
+            }
+
+            if (state.showKanji) {
+                DetailsKanji(
+                    modifier = Modifier.fillMaxWidth(),
+                    items = state.kanjis
+                ) { kanji -> // do nothing
+                }
+            }
+
+            if (state.showSentences) {
+                DetailsSentence(
+                    modifier = Modifier.fillMaxWidth(),
+                    model = state.sentences,
+                    onItemClicked = navigateToSentenceDetails,
+                    onShowMoreClicked = { navigateToSentenceList(model.word) },
+                )
+            }
+
+            if (state.showConjugation) {
+                DetailsConjugations(
+                    modifier = Modifier.fillMaxWidth(),
+                    model = state.conjugations!!
+                )
+            }
+
+            Spacer(Modifier.height(36.dp))
         }
     }
 }

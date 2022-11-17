@@ -36,11 +36,11 @@ fun Project.setupAndroid() {
         compileOptions {
             sourceCompatibility = JavaVersion.VERSION_1_8
             targetCompatibility = JavaVersion.VERSION_1_8
-//            isCoreLibraryDesugaringEnabled = true
+            isCoreLibraryDesugaringEnabled = true
         }
 
         dependencies {
-//            add("coreLibraryDesugaring", libs.findLibrary("android-desugar").get())
+            add("coreLibraryDesugaring", libs.findLibrary("android-desugar").get())
         }
 
         testOptions {

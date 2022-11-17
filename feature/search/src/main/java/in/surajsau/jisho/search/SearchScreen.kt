@@ -2,7 +2,9 @@ package `in`.surajsau.jisho.search
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -16,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
 import `in`.surajsau.jisho.search.components.SearchBar
-import `in`.surajsau.jisho.search.components.SearchResultRow
+import `in`.surajsau.jisho.search.components.ResultRow
 import `in`.surajsau.jisho.utils.dispatch
 import `in`.surajsau.jisho.viewmodel.SearchViewModel
 import org.koin.androidx.compose.get
@@ -36,9 +38,7 @@ fun SearchScreen(
 
     Column(modifier = modifier) {
         SearchBar(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
+            modifier = Modifier.fillMaxWidth(),
             text = searchText,
             onTextChanged = {
                 searchText = it
@@ -49,22 +49,26 @@ fun SearchScreen(
         when (state) {
             is SearchViewModel.State.Results -> {
                 LazyColumn(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 16.dp),
+                    modifier = Modifier.fillMaxWidth(),
                     contentPadding = PaddingValues(horizontal = 16.dp),
                 ) {
-                    items(state.value) {
-                        SearchResultRow(
-                            modifier = Modifier.fillMaxWidth()
+                    item { Spacer(modifier = Modifier.height(16.dp)) }
+                    items(
+                        items = state.value,
+                        key = { it.id }
+                    ) { item ->
+                        ResultRow(
+                            modifier = Modifier
+                                .fillMaxWidth()
                                 .padding(vertical = 8.dp),
-                            result = it,
+                            result = item,
                             onItemClicked = {
                                 keyboardController?.hide()
-                                onItemClicked(it.id, it.value)
+                                onItemClicked(item.id, item.value)
                             }
                         )
                     }
+                    item { Spacer(modifier = Modifier.height(16.dp)) }
                 }
             }
             is SearchViewModel.State.EmptyResult -> {}

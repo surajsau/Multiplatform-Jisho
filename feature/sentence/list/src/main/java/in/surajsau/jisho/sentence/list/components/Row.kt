@@ -16,8 +16,8 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import `in`.surajsau.jisho.ui.neomorphic.neomorph
 import `in`.surajsau.jisho.model.SentenceResult
+import `in`.surajsau.jisho.ui.theme.JishoTheme
 
 @Composable
 internal fun SentenceRow(
@@ -26,7 +26,6 @@ internal fun SentenceRow(
 ) {
     Column(
         modifier = modifier
-            .neomorph()
             .padding(horizontal = 16.dp, vertical = 12.dp),
     ) {
         Text(
@@ -58,7 +57,7 @@ internal fun SentenceRow(
 )
 @Composable
 private fun PreviewSentenceRow() {
-    `in`.surajsau.jisho.ui.theme.AppTheme {
+    JishoTheme {
         Box(modifier = Modifier.fillMaxSize()) {
             SentenceRow(
                 modifier = Modifier,

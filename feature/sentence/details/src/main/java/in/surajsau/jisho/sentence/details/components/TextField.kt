@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import `in`.surajsau.jisho.ui.neomorphic.neomorph
+import `in`.surajsau.jisho.ui.theme.JishoTheme
 
 @Composable
 internal fun NotesTextField(
@@ -26,7 +26,6 @@ internal fun NotesTextField(
 ) {
     Box(
         modifier = modifier
-            .neomorph()
             .padding(all = 16.dp)
     ) {
         TextField(
@@ -56,13 +55,11 @@ internal fun NotesTextField(
 )
 @Composable
 private fun PreviewNotesTextEdit() {
-    `in`.surajsau.jisho.ui.theme.AppTheme {
-        Box(modifier = Modifier.fillMaxSize()) {
-            NotesTextField(
-                modifier = Modifier.fillMaxWidth(),
-                value = "",
-                onValueChanged = {},
-            )
-        }
+    JishoTheme {
+        NotesTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = "",
+            onValueChanged = {},
+        )
     }
 }

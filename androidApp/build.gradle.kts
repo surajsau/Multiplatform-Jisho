@@ -33,11 +33,14 @@ dependencies {
 
     implementation(project(":shared"))
 
-    implementation(project(":core:utils"))
-    implementation(project(":core:ui"))
-    implementation(project(":core:navigation"))
+    implementation(projects.core.model)
+    implementation(projects.core.utils)
+    implementation(projects.core.ui)
+    implementation(projects.core.navigation)
+    implementation(projects.core.preference)
+    implementation(projects.core.app)
 
-    implementation(project(":feature:download"))
+    implementation(projects.feature.download)
     implementation(project(":feature:search"))
     implementation(project(":feature:reference"))
     implementation(project(":feature:reference:jlpt"))
