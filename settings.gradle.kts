@@ -15,6 +15,8 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(
     ":androidApp",
     ":shared",
+    ":core:app",
+    ":core:model",
     ":core:navigation",
     ":core:preference",
     ":core:ui",
@@ -24,15 +26,12 @@ include(
     ":feature:details",
     ":feature:download",
     ":feature:favorites",
+    ":feature:acknowledgement",
     ":feature:reference",
-    ":feature:reference:jlpt",
-    ":feature:reference:kanji",
+    ":feature:jlpt",
+    ":feature:kanji",
     ":feature:search",
     ":feature:sentence:details",
     ":feature:sentence:list",
     ":feature:settings"
 )
-include(":core:model")
-include(":core:model")
-include(":core:app")
-include(":feature:acknowledgement")

@@ -37,13 +37,13 @@ fun ReferenceRow(
     onItemClicked: () -> Unit,
 ) {
     Card(
-        modifier = modifier.height(72.dp),
+        modifier = modifier,
         onClick = onItemClicked
     ) {
         Row(
             modifier = Modifier
-                .fillMaxHeight()
-                .padding(horizontal = 16.dp),
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 12.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {

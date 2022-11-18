@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     @Suppress("DSL_SCOPE_VIOLATION")
     alias(libs.plugins.android.application) apply false

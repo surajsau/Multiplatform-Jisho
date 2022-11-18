@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import `in`.surajsau.jisho.android.ui.favorite.FavoriteScreen
 import `in`.surajsau.jisho.details.DetailsScreen
 import `in`.surajsau.jisho.details.navigation.DetailsNavigation
+import `in`.surajsau.jisho.details.rememberDetailsScreenState
 import `in`.surajsau.jisho.download.DownloadScreen
 import `in`.surajsau.jisho.download.navigation.DownloadNavigation
 import `in`.surajsau.jisho.favorites.navigation.FavoriteDestination
@@ -17,8 +18,8 @@ import `in`.surajsau.jisho.navigation.AppDestination
 import `in`.surajsau.jisho.reference.ReferenceScreen
 import `in`.surajsau.jisho.reference.jlpt.JlptResourceScreen
 import `in`.surajsau.jisho.reference.jlpt.JlptListScreen
-import `in`.surajsau.jisho.reference.jlpt.navigation.JlptListNavigation
-import `in`.surajsau.jisho.reference.jlpt.navigation.JlptResourceNavigation
+import `in`.surajsau.jisho.reference.jlpt.navigation.JlptListDestination
+import `in`.surajsau.jisho.reference.jlpt.navigation.JlptResourceDestination
 import `in`.surajsau.jisho.reference.kanji.KanjiResourceScreen
 import `in`.surajsau.jisho.reference.kanji.list.KanjiListScreen
 import `in`.surajsau.jisho.reference.kanji.navigation.KanjiListDestination
@@ -63,13 +64,15 @@ fun JishoNavHost(
 
             DetailsScreen(
                 modifier = Modifier.fillMaxSize(),
-                model = DetailsNavigation.fromArgs(args),
-                navigateToSentenceDetails = { id ->
-                    onNavigateToDestination(SentenceDetailsNavigation(id))
-                },
-                navigateToSentenceList = { word ->
-                    onNavigateToDestination(SentenceListNavigation(word))
-                }
+                state = rememberDetailsScreenState(
+                    model = DetailsNavigation.fromArgs(args),
+                    navigateToSentenceList = { word ->
+                        onNavigateToDestination(SentenceListNavigation(word))
+                    },
+                    navigateToSentenceDetails = { id ->
+                        onNavigateToDestination(SentenceDetailsNavigation(id = "$id"))
+                    }
+                )
             )
         }
 
@@ -78,12 +81,12 @@ fun JishoNavHost(
             SentenceListScreen(
                 word = SentenceListNavigation.fromArgs(args),
                 navigateToDetails = { id ->
-                    onNavigateToDestination(SentenceDetailsNavigation(id))
+                    onNavigateToDestination(SentenceDetailsNavigation("$id"))
                 }
             )
         }
 
-        composable(SentenceDetailsNavigation.Key) {
+        composable(SentenceDetailsNavigation.Route) {
             val args = it.arguments ?: return@composable
             SentenceDetailsScreen(
                 id = SentenceDetailsNavigation.fromArgs(args)
@@ -98,11 +101,11 @@ fun JishoNavHost(
             )
         }
 
-        composable(JlptListNavigation.Route) {
+        composable(JlptListDestination.Route) {
             val args = it.arguments ?: return@composable
 
             JlptListScreen(
-                level = JlptListNavigation.fromArgs(args),
+                level = JlptListDestination.fromArgs(args),
                 navigateToDetails = { id, word ->
                     onNavigateToDestination(DetailsNavigation("$id", word))
                 }
@@ -120,9 +123,9 @@ fun JishoNavHost(
             )
         }
 
-        composable(JlptResourceNavigation.route) {
+        composable(JlptResourceDestination.route) {
             JlptResourceScreen(
-                navigateToJlptLevel = { level -> onNavigateToDestination(JlptListNavigation(level = level)) }
+                navigateToJlptLevel = { level -> onNavigateToDestination(JlptListDestination(level = "$level")) }
             )
         }
 
@@ -133,7 +136,7 @@ fun JishoNavHost(
         composable(ReferenceDestination.route) {
             ReferenceScreen(
                 onKanaTapped = {},
-                onJlptTapped = { onNavigateToDestination(JlptResourceNavigation) },
+                onJlptTapped = { onNavigateToDestination(JlptResourceDestination) },
                 onKanjiTapped = { onNavigateToDestination(KanjiResourceDestination) }
             )
         }

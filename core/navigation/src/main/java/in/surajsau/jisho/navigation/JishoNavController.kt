@@ -11,19 +11,27 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun rememberJishoNavController(): JishoNavController {
+fun rememberJishoNavController(
+    startDestination: AppDestination
+): JishoNavController {
     val navHostController = rememberNavController()
-    return remember { JishoNavController(navHostController) }
+    return remember {
+        JishoNavController(
+            startDestination = startDestination,
+            navHostController = navHostController
+        )
+    }
 }
 
 @Stable
 class JishoNavController(
+    private val startDestination: AppDestination,
     val navHostController: NavHostController
 ) {
-    var currentDestination: AppDestination? by mutableStateOf(null)
+    var currentDestination: AppDestination by mutableStateOf(startDestination)
 
     val showBottomBar: Boolean
-        @Composable get() = currentDestination is HomeDestination
+        get() = currentDestination is HomeDestination
 
     fun navigate(destination: AppDestination) {
         val startDestination = navHostController.graph.findStartDestination()

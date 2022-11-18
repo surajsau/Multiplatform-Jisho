@@ -12,7 +12,7 @@ data class DetailsNavigation(val id: String, val word: String) : AppDestination 
         private const val KEY_ID = "id"
         private const val KEY_WORD = "word"
 
-        val Route = DetailsNavigation(KEY_ID, KEY_WORD).route
+        val Route = DetailsNavigation("{$KEY_ID}", "{$KEY_WORD}").route
 
         fun fromArgs(extras: Bundle): DetailsModel {
             val id = extras.getString(KEY_ID)?.toLong() ?: 0L

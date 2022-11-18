@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -61,7 +62,7 @@ fun SearchBar(
 
     Box(
         modifier = modifier
-            .padding(horizontal = padding)
+            .padding(padding)
             .height(searchBarHeight)
             .background(
                 color = MaterialTheme.colorScheme.surfaceColorAtElevation(2.dp),
@@ -75,9 +76,7 @@ fun SearchBar(
             placeholder = {
                 Text(
                     text = "Search",
-                    style = TextStyle(
-                        fontSize = searchBarFontSize.sp
-                    )
+                    style = TextStyle(fontSize = searchBarFontSize.sp)
                 )
             },
             leadingIcon = {

@@ -25,11 +25,15 @@ fun JishoApp(
         themePreference = state.themePreference
     ) {
         Surface {
-            val navController = rememberJishoNavController()
+            val navController = rememberJishoNavController(
+                startDestination = state.startDestination
+            )
 
             JishoScaffold(
+                showBottomBar = navController.showBottomBar,
                 onNavItemTapped = navController::navigate,
-                currentDestination = navController.currentDestination
+                currentDestination = navController.currentDestination,
+                navigateBack = navController::navigateBack
             ) { padding ->
                 JishoNavHost(
                     modifier = Modifier

@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import `in`.surajsau.jisho.ui.theme.JishoTheme
 import `in`.surajsau.jisho.ui.theme.sectionTitle
 import `in`.surajsau.jisho.viewmodel.DetailsViewModel
 
@@ -44,20 +45,20 @@ internal fun DetailsKanji(
                     modifier = Modifier
                         .clickable { onItemClicked(item) }
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 12.dp),
+                        .padding(vertical = 4.dp),
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     Text(
                         modifier = Modifier.alpha(0.6f),
                         text = item.value,
-                        style = MaterialTheme.typography.bodyMedium,
+                        style = MaterialTheme.typography.bodyLarge,
                         maxLines = 1,
                     )
 
                     Text(
                         modifier = Modifier.fillMaxWidth(),
                         text = item.meaning,
-                        style = MaterialTheme.typography.bodyMedium,
+                        style = MaterialTheme.typography.bodyLarge,
                         maxLines = 1,
                     )
                 }
@@ -68,16 +69,18 @@ internal fun DetailsKanji(
 
 @Preview(
     name = "Night Mode",
-    uiMode = Configuration.UI_MODE_NIGHT_YES
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true
 )
 @Preview(
     name = "Day Mode",
-    uiMode = Configuration.UI_MODE_NIGHT_NO
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
+    showBackground = true
 )
 @Composable
 private fun PreviewKanjis() {
-    `in`.surajsau.jisho.ui.theme.JishoTheme {
-        Box(modifier = Modifier.fillMaxSize()) {
+    JishoTheme {
+        Box(modifier = Modifier.fillMaxWidth()) {
             DetailsKanji(
                 modifier = Modifier
                     .fillMaxWidth()

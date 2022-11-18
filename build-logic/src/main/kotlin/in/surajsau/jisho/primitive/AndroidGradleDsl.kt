@@ -7,20 +7,21 @@ import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
+import java.io.File
 
-fun Project.application(action: BaseAppModuleExtension.() -> Unit) {
+internal fun Project.application(action: BaseAppModuleExtension.() -> Unit) {
     extensions.configure(action)
 }
 
-fun Project.androidModule(action: LibraryExtension.() -> Unit) {
+internal fun Project.androidModule(action: LibraryExtension.() -> Unit) {
     extensions.configure(action)
 }
 
-fun Project.android(action: TestedExtension.() -> Unit) {
+internal fun Project.android(action: TestedExtension.() -> Unit) {
     extensions.configure(action)
 }
 
-fun Project.setupAndroid() {
+internal fun Project.setupAndroid() {
     android {
         namespace?.let { this.namespace = it }
         compileSdkVersion(33)
@@ -49,4 +50,24 @@ fun Project.setupAndroid() {
             }
         }
     }
+}
+
+internal fun Project.buildComposeMetricsParameters(): List<String> {
+    val metricParameters = mutableListOf<String>()
+    val enableMetricsProvider = project.providers.gradleProperty("enableComposeCompilerMetrics")
+    val enableMetrics = (enableMetricsProvider.orNull == "true")
+    if (enableMetrics) {
+        val metricsFolder = File(project.buildDir, "compose-metrics")
+        metricParameters.add("-P")
+        metricParameters.add(
+            "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=" + metricsFolder.absolutePath
+        )
+
+        metricParameters.add("-P")
+        metricParameters.add(
+            "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=" + metricsFolder.absolutePath
+        )
+    }
+
+    return metricParameters.toList()
 }

@@ -29,9 +29,7 @@ android {
 }
 
 dependencies {
-    val firebase = "29.3.1"
-
-    implementation(project(":shared"))
+    implementation(projects.shared)
 
     implementation(projects.core.model)
     implementation(projects.core.utils)
@@ -41,17 +39,17 @@ dependencies {
     implementation(projects.core.app)
 
     implementation(projects.feature.download)
-    implementation(project(":feature:search"))
-    implementation(project(":feature:reference"))
-    implementation(project(":feature:reference:jlpt"))
-    implementation(project(":feature:reference:kanji"))
-    implementation(project(":feature:details"))
-    implementation(project(":feature:favorites"))
-    implementation(project(":feature:sentence:details"))
-    implementation(project(":feature:sentence:list"))
-    implementation(project(":feature:settings"))
+    implementation(projects.feature.search)
+    implementation(projects.feature.reference)
+    implementation(projects.feature.jlpt)
+    implementation(projects.feature.kanji)
+    implementation(projects.feature.details)
+    implementation(projects.feature.favorites)
+    implementation(projects.feature.sentence.details)
+    implementation(projects.feature.sentence.list)
+    implementation(projects.feature.settings)
 
-    implementation(platform("com.google.firebase:firebase-bom:$firebase"))
+    implementation(platform(libs.firebase.bom))
     implementation("com.google.firebase:firebase-analytics-ktx")
 
     implementation(libs.compose.icons.core)
