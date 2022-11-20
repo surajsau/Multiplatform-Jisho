@@ -1,50 +1,95 @@
 package `in`.surajsau.jisho.reference.kanji.navigation
 
-import android.os.Bundle
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavType
+import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import `in`.surajsau.jisho.model.KanjiQuery
-import `in`.surajsau.jisho.navigation.AppDestination
+import `in`.surajsau.jisho.model.KanjiResult
+import `in`.surajsau.jisho.reference.kanji.KanjiResourceScreen
+import `in`.surajsau.jisho.reference.kanji.KanjiListScreen
 
-object KanjiResourceDestination : AppDestination {
-    override val route: String = "kanji-resource"
+fun NavGraphBuilder.kanjiNavGraph(
+    onGradeItemClicked: (Int) -> Unit,
+    onAllGradesClicked: () -> Unit,
+    onKanjiGridItemClicked: (KanjiResult) -> Unit
+) {
+    composable(route = KanjiNavGraph.mainRoute()) {
+        KanjiResourceScreen(
+            onGradeItemClicked = onGradeItemClicked,
+            onAllGradesClicked = onAllGradesClicked
+        )
+    }
+
+    composable(route = KanjiNavGraph.kanjiAllGradesRoute()) {
+        KanjiListScreen(
+            query = KanjiQuery.AllSchool,
+            onGridItemTap = onKanjiGridItemClicked
+        )
+    }
+
+    composable(route = KanjiNavGraph.kanjiAllRoute()) {
+        KanjiListScreen(
+            query = KanjiQuery.All,
+            onGridItemTap = onKanjiGridItemClicked
+        )
+    }
+
+    composable(
+        route = KanjiNavGraph.kanjiFrequencyRoute("{from}", "{to}"),
+        arguments = listOf(
+            navArgument("from") { type = NavType.LongType },
+            navArgument("to") { type = NavType.LongType }
+        )
+    ) {
+        val args = it.arguments ?: return@composable
+        val from = args.getLong("from")
+        val to = args.getLong("to")
+
+        KanjiListScreen(
+            query = KanjiQuery.Freq(from, to),
+            onGridItemTap = onKanjiGridItemClicked
+        )
+    }
+
+    composable(
+        route = KanjiNavGraph.kanjiGradeRoute("{grade}"),
+        arguments = listOf(
+            navArgument("grade") { type = NavType.IntType }
+        )
+    ) {
+        val args = it.arguments ?: return@composable
+        val grade = args.getInt("grade")
+
+        KanjiListScreen(
+            query = KanjiQuery.Grade(grade),
+            onGridItemTap = onKanjiGridItemClicked
+        )
+    }
 }
 
-data class KanjiListDestination(val query: KanjiQuery) : AppDestination {
-    override val route: String
-        get() {
-            return when (query) {
-                is KanjiQuery.All -> "kanji/all"
-                is KanjiQuery.Freq -> "kanji/freq?from=${query.from}&to=${query.to}"
-                is KanjiQuery.Grade -> "kanji/grade?grade=${query.grade}"
-                is KanjiQuery.AllSchool -> "kanji/grade-all"
-            }
-        }
+object KanjiNavGraph {
+    fun kanjiAllRoute(): String {
+        return "kanji/all"
+    }
 
-    companion object {
-        private const val KEY_TYPE = "type"
-        private const val KEY_FROM = "from"
-        private const val KEY_TO = "to"
-        private const val KEY_GRADE = "grade"
+    fun kanjiFrequencyRoute(from: String, to: String): String {
+        return "kanji/freq?from=$from&to=$to"
+    }
 
-        const val Route = "kanji/{$KEY_TYPE}?from={$KEY_FROM}&to={$KEY_TO}&grade={$KEY_GRADE}"
+    fun kanjiGradeRoute(grade: String): String {
+        return "kanji/grade?grade=$grade"
+    }
 
-        fun fromArgs(extras: Bundle): KanjiQuery {
-            val type = extras.getString(KEY_TYPE)!!
-            return when (type) {
-                "freq" -> {
-                    val from = extras.getInt(KEY_FROM)
-                    val to = extras.getInt(KEY_TO)
+    fun kanjiAllGradesRoute(): String {
+        return "kanji/grade-all"
+    }
 
-                    KanjiQuery.Freq(from.toLong(), to.toLong())
-                }
-                "grade" -> {
-                    val grade = extras.getString(KEY_GRADE)!!.toInt()
-                    KanjiQuery.Grade(grade)
-                }
-                "grade-all" -> KanjiQuery.AllSchool
-                "all" -> KanjiQuery.All
+    internal fun kanjiListPlaceholderRoute(): String {
+        return "kanji/{type}?from={from}&to={to}&grade={grade}"
+    }
 
-                else -> KanjiQuery.All
-            }
-        }
+    fun mainRoute(): String {
+        return "kanji-resource"
     }
 }

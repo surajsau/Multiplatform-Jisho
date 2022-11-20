@@ -12,14 +12,17 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import `in`.surajsau.jisho.model.SearchResult
 import `in`.surajsau.jisho.ui.theme.JishoTheme
+import `in`.surajsau.jisho.ui.theme.PreviewContainer
 import `in`.surajsau.jisho.ui.theme.cardDescription
 import `in`.surajsau.jisho.ui.theme.cardTitle
 
@@ -53,7 +56,9 @@ internal fun ResultRow(
             Text(
                 text = result.reading,
                 color = MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.cardTitle
+                style = MaterialTheme.typography.cardTitle,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
             )
         }
 
@@ -84,40 +89,42 @@ internal fun ResultRow(
 )
 @Composable
 private fun previewSearchResult() {
-    JishoTheme {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(300.dp),
-            verticalArrangement = Arrangement.Center,
-        ) {
-            ResultRow(
+    PreviewContainer {
+        Surface {
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
-                result = SearchResult(
-                    id = 0L,
-                    value = "楽しい",
-                    reading = "たのしい",
-                    meanings = "fun・to have fun・enjoy"
-                ),
-                onItemClicked = {}
-            )
+                    .height(300.dp),
+                verticalArrangement = Arrangement.Center,
+            ) {
+                ResultRow(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    result = SearchResult(
+                        id = 0L,
+                        value = "楽しい",
+                        reading = "たのしい",
+                        meanings = "fun・to have fun・enjoy"
+                    ),
+                    onItemClicked = {}
+                )
 
-            Spacer(Modifier.height(16.dp))
+                Spacer(Modifier.height(16.dp))
 
-            ResultRow(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
-                result = SearchResult(
-                    id = 0L,
-                    value = "楽しい",
-                    reading = "たのしい",
-                    meanings = "fun・to have fun・enjoy"
-                ),
-                onItemClicked = {}
-            )
+                ResultRow(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    result = SearchResult(
+                        id = 0L,
+                        value = "楽しい",
+                        reading = "たのしい",
+                        meanings = "fun・to have fun・enjoy"
+                    ),
+                    onItemClicked = {}
+                )
+            }
         }
     }
 }

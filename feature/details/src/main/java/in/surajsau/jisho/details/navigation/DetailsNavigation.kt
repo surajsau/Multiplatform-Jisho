@@ -1,24 +1,45 @@
 package `in`.surajsau.jisho.details.navigation
 
-import android.os.Bundle
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavType
+import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
+import `in`.surajsau.jisho.details.DetailsScreen
 import `in`.surajsau.jisho.details.model.DetailsModel
-import `in`.surajsau.jisho.navigation.AppDestination
+import `in`.surajsau.jisho.details.rememberDetailsScreenState
 
-data class DetailsNavigation(val id: String, val word: String) : AppDestination {
-    override val route: String
-        get() = "details/$id/$word"
-
-    companion object {
-        private const val KEY_ID = "id"
-        private const val KEY_WORD = "word"
-
-        val Route = DetailsNavigation("{$KEY_ID}", "{$KEY_WORD}").route
-
-        fun fromArgs(extras: Bundle): DetailsModel {
-            val id = extras.getString(KEY_ID)?.toLong() ?: 0L
-            val word = extras.getString(KEY_WORD)!!
-
-            return DetailsModel(id, word)
-        }
+fun NavGraphBuilder.detailsNavGraph(
+    onShowMoreSentenceClick: (String) -> Unit,
+    onSentenceItemClick: (Long) -> Unit,
+    onBackClick: () -> Unit
+) {
+    composable(
+        route = DetailsNavGraph.detailsRoute("{id}", "{word}"),
+        arguments = listOf(
+            navArgument("id") { type = NavType.LongType },
+            navArgument("word") { type = NavType.StringType }
+        )
+    ) {
+        val args = it.arguments ?: return@composable
+        val id = args.getLong("id")
+        val word = args.getString("word", "")
+        DetailsScreen(
+            state = rememberDetailsScreenState(
+                model = DetailsModel(id, word),
+                navigateToSentenceList = onShowMoreSentenceClick,
+                navigateToSentenceDetails = onSentenceItemClick
+            ),
+            onSentenceItemClick = onSentenceItemClick,
+            onShowMoreSentenceClick = onShowMoreSentenceClick,
+            onBackClick = onBackClick
+        )
     }
+}
+
+object DetailsNavGraph {
+    fun detailsRoute(id: String, word: String): String {
+        return "details/$id/$word"
+    }
+
+    fun isDetailsRoute(route: String) = route.contains("details")
 }

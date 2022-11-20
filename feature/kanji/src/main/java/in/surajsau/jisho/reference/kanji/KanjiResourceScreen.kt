@@ -1,36 +1,29 @@
 package `in`.surajsau.jisho.reference.kanji
 
 import android.content.res.Configuration
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import `in`.surajsau.jisho.reference.kanji.components.AllSchoolItem
 import `in`.surajsau.jisho.reference.kanji.components.KanjiGradeItem
 import `in`.surajsau.jisho.ui.theme.PreviewContainer
-import `in`.surajsau.jisho.ui.theme.sectionTitle
 
 @Composable
 fun KanjiResourceScreen(
     modifier: Modifier = Modifier,
-    navigateToGradeList: (grade: Int) -> Unit,
-    navigateToAllGradesList: () -> Unit
+    onGradeItemClicked: (grade: Int) -> Unit,
+    onAllGradesClicked: () -> Unit
 ) {
     LazyColumn(
         modifier = modifier
@@ -56,7 +49,7 @@ fun KanjiResourceScreen(
                     .fillMaxWidth()
                     .height(56.dp),
                 grade = "${grade + 1}",
-                onItemClicked = { navigateToGradeList(grade) }
+                onItemClicked = { onGradeItemClicked(grade) }
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -80,7 +73,7 @@ fun KanjiResourceScreen(
                     .fillMaxWidth()
                     .height(56.dp),
                 grade = "${grade + 1}",
-                onItemClicked = { navigateToGradeList(it) }
+                onItemClicked = { onGradeItemClicked(it) }
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -93,7 +86,7 @@ fun KanjiResourceScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(56.dp),
-                onItemClicked = navigateToAllGradesList
+                onItemClicked = onAllGradesClicked
             )
         }
 
@@ -119,8 +112,8 @@ private fun PreviewKanjiResourceScreen() {
         Surface {
             KanjiResourceScreen(
                 modifier = Modifier.fillMaxSize(),
-                navigateToGradeList = {},
-                navigateToAllGradesList = {}
+                onGradeItemClicked = {},
+                onAllGradesClicked = {}
             )
         }
     }

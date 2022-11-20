@@ -6,9 +6,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import `in`.surajsau.jisho.reference.jlpt.components.ResultRow
@@ -21,7 +22,7 @@ fun JlptListScreen(
     modifier: Modifier = Modifier,
     level: Int,
     viewModel: JlptListViewModel = getViewModel(),
-    navigateToDetails: (id: Long, word: String) -> Unit,
+    onItemClicked: (id: Long, word: String) -> Unit,
 ) {
     val (state, intent, _) = dispatch(viewModel)
 
@@ -30,7 +31,10 @@ fun JlptListScreen(
     }
 
     if (state.isLoading) {
-        Box(modifier = modifier) {
+        Box(
+            modifier = modifier,
+            contentAlignment = Alignment.Center
+        ) {
             CircularProgressIndicator()
         }
     } else {
@@ -45,7 +49,7 @@ fun JlptListScreen(
                         .padding(vertical = 8.dp),
                     result = item,
                     onItemClicked = {
-                        navigateToDetails(item.id, item.value)
+                        onItemClicked(item.id, item.value)
                     }
                 )
             }

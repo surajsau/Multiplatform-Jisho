@@ -10,7 +10,6 @@ dependencies {
     implementation(project(":shared"))
     implementation(project(":core:ui"))
     implementation(project(":core:utils"))
-    implementation(project(":core:navigation"))
 
     implementation(project(":shared"))
 }

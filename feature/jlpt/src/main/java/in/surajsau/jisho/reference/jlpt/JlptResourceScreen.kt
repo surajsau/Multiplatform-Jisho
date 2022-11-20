@@ -14,7 +14,7 @@ import `in`.surajsau.jisho.reference.jlpt.components.JlptRow
 @Composable
 fun JlptResourceScreen(
     modifier: Modifier = Modifier,
-    navigateToJlptLevel: (Int) -> Unit,
+    onItemClicked: (Int) -> Unit,
 ) {
     Column(
         modifier = modifier.padding(all = 16.dp),
@@ -25,7 +25,7 @@ fun JlptResourceScreen(
                 .fillMaxWidth(),
             title = "N5",
             description = "Understanding of some Basic Japanese",
-            onItemClicked = { navigateToJlptLevel(5) }
+            onItemClicked = { onItemClicked(5) }
         )
 
         JlptRow(
@@ -33,7 +33,7 @@ fun JlptResourceScreen(
                 .fillMaxWidth(),
             title = "N4",
             description = "Understanding of Basic Japanese",
-            onItemClicked = { navigateToJlptLevel(4) }
+            onItemClicked = { onItemClicked(4) }
         )
 
         JlptRow(
@@ -41,7 +41,7 @@ fun JlptResourceScreen(
                 .fillMaxWidth(),
             title = "N3",
             description = "Understanding of some Japanese used in everyday situations to some degree",
-            onItemClicked = { navigateToJlptLevel(3) }
+            onItemClicked = { onItemClicked(3) }
         )
 
         JlptRow(
@@ -49,7 +49,7 @@ fun JlptResourceScreen(
                 .fillMaxWidth(),
             title = "N2",
             description = "Understanding of some Japanese used in everyday situations and irregular circumstances to some degree",
-            onItemClicked = { navigateToJlptLevel(2) }
+            onItemClicked = { onItemClicked(2) }
         )
 
         JlptRow(
@@ -57,7 +57,7 @@ fun JlptResourceScreen(
                 .fillMaxWidth(),
             title = "N1",
             description = "Understanding of Japanese even in irregular circumstances",
-            onItemClicked = { navigateToJlptLevel(1) }
+            onItemClicked = { onItemClicked(1) }
         )
     }
 }
@@ -74,5 +74,5 @@ fun JlptResourceScreen(
 )
 @Composable
 private fun PreviewJlptResourceScreen() {
-    JlptResourceScreen(navigateToJlptLevel = {})
+    JlptResourceScreen(onItemClicked = {})
 }

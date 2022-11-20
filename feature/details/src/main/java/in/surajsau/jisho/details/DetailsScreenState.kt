@@ -26,7 +26,7 @@ fun rememberDetailsScreenState(
 @OptIn(ExperimentalLifecycleComposeApi::class)
 class DetailsScreenState(
     val scrollState: ScrollState,
-    private val model: DetailsModel,
+    val model: DetailsModel,
     private val viewModel: DetailsViewModel,
     private val navigateToSentenceList: (String) -> Unit,
     private val navigateToSentenceDetails: (Long) -> Unit,
