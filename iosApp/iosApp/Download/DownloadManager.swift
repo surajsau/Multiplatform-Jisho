@@ -12,7 +12,7 @@ import Gzip
 
 class DownloadManager: ObservableObject {
     
-    static let ZipFileName = "data.gz"
+    static let ZipFileName = "jmdict.db.gz"
     
     private let storage = Storage.storage()
     
@@ -27,6 +27,7 @@ class DownloadManager: ObservableObject {
         .appendingPathComponent(DownloadManager.ZipFileName)
     
     func checkIfDatabaseExists() throws {
+        print(self.databaseFile.path)
         self.doesDatabaseExist = try self.databaseFile.checkResourceIsReachable()
     }
     

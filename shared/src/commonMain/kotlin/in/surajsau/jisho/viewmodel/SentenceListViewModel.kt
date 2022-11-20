@@ -4,6 +4,7 @@ import `in`.surajsau.jisho.expected.BaseViewModel
 import `in`.surajsau.jisho.model.SentenceQuery
 import `in`.surajsau.jisho.model.SentenceResult
 import `in`.surajsau.jisho.usecase.GetSentencesForWord
+import io.github.aakira.napier.Napier
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

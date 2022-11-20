@@ -23,14 +23,11 @@ struct KanjiListScreen: View {
                 .edgesIgnoringSafeArea(.all)
             
             if let state = self.dispatcher.state {
-                let _ = print(state)
                 VStack {
                     AppTopBar(navigateUpIcon: "arrow.backward", title: state.title) {
-                        if self.presentationMode.wrappedValue.isPresented {
-                            self.presentationMode.wrappedValue.dismiss()
-                        }
+                        self.presentationMode.wrappedValue.dismiss()
                     }
-                    .padding()
+                        .padding()
                     
                     ScrollView {
                         LazyVGrid(columns: [GridItem(.adaptive(minimum: 72), spacing: 24)], spacing: 16) {

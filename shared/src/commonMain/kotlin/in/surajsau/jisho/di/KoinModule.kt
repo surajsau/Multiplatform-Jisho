@@ -54,12 +54,12 @@ val UsecaseModule = module {
 }
 
 val ViewModelModule = module {
-    factory { SearchViewModel() }
-    factory { KanjiListViewModel() }
-    factory { DetailsViewModel() }
-    factory { SentenceDetailViewModel() }
-    factory { JlptListViewModel() }
-    factory { SentenceListViewModel() }
+    single { SearchViewModel() }
+    single { KanjiListViewModel() }
+    single { DetailsViewModel() }
+    single { SentenceDetailViewModel() }
+    single { JlptListViewModel() }
+    single { SentenceListViewModel() }
 }
 
 val RepositoryModule = module {

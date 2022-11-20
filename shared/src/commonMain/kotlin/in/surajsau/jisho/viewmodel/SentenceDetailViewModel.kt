@@ -36,8 +36,9 @@ class SentenceDetailViewModel : BaseViewModel<SentenceDetailViewModel.State, Sen
             _sentence,
             _showEditorDialog
         ) { sentence, showEditorDialog ->
-            if (sentence == null)
+            if (sentence == null) {
                 return@combine State.Init.copy(isLoading = true)
+            }
 
             State(
                 japanese = sentence.japanese,

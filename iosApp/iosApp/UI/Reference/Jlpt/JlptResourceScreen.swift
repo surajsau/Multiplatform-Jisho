@@ -55,6 +55,7 @@ struct JlptResourceScreen: View {
                         JlptRow(title: "N1", description: "Understanding od Japanese even in irregular circumstances")
                     }
                 }
+                .padding()
                 
                 Spacer()
             }

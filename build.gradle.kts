@@ -1,14 +1,25 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+plugins {
+    @Suppress("DSL_SCOPE_VIOLATION")
+    alias(libs.plugins.android.application) apply false
+    @Suppress("DSL_SCOPE_VIOLATION")
+    alias(libs.plugins.android.library) apply false
+    @Suppress("DSL_SCOPE_VIOLATION")
+    alias(libs.plugins.kotlin.gradle) apply false
+}
+
 buildscript {
     repositories {
-        gradlePluginPortal()
         google()
         mavenCentral()
+        gradlePluginPortal()
     }
+
     dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
-        classpath("com.android.tools.build:gradle:7.2.0")
-        classpath("com.squareup.sqldelight:gradle-plugin:1.5.3")
-        classpath("com.google.gms:google-services:4.3.10")
+        classpath(libs.android.gradlePlugin)
+        classpath(libs.kotlin.gradlePlugin)
+        classpath(libs.moko.resources.gradlePlugin)
     }
 }
 
@@ -17,8 +28,4 @@ allprojects {
         google()
         mavenCentral()
     }
-}
-
-tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
 }

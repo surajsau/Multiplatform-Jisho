@@ -14,8 +14,9 @@ actual abstract class BaseViewModel<S : VMState, I : VMIntent, E : VMEffect> : U
 
     actual val scope: CoroutineScope by lazy {
         CloseableCoroutineScope(SupervisorJob() + Dispatchers.Main.immediate).also {
-            if (hasCleared)
+            if (hasCleared) {
                 it.close()
+            }
         }
     }
 

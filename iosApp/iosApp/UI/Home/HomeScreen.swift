@@ -39,6 +39,7 @@ struct HomeScreen: View {
                         .navigationBarHidden(true)
                 }
             }
+            .navigationViewStyle(.stack)
         }
     }
 }
