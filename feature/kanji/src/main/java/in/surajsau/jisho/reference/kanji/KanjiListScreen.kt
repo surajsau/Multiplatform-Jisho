@@ -7,15 +7,18 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import `in`.surajsau.jisho.utils.dispatch
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import `in`.surajsau.jisho.reference.kanji.components.KanjiGridItem
 import `in`.surajsau.jisho.model.KanjiQuery
 import `in`.surajsau.jisho.model.KanjiResult
 import `in`.surajsau.jisho.viewmodel.KanjiListViewModel
 import org.koin.androidx.compose.get
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun KanjiListScreen(
     modifier: Modifier = Modifier,
@@ -23,10 +26,10 @@ fun KanjiListScreen(
     viewModel: KanjiListViewModel = get(),
     onGridItemTap: (KanjiResult) -> Unit
 ) {
-    val (state, intent, _) = dispatch(viewModel)
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
     LaunchedEffect(Unit) {
-        intent(KanjiListViewModel.Intent.InitWith(query))
+        viewModel.initWith(query)
     }
 
     LazyVerticalGrid(

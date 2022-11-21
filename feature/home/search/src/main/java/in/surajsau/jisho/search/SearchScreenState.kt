@@ -8,6 +8,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import `in`.surajsau.jisho.viewmodel.SearchState
 import `in`.surajsau.jisho.viewmodel.SearchViewModel
 import org.koin.androidx.compose.koinViewModel
 
@@ -23,7 +24,7 @@ fun rememberSearchScreenState(
 class SearchScreenState(private val viewModel: SearchViewModel) {
     var searchText by mutableStateOf("")
 
-    val uiState: SearchViewModel.State
+    val uiState: SearchState
         @Composable get() = viewModel.state.collectAsStateWithLifecycle().value
 
     val searchBarCollapsed: Boolean
@@ -31,6 +32,6 @@ class SearchScreenState(private val viewModel: SearchViewModel) {
 
     fun onTextChanged(text: String) {
         searchText = text
-        viewModel.onIntent(SearchViewModel.Intent.SearchTextChanged(text))
+        viewModel.onSearchTextChanged(text)
     }
 }

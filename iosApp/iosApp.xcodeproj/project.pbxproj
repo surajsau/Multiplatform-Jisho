@@ -41,7 +41,6 @@
 		4FF92D842827C7D400639823 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF92D6C2827C7D400639823 /* Color+.swift */; };
 		4FF92D882827C7DD00639823 /* ResignKeyboardOnDragGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF92D862827C7DD00639823 /* ResignKeyboardOnDragGesture.swift */; };
 		4FF92D892827C7DD00639823 /* UIApplication+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF92D872827C7DD00639823 /* UIApplication+.swift */; };
-		4FF92D8B2827C7F600639823 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FF92D8A2827C7F600639823 /* GoogleService-Info.plist */; };
 		4FF92D8E2827C80100639823 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF92D8D2827C80100639823 /* DownloadManager.swift */; };
 		4FF92D922827C81E00639823 /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF92D902827C81E00639823 /* Dispatcher.swift */; };
 		4FF92D942827C87200639823 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF92D932827C87200639823 /* AppDelegate.swift */; };
@@ -56,6 +55,7 @@
 		4FFC6D56282A730800AF642F /* JlptResourceScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC6D55282A730800AF642F /* JlptResourceScreen.swift */; };
 		4FFC6D59282A746800AF642F /* JlptRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC6D58282A746800AF642F /* JlptRow.swift */; };
 		4FFC6D5C282A77F500AF642F /* JlptListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC6D5B282A77F500AF642F /* JlptListScreen.swift */; };
+		E58BF821292A015200DADCFD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E58BF820292A015200DADCFD /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -106,7 +106,6 @@
 		4FF92D6C2827C7D400639823 /* Color+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		4FF92D862827C7DD00639823 /* ResignKeyboardOnDragGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResignKeyboardOnDragGesture.swift; sourceTree = "<group>"; };
 		4FF92D872827C7DD00639823 /* UIApplication+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+.swift"; sourceTree = "<group>"; };
-		4FF92D8A2827C7F600639823 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4FF92D8D2827C80100639823 /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		4FF92D902827C81E00639823 /* Dispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
 		4FF92D932827C87200639823 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +115,7 @@
 		4FFC6D5B282A77F500AF642F /* JlptListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JlptListScreen.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E58BF820292A015200DADCFD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -412,7 +412,7 @@
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				4FF92D902827C81E00639823 /* Dispatcher.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
-				4FF92D8A2827C7F600639823 /* GoogleService-Info.plist */,
+				E58BF820292A015200DADCFD /* GoogleService-Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
 			);
@@ -503,8 +503,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */,
+				E58BF821292A015200DADCFD /* GoogleService-Info.plist in Resources */,
 				058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */,
-				4FF92D8B2827C7F600639823 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

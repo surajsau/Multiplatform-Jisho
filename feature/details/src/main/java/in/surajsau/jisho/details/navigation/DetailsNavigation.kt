@@ -25,9 +25,7 @@ fun NavGraphBuilder.detailsNavGraph(
         val word = args.getString("word", "")
         DetailsScreen(
             state = rememberDetailsScreenState(
-                model = DetailsModel(id, word),
-                navigateToSentenceList = onShowMoreSentenceClick,
-                navigateToSentenceDetails = onSentenceItemClick
+                model = DetailsModel(id, word)
             ),
             onSentenceItemClick = onSentenceItemClick,
             onShowMoreSentenceClick = onShowMoreSentenceClick,

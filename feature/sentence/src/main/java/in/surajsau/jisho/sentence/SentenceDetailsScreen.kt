@@ -19,13 +19,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
-import `in`.surajsau.jisho.utils.dispatch
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import `in`.surajsau.jisho.sentence.components.NotesTextField
 import `in`.surajsau.jisho.ui.theme.components.JishoScaffold
 import `in`.surajsau.jisho.viewmodel.SentenceDetailViewModel
 import org.koin.androidx.compose.koinViewModel
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLifecycleComposeApi::class)
 @Composable
 fun SentenceDetailsScreen(
     modifier: Modifier = Modifier,
@@ -33,14 +34,14 @@ fun SentenceDetailsScreen(
     viewModel: SentenceDetailViewModel = koinViewModel(),
     onBackClick: () -> Unit
 ) {
-    val (state, intent, _) = dispatch(viewModel)
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
     var notesText by remember { mutableStateOf(state.note) }
 
     LaunchedEffect(Unit) {
-        intent(SentenceDetailViewModel.Intent.InitWith(id))
+        viewModel.initWith(id)
     }
 
     JishoScaffold(

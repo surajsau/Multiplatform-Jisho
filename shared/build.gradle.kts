@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+
 plugins {
     id("jisho.convention.kmp")
     id("com.rickclephas.kmp.nativecoroutines") version "0.11.4-new-mm"
@@ -7,36 +9,57 @@ plugins {
 android.namespace = "in.surajsau.jisho.shared"
 
 kotlin {
-    android()
-
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = "shared"
-            linkerOpts.add("-lsqlite3")
-        }
-    }
-
     sourceSets {
-        val resources = "0.19.1"
-        val logging = "2.5.0"
+        val isCI = System.getenv()["isCI"]?.toBoolean() ?: false
+        val isCD = System.getenv()["isCD"]?.toBoolean() ?: false
+
+        val targets = when {
+            isCD -> listOf(iosArm64())
+            isCI -> listOf(iosX64())
+            else -> listOf(
+                iosX64(),
+                iosArm64(),
+                iosSimulatorArm64()
+            )
+        }
+
+        val xcframeworkName = "shared"
+        val xcframework = XCFramework(xcFrameworkName = xcframeworkName)
+
+        val exportProjects = listOf(
+            projects.core.viewmodel,
+            projects.fake,
+            projects.core.utils,
+            projects.core.preference
+        )
+
+        targets.forEach {
+            it.binaries.framework {
+                baseName = xcframeworkName
+                isStatic = true
+                xcframework.add(this)
+
+                exportProjects.forEach { project ->
+                    export(project)
+                }
+                export(libs.moko.resources.core)
+            }
+        }
 
         val commonMain by getting {
             dependencies {
-                implementation("io.github.aakira:napier:$logging")
-                implementation(project(":data"))
-                implementation(project(":fake"))
+                exportProjects.forEach { project ->
+                    api(project)
+                }
             }
         }
+
         val androidMain by getting {
             dependencies {
-                api("dev.icerock.moko:resources-compose:$resources")
-                api("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+                api(libs.moko.resources.compose)
             }
         }
+
     }
 }
 

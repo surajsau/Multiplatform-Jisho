@@ -1,17 +1,16 @@
 package `in`.surajsau.jisho.fake
 
-import `in`.surajsau.jisho.data.model.jmdict.Entry
-import `in`.surajsau.jisho.data.model.jmdict.Gloss
-import `in`.surajsau.jisho.data.model.jmdict.Info
-import `in`.surajsau.jisho.data.model.jmdict.JReading
-import `in`.surajsau.jisho.data.model.jmdict.JmdictQueryResult
-import `in`.surajsau.jisho.data.model.jmdict.Kanji
-import `in`.surajsau.jisho.data.model.jmdict.Sense
-import `in`.surajsau.jisho.data.repository.JmdictRepository
+import `in`.surajsau.jisho.model.jmdict.Entry
+import `in`.surajsau.jisho.model.jmdict.Gloss
+import `in`.surajsau.jisho.model.jmdict.Info
+import `in`.surajsau.jisho.model.jmdict.JReading
+import `in`.surajsau.jisho.model.jmdict.JmdictQueryResult
+import `in`.surajsau.jisho.model.jmdict.Kanji
+import `in`.surajsau.jisho.model.jmdict.Sense
 
-class FakeJmdictRepository : JmdictRepository {
+class FakeJmdictRepository {
 
-    override suspend fun searchForKanji(query: String): List<JmdictQueryResult> {
+    suspend fun searchForKanji(query: String): List<JmdictQueryResult> {
         return Entries.filter { entry ->
             entry.kanjis.any { kanji -> kanji.value.contains(convertQueryToRegex(text = query)) }
         }
@@ -28,7 +27,7 @@ class FakeJmdictRepository : JmdictRepository {
             }
     }
 
-    override suspend fun searchForReading(query: String): List<JmdictQueryResult> {
+    suspend fun searchForReading(query: String): List<JmdictQueryResult> {
         return Entries.filter { entry ->
             entry.readings.any { reading -> reading.value.contains(convertQueryToRegex(text = query)) }
         }
@@ -59,11 +58,11 @@ class FakeJmdictRepository : JmdictRepository {
         })
     }
 
-    override suspend fun getEntry(id: Long): Entry {
+    suspend fun getEntry(id: Long): Entry {
         return Entries.firstOrNull { it.id == id } ?: throw Exception()
     }
 
-    override suspend fun totalCount(): Long {
+    suspend fun totalCount(): Long {
         return Entries.size.toLong()
     }
 
@@ -447,11 +446,11 @@ class FakeJmdictRepository : JmdictRepository {
         )
     }
 
-    override suspend fun getEntriesForJlpt(level: Long): List<JmdictQueryResult> {
+    suspend fun getEntriesForJlpt(level: Long): List<JmdictQueryResult> {
         return emptyList()
     }
 
-    override suspend fun getForKanjiOrReading(query: String): JmdictQueryResult? {
+    suspend fun getForKanjiOrReading(query: String): JmdictQueryResult? {
         return null
     }
 }

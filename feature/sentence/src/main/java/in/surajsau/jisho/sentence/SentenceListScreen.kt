@@ -14,17 +14,19 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import `in`.surajsau.jisho.sentence.components.SentenceRow
 import `in`.surajsau.jisho.ui.theme.components.JishoScaffold
-import `in`.surajsau.jisho.utils.dispatch
 import `in`.surajsau.jisho.viewmodel.SentenceListViewModel
 import org.koin.androidx.compose.koinViewModel
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLifecycleComposeApi::class)
 @Composable
 fun SentenceListScreen(
     modifier: Modifier = Modifier,
@@ -33,12 +35,12 @@ fun SentenceListScreen(
     onItemClick: (Long) -> Unit,
     onBackClick: () -> Unit
 ) {
-    val (state, intent, _) = dispatch(viewModel)
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
 
     LaunchedEffect(Unit) {
-        intent(SentenceListViewModel.Intent.InitWith(word))
+        viewModel.initWith(word)
     }
 
     JishoScaffold(

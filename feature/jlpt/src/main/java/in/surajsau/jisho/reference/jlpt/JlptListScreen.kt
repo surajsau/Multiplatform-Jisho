@@ -9,14 +9,17 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import `in`.surajsau.jisho.reference.jlpt.components.ResultRow
-import `in`.surajsau.jisho.utils.dispatch
 import `in`.surajsau.jisho.viewmodel.JlptListViewModel
 import org.koin.androidx.compose.getViewModel
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun JlptListScreen(
     modifier: Modifier = Modifier,
@@ -24,10 +27,10 @@ fun JlptListScreen(
     viewModel: JlptListViewModel = getViewModel(),
     onItemClicked: (id: Long, word: String) -> Unit,
 ) {
-    val (state, intent, _) = dispatch(viewModel)
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
     LaunchedEffect(Unit) {
-        intent(JlptListViewModel.Intent.InitWith(level))
+        viewModel.initWith(level)
     }
 
     if (state.isLoading) {

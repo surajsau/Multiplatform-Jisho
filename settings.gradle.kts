@@ -21,7 +21,8 @@ include(
     ":core:preference",
     ":core:ui",
     ":core:utils",
-    ":data",
+    ":core:viewmodel",
+    ":core:data",
     ":fake",
     ":feature:acknowledgement",
     ":feature:details",
@@ -35,5 +36,4 @@ include(
     ":feature:kanji",
     ":feature:sentence"
 )
-include()
 include()

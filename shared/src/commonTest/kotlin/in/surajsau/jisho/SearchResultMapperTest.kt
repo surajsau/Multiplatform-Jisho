@@ -2,7 +2,7 @@ package `in`.surajsau.jisho
 
 import `in`.surajsau.jisho.data.model.jmdict.JmdictQueryResult
 import `in`.surajsau.jisho.data.model.kanjidic.KanjiQueryResult
-import `in`.surajsau.jisho.mapper.mapToSearchResult
+import `in`.surajsau.jisho.model.mapper.mapToSearchResult
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

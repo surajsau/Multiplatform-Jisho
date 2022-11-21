@@ -21,7 +21,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import `in`.surajsau.jisho.model.SearchResult
-import `in`.surajsau.jisho.ui.theme.JishoTheme
 import `in`.surajsau.jisho.ui.theme.PreviewContainer
 import `in`.surajsau.jisho.ui.theme.cardDescription
 import `in`.surajsau.jisho.ui.theme.cardTitle

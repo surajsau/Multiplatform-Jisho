@@ -16,7 +16,6 @@ class SqlDelightPlugin : Plugin<Project> {
             kotlin {
                 commonMain {
                     dependencies {
-                        implementation(libs.findLibrary("sqldelight-runtime").get())
                         implementation(libs.findLibrary("sqldelight-coroutines-extensions").get())
                     }
                 }

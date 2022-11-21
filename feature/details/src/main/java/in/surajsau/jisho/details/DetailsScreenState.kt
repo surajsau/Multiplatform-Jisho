@@ -7,6 +7,7 @@ import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import `in`.surajsau.jisho.details.model.DetailsModel
+import `in`.surajsau.jisho.viewmodel.DetailsState
 import `in`.surajsau.jisho.viewmodel.DetailsViewModel
 import org.koin.androidx.compose.koinViewModel
 
@@ -14,12 +15,10 @@ import org.koin.androidx.compose.koinViewModel
 fun rememberDetailsScreenState(
     model: DetailsModel,
     viewModel: DetailsViewModel = koinViewModel(),
-    scrollState: ScrollState = rememberScrollState(),
-    navigateToSentenceList: (String) -> Unit,
-    navigateToSentenceDetails: (Long) -> Unit,
+    scrollState: ScrollState = rememberScrollState()
 ): DetailsScreenState {
     return remember {
-        DetailsScreenState(scrollState, model, viewModel, navigateToSentenceList, navigateToSentenceDetails)
+        DetailsScreenState(scrollState, model, viewModel)
     }
 }
 
@@ -27,22 +26,12 @@ fun rememberDetailsScreenState(
 class DetailsScreenState(
     val scrollState: ScrollState,
     val model: DetailsModel,
-    private val viewModel: DetailsViewModel,
-    private val navigateToSentenceList: (String) -> Unit,
-    private val navigateToSentenceDetails: (Long) -> Unit,
+    private val viewModel: DetailsViewModel
 ) {
     init {
-        viewModel.onIntent(DetailsViewModel.Intent.InitWith(id = model.id, word = model.word))
+        viewModel.initWith(id = model.id, word = model.word)
     }
 
-    val uiState: DetailsViewModel.State
+    val uiState: DetailsState
         @Composable get() = viewModel.state.collectAsStateWithLifecycle().value
-
-    fun onShowMoreClicked() {
-        navigateToSentenceList(model.word)
-    }
-
-    fun onSentenceItemClicked(id: Long) {
-        navigateToSentenceDetails(id)
-    }
 }

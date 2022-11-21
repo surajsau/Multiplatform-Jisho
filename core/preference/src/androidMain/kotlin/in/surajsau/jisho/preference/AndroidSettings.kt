@@ -12,6 +12,6 @@ import org.koin.core.scope.Scope
 private val Context.dataStore by preferencesDataStore(name = "settings")
 
 @OptIn(ExperimentalSettingsImplementation::class, ExperimentalSettingsApi::class)
-actual fun Scope.settings(): FlowSettings {
+public actual fun Scope.settings(): FlowSettings {
     return DataStoreSettings(androidApplication().dataStore)
 }

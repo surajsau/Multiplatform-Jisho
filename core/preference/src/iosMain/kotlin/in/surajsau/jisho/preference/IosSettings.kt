@@ -6,6 +6,6 @@ import com.russhwolf.settings.coroutines.toFlowSettings
 import org.koin.core.scope.Scope
 import platform.Foundation.NSUserDefaults
 
-actual fun Scope.settings(): FlowSettings {
+public actual fun Scope.settings(): FlowSettings {
     return NSUserDefaultsSettings(NSUserDefaults.standardUserDefaults).toFlowSettings()
 }

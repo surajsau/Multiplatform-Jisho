@@ -7,17 +7,7 @@ plugins {
 android.namespace = "in.surajsau.jisho.preference"
 
 kotlin {
-    android()
-    
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = "preference"
-        }
-    }
+    explicitApi()
 
     sourceSets {
         val commonMain by getting {
