@@ -1,13 +1,14 @@
 package `in`.surajsau.jisho.reference.jlpt.navigation
 
-import android.os.Bundle
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
-import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.google.accompanist.navigation.animation.composable
 import `in`.surajsau.jisho.reference.jlpt.JlptListScreen
 import `in`.surajsau.jisho.reference.jlpt.JlptResourceScreen
 
+@OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.jlptNavGraph(
     navigateToJlptLevel: (Int) -> Unit,
     navigateTodetails: (Long, String) -> Unit,

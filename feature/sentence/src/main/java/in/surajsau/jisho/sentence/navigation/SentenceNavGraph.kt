@@ -1,12 +1,14 @@
 package `in`.surajsau.jisho.sentence.navigation
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
-import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.google.accompanist.navigation.animation.composable
 import `in`.surajsau.jisho.sentence.SentenceDetailsScreen
 import `in`.surajsau.jisho.sentence.SentenceListScreen
 
+@OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.sentenceNavGraph(
     onSentenceListItemClicked: (Long) -> Unit,
     onBackClick: () -> Unit
