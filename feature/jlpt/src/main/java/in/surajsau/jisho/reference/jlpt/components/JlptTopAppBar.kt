@@ -9,7 +9,7 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import `in`.surajsau.jisho.reference.jlpt.R
+import `in`.surajsau.jisho.ui.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -2,9 +2,8 @@ package `in`.surajsau.jisho.android
 
 import android.app.Application
 import `in`.surajsau.jisho.app.AppModule
-import `in`.surajsau.jisho.initKoin
+import `in`.surajsau.jisho.di.initKoin
 import `in`.surajsau.jisho.download.DownloadModule
-import `in`.surajsau.jisho.utils.initiateLogger
 import org.koin.android.ext.koin.androidContext
 
 class App : Application() {
@@ -15,6 +14,5 @@ class App : Application() {
             androidContext(this@App)
             modules(AppModule, DownloadModule)
         }
-        initiateLogger()
     }
 }

@@ -26,6 +26,7 @@ android {
     buildFeatures {
         compose = true
     }
+    namespace = "in.surajsau.jisho.android"
 }
 
 dependencies {
