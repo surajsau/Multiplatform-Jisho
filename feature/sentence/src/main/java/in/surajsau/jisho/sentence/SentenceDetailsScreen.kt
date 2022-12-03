@@ -23,6 +23,7 @@ import `in`.surajsau.jisho.utils.dispatch
 import `in`.surajsau.jisho.sentence.components.NotesTextField
 import `in`.surajsau.jisho.ui.theme.components.JishoScaffold
 import `in`.surajsau.jisho.viewmodel.SentenceDetailViewModel
+import `in`.surajsau.jisho.ui.R
 import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)

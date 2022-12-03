@@ -25,6 +25,7 @@ import `in`.surajsau.jisho.details.components.DetailsKanji
 import `in`.surajsau.jisho.details.components.DetailsMeaning
 import `in`.surajsau.jisho.details.components.DetailsSentence
 import `in`.surajsau.jisho.ui.theme.components.JishoScaffold
+import `in`.surajsau.jisho.ui.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -2,7 +2,7 @@ package `in`.surajsau.jisho.home.model
 
 import androidx.annotation.DrawableRes
 import `in`.surajsau.jisho.favorites.navigation.FavoriteNavGraph
-import `in`.surajsau.jisho.home.R
+import `in`.surajsau.jisho.ui.R
 import `in`.surajsau.jisho.reference.navigation.ReferenceNavGraph
 import `in`.surajsau.jisho.search.navigation.SearchNavGraph
 import `in`.surajsau.jisho.settings.navigation.SettingsNavGraph

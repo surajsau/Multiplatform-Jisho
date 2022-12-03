@@ -27,7 +27,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import `in`.surajsau.jisho.search.R
+import `in`.surajsau.jisho.ui.R
 import `in`.surajsau.jisho.ui.theme.JishoTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
