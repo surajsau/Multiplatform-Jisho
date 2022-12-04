@@ -6,8 +6,8 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
-import `in`.surajsau.jisho.tagged.components.FavoriteTopAppBar
-import `in`.surajsau.jisho.tagged.navigation.favoriteNavGraph
+import `in`.surajsau.jisho.tagged.components.TagsTopAppBar
+import `in`.surajsau.jisho.tagged.navigation.tagsNavGraph
 import `in`.surajsau.jisho.home.component.BottomNavBar
 import `in`.surajsau.jisho.home.model.HomeDestination
 import `in`.surajsau.jisho.home.model.HomeState
@@ -36,7 +36,7 @@ fun HomeScreen(
         topBar = {
             when (uiState.currentDestination) {
                 HomeDestination.Search -> {}
-                HomeDestination.Favorites -> FavoriteTopAppBar(
+                HomeDestination.Favorites -> TagsTopAppBar(
                     scrollBehavior = scrollBehavior
                 )
                 HomeDestination.Reference -> ReferenceTopAppBar(
@@ -63,7 +63,7 @@ fun HomeScreen(
                 onSearchItemClicked = onSearchItemClicked
             )
 
-            favoriteNavGraph()
+            tagsNavGraph()
 
             referenceNavGraph(
                 navigateToJlptResources = onJlptClicked,

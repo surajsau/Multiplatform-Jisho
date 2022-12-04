@@ -1,7 +1,7 @@
 package `in`.surajsau.jisho.home.model
 
 import androidx.annotation.DrawableRes
-import `in`.surajsau.jisho.tagged.navigation.FavoriteNavGraph
+import `in`.surajsau.jisho.tagged.navigation.TagsNavGraph
 import `in`.surajsau.jisho.ui.R
 import `in`.surajsau.jisho.reference.navigation.ReferenceNavGraph
 import `in`.surajsau.jisho.search.navigation.SearchNavGraph
@@ -20,10 +20,10 @@ enum class HomeDestination(
         route = SearchNavGraph.searchRoute()
     ),
     Favorites(
-        label = "Favorites",
-        icon = R.drawable.ic_like,
-        selectedIcon = R.drawable.ic_like_filled,
-        route = FavoriteNavGraph.favoriteRoute()
+        label = "Tags",
+        icon = R.drawable.ic_tag,
+        selectedIcon = R.drawable.ic_tag,
+        route = TagsNavGraph.tagsRoute()
     ),
     Reference(
         label = "Lists",
