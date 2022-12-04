@@ -7,12 +7,9 @@ import `in`.surajsau.jisho.model.KanjiResult
 import kotlinx.coroutines.withContext
 
 public class GetFilteredKanjis internal constructor(
-    db: Jisho,
+    private val db: Jisho,
     private val dispatcherProvider: DispatcherProvider,
 ) {
-
-    private val queries = db.jishoQueries
-
     public suspend operator fun invoke(query: KanjiQuery): List<KanjiResult> = withContext(dispatcherProvider.io) {
         val result = when (query) {
             is KanjiQuery.Freq -> getKanjiWithinFrequency(query.from, query.to)
@@ -25,18 +22,18 @@ public class GetFilteredKanjis internal constructor(
     }
 
     private fun getAll(): List<String> {
-        return queries.getAllKanji().executeAsList()
+        return db.kanjiQueries.getAllKanji().executeAsList()
     }
 
     private fun getKanjiWithinFrequency(from: Long, to: Long): List<String> {
-        return queries.getKanjiWithinFreqRange(from, to).executeAsList()
+        return db.kanjiQueries.getKanjiWithinFreqRange(from, to).executeAsList()
     }
 
     private fun getKanjiForGrade(grade: String): List<String> {
-        return queries.getKanjiForGrade(grade).executeAsList()
+        return db.kanjiQueries.getKanjiForGrade(grade).executeAsList()
     }
 
     private fun getAllSchoolKanjis(): List<String> {
-        return queries.getKanjiWithGrades().executeAsList()
+        return db.kanjiQueries.getKanjiWithGrades().executeAsList()
     }
 }

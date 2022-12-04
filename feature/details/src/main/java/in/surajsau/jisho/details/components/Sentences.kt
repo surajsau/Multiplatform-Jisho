@@ -8,9 +8,12 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -30,17 +33,13 @@ internal fun DetailsSentence(
 ) {
     Column(modifier = modifier) {
         Text(
+            modifier = Modifier.padding(horizontal = 16.dp),
             text = "Example sentences",
             style = MaterialTheme.typography.sectionTitle
         )
 
-        Spacer(Modifier.height(16.dp))
-
         model.items.forEach { item ->
             SentenceRow(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 4.dp),
                 japanese = item.japanese,
                 english = item.english,
                 onClick = { onItemClicked(item.id) }
@@ -48,20 +47,14 @@ internal fun DetailsSentence(
         }
 
         if (model.showMore) {
-            Spacer(modifier = Modifier.height(12.dp))
-
-            Text(
-                modifier = Modifier
-                    .clickable { onShowMoreClicked() }
-                    .fillMaxWidth()
-                    .padding(vertical = 12.dp),
-                text = "Show more sentences",
-                style = MaterialTheme.typography.bodyMedium,
-            )
+            TextButton(onClick = onShowMoreClicked) {
+                Text(text = "Show more sentences")
+            }
         }
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun SentenceRow(
     modifier: Modifier = Modifier,
@@ -69,26 +62,23 @@ private fun SentenceRow(
     english: String,
     onClick: () -> Unit
 ) {
-    Column(
+    ListItem(
         modifier = modifier
-            .clickable(onClick = onClick)
-            .padding(vertical = 12.dp),
-    ) {
-        Text(
-            modifier = Modifier.fillMaxWidth(),
-            text = japanese,
-            style = MaterialTheme.typography.titleMedium,
-            fontWeight = FontWeight.SemiBold
-        )
-
-        Spacer(Modifier.height(4.dp))
-
-        Text(
-            modifier = Modifier.fillMaxWidth(),
-            text = english,
-            style = MaterialTheme.typography.bodyLarge,
-        )
-    }
+            .clickable(onClick = onClick),
+        headlineText = {
+            Text(
+                text = japanese,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold
+            )
+        },
+        supportingText = {
+            Text(
+                text = english,
+                style = MaterialTheme.typography.bodyLarge,
+            )
+        }
+    )
 }
 
 @Preview(
@@ -107,9 +97,7 @@ private fun PreviewDetailsSentence() {
         Surface {
             Box(modifier = Modifier.fillMaxWidth()) {
                 DetailsSentence(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(all = 16.dp),
+                    modifier = Modifier.fillMaxWidth(),
                     model = DetailsViewModel.Sentences(
                         items = listOf(
                             SentenceResult(

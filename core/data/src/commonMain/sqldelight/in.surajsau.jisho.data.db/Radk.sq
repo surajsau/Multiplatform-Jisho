@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS radk_kanji (data TEXT NOT NULL);
+CREATE INDEX IF NOT EXISTS radk_kanji_data_index ON radk_kanji (data);
+
+CREATE TABLE IF NOT EXISTS radk_kanji_radical (kanji_id INTEGER, radical_id INTEGER);
+CREATE INDEX IF NOT EXISTS radk_kanji_radical_id_index ON radk_kanji_radical (kanji_id,radical_id);
+
+CREATE TABLE IF NOT EXISTS radk_radicals (data TEXT NOT NULL, stroke_count INTEGER);
+CREATE INDEX IF NOT EXISTS radk_radicals_data_index ON radk_radicals (data);
+CREATE INDEX IF NOT EXISTS radk_radicals_stroke_count_index ON radk_radicals (stroke_count);

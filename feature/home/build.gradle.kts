@@ -11,7 +11,7 @@ dependencies {
     implementation(projects.core.model)
 
     implementation(projects.feature.home.search)
-    implementation(projects.feature.home.favorites)
+    implementation(projects.feature.home.tagged)
     implementation(projects.feature.home.reference)
     implementation(projects.feature.home.settings)
 }

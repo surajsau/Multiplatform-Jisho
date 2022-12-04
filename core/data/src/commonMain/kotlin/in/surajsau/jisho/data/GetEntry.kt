@@ -14,7 +14,7 @@ public class GetEntry internal constructor(
 ) {
 
     public suspend operator fun invoke(id: Long): Entry = withContext(dispatcherProvider.io) {
-        val result = db.jishoQueries.getEntry(id).executeAsOneOrNull() ?: throw Exception("Entry not found for $id")
+        val result = db.entryQueries.getEntry(id).executeAsOneOrNull() ?: throw Exception("Entry not found for $id")
         return@withContext Entry(
             id = result.id,
             kanjis = result.keb?.kanjiFromDb(

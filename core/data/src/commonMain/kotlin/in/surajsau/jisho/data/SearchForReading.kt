@@ -10,11 +10,9 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 
 public class SearchForReading internal constructor(
-    db: Jisho,
+    private val db: Jisho,
     private val dispatcherProvider: DispatcherProvider
 ): KoinComponent{
-
-    private val queries = db.jishoQueries
 
     public suspend operator fun invoke(text: String): List<SearchResult> = withContext(dispatcherProvider.io) {
         check(text.isNotEmpty())
@@ -36,7 +34,7 @@ public class SearchForReading internal constructor(
     }
 
     private fun searchForKanji(query: String): List<JmdictQueryResult> {
-        return queries.searchEntryWithKanji(query) { id, keb, re, restr, gloss ->
+        return db.entryQueries.searchEntryWithKanji(query) { id, keb, re, restr, gloss ->
             JmdictQueryResult(
                 id = id,
                 kanjiString = keb ?: "",
@@ -48,7 +46,7 @@ public class SearchForReading internal constructor(
     }
 
     private fun searchForReading(query: String): List<JmdictQueryResult> {
-        return queries.searchKanjiWithReading(query) { literal, reading, meaning, _ ->
+        return db.kanjiQueries.searchKanjiWithReading(query) { literal, reading, meaning, _ ->
             JmdictQueryResult(
                 id = 0L,
                 kanjiString = literal,

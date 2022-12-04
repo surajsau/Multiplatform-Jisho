@@ -1,8 +1,8 @@
-package `in`.surajsau.jisho.favorites.navigation
+package `in`.surajsau.jisho.tagged.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import `in`.surajsau.jisho.android.ui.favorite.FavoriteScreen
+import `in`.surajsau.jisho.tagged.FavoriteScreen
 
 fun NavGraphBuilder.favoriteNavGraph() {
     composable(route = FavoriteNavGraph.favoriteRoute()) {

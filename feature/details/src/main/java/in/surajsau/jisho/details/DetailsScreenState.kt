@@ -1,5 +1,6 @@
 package `in`.surajsau.jisho.details
 
+import android.util.Log
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
@@ -17,7 +18,7 @@ fun rememberDetailsScreenState(
     viewModel: DetailsViewModel = koinViewModel(),
     scrollState: ScrollState = rememberScrollState()
 ): DetailsScreenState {
-    return remember {
+    return remember(model) {
         DetailsScreenState(scrollState, model, viewModel)
     }
 }
@@ -34,4 +35,8 @@ class DetailsScreenState(
 
     val uiState: DetailsState
         @Composable get() = viewModel.state.collectAsStateWithLifecycle().value
+
+    fun onLikeClicked() {
+        viewModel.onEditTagClicked()
+    }
 }

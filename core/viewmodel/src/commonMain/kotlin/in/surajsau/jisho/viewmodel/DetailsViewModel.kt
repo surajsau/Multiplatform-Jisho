@@ -5,6 +5,8 @@ import `in`.surajsau.jisho.data.GetEntry
 import `in`.surajsau.jisho.data.GetKanji
 import `in`.surajsau.jisho.data.GetNumberOfSentencesForWord
 import `in`.surajsau.jisho.data.GetSentencesForWord
+import `in`.surajsau.jisho.data.GetBucket
+import `in`.surajsau.jisho.model.Bucket
 import `in`.surajsau.jisho.model.ConjugationResult
 import `in`.surajsau.jisho.model.SentenceQuery
 import `in`.surajsau.jisho.model.SentenceResult
@@ -13,14 +15,11 @@ import `in`.surajsau.jisho.model.kanjidic.Literal
 import `in`.surajsau.jisho.utils.isKanji
 import `in`.surajsau.jisho.viewmodel.expected.BaseViewModel
 import `in`.surajsau.jisho.viewmodel.expected.State
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.filterNot
 import kotlinx.coroutines.flow.filterNotNull
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
@@ -30,6 +29,7 @@ public class DetailsViewModel : BaseViewModel<DetailsState>(), KoinComponent {
 
     private val getEntry: GetEntry = get()
     private val getKanji: GetKanji = get()
+    private val geBucket: GetBucket = get()
     private val getSentencesForWord: GetSentencesForWord = get()
     private val getNumberOfSentencesForWord: GetNumberOfSentencesForWord = get()
     private val getConjugations: GetConjugations = get()
@@ -41,6 +41,8 @@ public class DetailsViewModel : BaseViewModel<DetailsState>(), KoinComponent {
 
     private val _conjugation = MutableStateFlow<Conjugation?>(null)
     private val _kanjis = MutableStateFlow<List<KanjiItem>>(emptyList())
+
+    private val _bucket = MutableStateFlow<Bucket?>(null)
 
     private val _sentences = combine(
         _sentenceResults,
@@ -56,8 +58,14 @@ public class DetailsViewModel : BaseViewModel<DetailsState>(), KoinComponent {
             _entry.filterNotNull(),
             _conjugation,
             _kanjis,
-            _sentences
-        ) { entry, conjugation, kanjis, sentences ->
+            _sentences,
+            _bucket
+        ) { values ->
+            val entry = values[0] as Entry
+            val conjugation = values[1] as? Conjugation
+            val kanjis = values[2] as List<KanjiItem>
+            val sentences = values[3] as Sentences
+            val bucket = values[4] as? Bucket
 
             val meanings = entry.senses.map { sense ->
                 val value = sense.glosses.joinToString(", ") { it.value }
@@ -83,7 +91,8 @@ public class DetailsViewModel : BaseViewModel<DetailsState>(), KoinComponent {
                 meanings = meanings,
                 kanjis = kanjis,
                 sentences = sentences,
-                conjugations = conjugation
+                conjugations = conjugation,
+                bucket = bucket
             )
         }
         .stateIn(scope, SharingStarted.WhileSubscribed(), DetailsState())
@@ -145,6 +154,10 @@ public class DetailsViewModel : BaseViewModel<DetailsState>(), KoinComponent {
                 this.potential = result.potential
             }
         }
+    }
+
+    public fun onEditTagClicked() {
+
     }
 
     public data class Sentences(
@@ -214,6 +227,7 @@ public class DetailsViewModel : BaseViewModel<DetailsState>(), KoinComponent {
 public data class DetailsState(
     val header: DetailsViewModel.Header = DetailsViewModel.Header("", ""),
     val alternatives: String = "",
+    val bucket: Bucket? = null,
     val meanings: List<DetailsViewModel.Meaning> = emptyList(),
     val kanjis: List<DetailsViewModel.KanjiItem> = emptyList(),
     val sentences: DetailsViewModel.Sentences = DetailsViewModel.Sentences(emptyList(), 0),

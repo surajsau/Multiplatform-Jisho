@@ -9,32 +9,42 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 import `in`.surajsau.jisho.search.components.ResultRow
 import `in`.surajsau.jisho.search.components.SearchBar
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SearchScreen(
     modifier: Modifier = Modifier,
     screenState: SearchScreenState = rememberSearchScreenState(),
     onItemClicked: (Long, String) -> Unit,
 ) {
-    val keyboardController = LocalSoftwareKeyboardController.current
-
     val uiState = screenState.uiState
+
+    val focusRequester = remember { FocusRequester() }
+
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
+    }
 
     Column(modifier = modifier) {
         SearchBar(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .focusRequester(focusRequester)
+                .onFocusChanged {
+                    screenState.onFocusChanged(it.hasFocus)
+                },
             text = screenState.searchText,
             collapsed = screenState.searchBarCollapsed,
-            onTextChanged = {
-                screenState.onTextChanged(it)
-            }
+            onTextChanged = screenState::onTextChanged
         )
 
         LazyColumn(
@@ -51,7 +61,8 @@ fun SearchScreen(
                         .padding(vertical = 8.dp),
                     result = item,
                     onItemClicked = {
-                        keyboardController?.hide()
+                        focusRequester.freeFocus()
+                        screenState.onFocusDismissed()
                         onItemClicked(item.id, item.value)
                     }
                 )

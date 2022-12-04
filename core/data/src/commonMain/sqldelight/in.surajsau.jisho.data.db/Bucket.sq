@@ -1,0 +1,32 @@
+CREATE TABLE IF NOT EXISTS buckets(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    color TEXT
+);
+
+insertBucket:
+INSERT INTO buckets(name) VALUES(?);
+
+getAllBuckets:
+SELECT * FROM buckets;
+
+getBucket:
+SELECT * FROM buckets WHERE id = :id;
+
+updateBucket:
+UPDATE buckets SET name = :name WHERE id = :id;
+
+removeBucket:
+DELETE FROM buckets WHERE id = :id;
+
+updateEntryBucket:
+UPDATE entry SET bucket_id = :bucket WHERE id = :id;
+
+updateKanjiBucket:
+UPDATE kanji SET bucket_id = :bucket WHERE id = :id;
+
+getEntriesOfBucket:
+SELECT id, keb, re, re_restr, gloss FROM entry WHERE bucket_id = :bucket;
+
+getKanjisOfBucket:
+SELECT literal, reading, meaning FROM kanji WHERE bucket_id = :bucket;

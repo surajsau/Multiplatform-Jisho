@@ -1,0 +1,43 @@
+CREATE TABLE IF NOT EXISTS kanji(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    literal TEXT NOT NULL,
+    radical TEXT,
+    grade TEXT,
+    stroke_count INTEGER,
+    variant TEXT,
+    freq INTEGER,
+    rad_name TEXT,
+    jlpt INTEGER,
+    dic_number TEXT,
+    reading TEXT,
+    meaning TEXT,
+    nanori TEXT,
+    q_code TEXT,
+    note_id INTEGER,
+    bucket_id INTEGER,
+    FOREIGN KEY(bucket_id) REFERENCES buckets(id) ON DELETE SET NULL
+);
+
+selectKanji:
+SELECT * FROM kanji WHERE literal = :literal;
+
+getAllKanji:
+SELECT literal FROM kanji;
+
+getKanjiWithinFreqRange:
+SELECT literal FROM kanji WHERE freq >= :from AND freq <= :to;
+
+getKanjiForGrade:
+SELECT literal FROM kanji WHERE grade = :grade;
+
+getKanjiWithGrades:
+SELECT literal FROM kanji WHERE grade IS NOT NULL;
+
+getKanjiWithJlpt:
+SELECT literal, reading, meaning FROM kanji WHERE jlpt = :query;
+
+searchKanjiWithReading:
+SELECT literal, reading, meaning, note_id FROM kanji WHERE reading LIKE :query;
+
+totalKanjiCount:
+SELECT COUNT(*) FROM kanji;

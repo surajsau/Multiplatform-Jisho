@@ -45,7 +45,7 @@ public class GetConjugations(
             return@withContext null
         }
 
-        val result = db.jishoQueries.getConjugationsForPos(pos = posKey.toLong()).executeAsList()
+        val result = db.conjugationQueries.getConjugationsForPos(pos = posKey.toLong()).executeAsList()
         val conjugations = result.map {
             Conjugation(
                 conj = it.conj!!,

@@ -22,13 +22,13 @@ public class GetAllForJlptLevel(
     }
 
     private fun getKanjiForJlpt(level: Long): List<KanjiQueryResult> {
-        return db.jishoQueries.getKanjiWithJlpt(query = level) { literal, reading, meaning ->
+        return db.kanjiQueries.getKanjiWithJlpt(query = level) { literal, reading, meaning ->
             KanjiQueryResult(literal, reading!!, meaning!!)
         }.executeAsList()
     }
 
     private fun getEntriesForJlpt(level: Long): List<JmdictQueryResult> {
-        return db.jishoQueries.getEntriesWithJlpt(query = level) { id, keb, re, restr, gloss ->
+        return db.entryQueries.getEntriesWithJlpt(query = level) { id, keb, re, restr, gloss ->
             JmdictQueryResult(
                 id = id,
                 kanjiString = keb ?: "",

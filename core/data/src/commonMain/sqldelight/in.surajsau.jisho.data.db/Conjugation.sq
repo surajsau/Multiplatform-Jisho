@@ -1,0 +1,14 @@
+CREATE TABLE IF NOT EXISTS conjugation(
+    pos INTEGER,
+    conj INTEGER,
+    negative TEXT,
+    formal TEXT,
+    onum INTEGER,
+    stem INTEGER,
+    okurigana TEXT,
+    euphr TEXT,
+    euphk TEXT
+);
+
+getConjugationsForPos:
+SELECT * FROM conjugation WHERE pos = :pos;

@@ -28,7 +28,7 @@ include(
     ":feature:details",
     ":feature:download",
     ":feature:home",
-    ":feature:home:favorites",
+    ":feature:home:tagged",
     ":feature:home:reference",
     ":feature:home:search",
     ":feature:home:settings",
@@ -37,3 +37,4 @@ include(
     ":feature:sentence"
 )
 include()
+include(":core:transition")

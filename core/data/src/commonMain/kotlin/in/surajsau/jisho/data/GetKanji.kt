@@ -19,14 +19,11 @@ import `in`.surajsau.jisho.model.mapper.kanjidic.variantFromDb
 import kotlinx.coroutines.withContext
 
 public class GetKanji internal constructor(
-    db: Jisho,
+    private val db: Jisho,
     private val dispatcherProvider: DispatcherProvider
 ) {
-
-    private val queries = db.jishoQueries
-
     public suspend operator fun invoke(literal: String): Literal = withContext(dispatcherProvider.io) {
-        val query = queries.selectKanji(literal = literal)
+        val query = db.kanjiQueries.selectKanji(literal = literal)
         val result = query.executeAsOneOrNull() ?: throw DataNotFoundException("$query")
 
         return@withContext Literal(

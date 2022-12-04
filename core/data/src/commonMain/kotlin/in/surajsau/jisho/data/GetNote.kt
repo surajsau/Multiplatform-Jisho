@@ -9,13 +9,11 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 
 public class GetNote internal constructor(
-    db: Jisho,
+    private val db: Jisho,
     private val dispatcherProvider: DispatcherProvider
 ){
-    private val queries = db.jishoQueries
-
     public suspend operator fun invoke(id: Long): NoteResult = withContext(dispatcherProvider.io) {
-        val result = queries.selectNote(id = id) { id, text -> Note(id, text!!) }.executeAsOne()
+        val result = db.notesQueries.selectNote(id = id) { id, text -> Note(id, text!!) }.executeAsOne()
         return@withContext NoteResult(id = result.id, text = result.text)
     }
 }

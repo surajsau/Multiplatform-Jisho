@@ -1,4 +1,4 @@
-package `in`.surajsau.jisho.android.ui.favorite
+package `in`.surajsau.jisho.tagged
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable

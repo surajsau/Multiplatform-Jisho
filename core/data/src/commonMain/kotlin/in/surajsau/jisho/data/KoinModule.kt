@@ -16,6 +16,7 @@ public val DataModule: Module = module {
     factory { GetFilteredKanjis(get(), get()) }
     factory { GetKanji(get(), get()) }
     factory { GetNote(get(), get()) }
+    factory { GetBucket(get(), get()) }
     factory { GetNumberOfSentencesForWord(get(), get()) }
     factory { GetSentenceDetails(get(), get(), get()) }
     factory { GetSentencesForWord(get(), get()) }

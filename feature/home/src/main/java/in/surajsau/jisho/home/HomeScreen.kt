@@ -6,8 +6,8 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
-import `in`.surajsau.jisho.favorites.components.FavoriteTopAppBar
-import `in`.surajsau.jisho.favorites.navigation.favoriteNavGraph
+import `in`.surajsau.jisho.tagged.components.FavoriteTopAppBar
+import `in`.surajsau.jisho.tagged.navigation.favoriteNavGraph
 import `in`.surajsau.jisho.home.component.BottomNavBar
 import `in`.surajsau.jisho.home.model.HomeDestination
 import `in`.surajsau.jisho.home.model.HomeState

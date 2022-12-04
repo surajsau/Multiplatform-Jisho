@@ -2,7 +2,7 @@ plugins {
     id("jisho.convention.android.feature")
 }
 
-android.namespace = "in.surajsau.jisho.favorites"
+android.namespace = "in.surajsau.jisho.tagged"
 
 dependencies {
     implementation(project(":core:utils"))

@@ -1,0 +1,23 @@
+CREATE TABLE IF NOT EXISTS notes(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    text TEXT
+);
+
+insertNote:
+INSERT INTO notes(text)
+VALUES (?);
+
+getLastInsertedNoteId:
+SELECT last_insert_rowid();
+
+removeNote:
+DELETE FROM notes WHERE id = :id;
+
+updateNote:
+UPDATE notes SET text=? WHERE id = :id;
+
+selectNote:
+SELECT * FROM notes WHERE id = :id;
+
+getAllNotes:
+SELECT * FROM notes;

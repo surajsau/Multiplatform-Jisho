@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS sentence(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    japanese TEXT,
+    english TEXT,
+    note_id INTEGER
+);
+
+getLimitedSentencesWithKeyword:
+SELECT id, japanese, english FROM sentence WHERE japanese LIKE :query LIMIT :limit;
+
+getAllSentencesWithKeyword:
+SELECT id, japanese, english FROM sentence WHERE japanese LIKE :query;
+
+getCountOfSentencesWithKeyword:
+SELECT COUNT(*) FROM sentence WHERE japanese LIKE :query;
+
+updateSentenceWithNote:
+UPDATE sentence SET note_id = ? WHERE id = :id;
+
+getSentence:
+SELECT * FROM sentence WHERE id = :id;

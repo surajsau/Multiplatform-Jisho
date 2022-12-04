@@ -8,12 +8,10 @@ import `in`.surajsau.jisho.model.mapper.mapToSearchResult
 import kotlinx.coroutines.withContext
 
 public class SearchForKanji internal constructor(
-    db: Jisho,
+    private val db: Jisho,
     private val dispatcherProvider: DispatcherProvider,
     private val getKanji: GetKanji
 ) {
-    private val queries = db.jishoQueries
-
     @Throws(IllegalStateException::class)
     public suspend operator fun invoke(text: String): List<SearchResult> = withContext(dispatcherProvider.io) {
         check(text.isNotEmpty())
@@ -36,7 +34,7 @@ public class SearchForKanji internal constructor(
     }
 
     private fun searchForKanji(query: String): List<JmdictQueryResult> {
-        return queries.searchEntryWithKanji(query) { id, keb, re, restr, gloss ->
+        return db.entryQueries.searchEntryWithKanji(query) { id, keb, re, restr, gloss ->
             JmdictQueryResult(
                 id = id,
                 kanjiString = keb ?: "",

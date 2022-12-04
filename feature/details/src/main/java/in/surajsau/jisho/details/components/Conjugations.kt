@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -16,6 +17,8 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import `in`.surajsau.jisho.ui.theme.JishoTheme
+import `in`.surajsau.jisho.ui.theme.PreviewContainer
 import `in`.surajsau.jisho.ui.theme.sectionTitle
 import `in`.surajsau.jisho.viewmodel.DetailsViewModel
 
@@ -25,7 +28,8 @@ internal fun DetailsConjugations(
     model: DetailsViewModel.Conjugation,
 ) {
     Column(
-        modifier = modifier,
+        modifier = modifier
+            .padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         Text(
@@ -154,17 +158,15 @@ private fun ConjugationRow(
 ) {
     Row(modifier = modifier) {
         Text(
-            modifier = Modifier
-                .fillMaxWidth(0.4f)
-                .alpha(0.6f),
+            modifier = Modifier.fillMaxWidth(0.4f),
             style = MaterialTheme.typography.bodyMedium,
             text = title,
             fontWeight = FontWeight.SemiBold,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
         )
 
         Text(
-            modifier = Modifier
-                .fillMaxWidth(0.6f),
+            modifier = Modifier.fillMaxWidth(0.6f),
             style = MaterialTheme.typography.bodyMedium,
             text = value,
             fontWeight = FontWeight.SemiBold,
@@ -175,21 +177,18 @@ private fun ConjugationRow(
 @Preview(
     name = "Night Mode",
     uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true
 )
 @Preview(
     name = "Day Mode",
     uiMode = Configuration.UI_MODE_NIGHT_NO,
+    showBackground = true
 )
 @Composable
 private fun PreviewDetailsConjugations() {
-    `in`.surajsau.jisho.ui.theme.JishoTheme {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-        ) {
+    PreviewContainer {
+        Surface {
             DetailsConjugations(
-                modifier = Modifier.fillMaxSize(),
                 model = DetailsViewModel.Conjugation(
                     presentFormal = "怒ります",
                     presentFormalNegative = "怒りません",
@@ -200,8 +199,7 @@ private fun PreviewDetailsConjugations() {
                     pastInformal = "怒った",
                     pastInformalNegative = "怒りなかった",
                     te = "怒って"
-                ).apply {
-                }
+                )
             )
         }
     }

@@ -8,15 +8,13 @@ import `in`.surajsau.jisho.model.SentenceDetail
 import kotlinx.coroutines.withContext
 
 public class GetSentenceDetails constructor(
-    db: Jisho,
+    private val db: Jisho,
     private val getNote: GetNote,
     private val dispatcherProvider: DispatcherProvider,
 ) {
 
-    private val queries = db.jishoQueries
-
     public suspend operator fun invoke(id: Long): SentenceDetail = withContext(dispatcherProvider.io) {
-        val result = queries.getSentence(id) { id, jp, en, noteId ->
+        val result = db.sentenceQueries.getSentence(id) { id, jp, en, noteId ->
             Sentence(id, jp!!.replace("\n", ""), en!!, noteId)
         }.executeAsOne()
 

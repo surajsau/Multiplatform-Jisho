@@ -6,12 +6,10 @@ import `in`.surajsau.jisho.model.SentenceQuery
 import kotlinx.coroutines.withContext
 
 public class GetNumberOfSentencesForWord internal constructor(
-    db: Jisho,
+    private val db: Jisho,
     private val dispatcherProvider: DispatcherProvider
 ) {
-    private val queries = db.jishoQueries
-
     public suspend operator fun invoke(query: SentenceQuery): Int = withContext(dispatcherProvider.io) {
-        return@withContext queries.getCountOfSentencesWithKeyword(query.query).executeAsOne().toInt()
+        return@withContext db.sentenceQueries.getCountOfSentencesWithKeyword(query.query).executeAsOne().toInt()
     }
 }
