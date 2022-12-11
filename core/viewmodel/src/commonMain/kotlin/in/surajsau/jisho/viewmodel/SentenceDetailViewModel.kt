@@ -6,7 +6,7 @@ import `in`.surajsau.jisho.data.UpdateNotes
 import `in`.surajsau.jisho.model.NoteResult
 import `in`.surajsau.jisho.model.SentenceDetail
 import `in`.surajsau.jisho.viewmodel.expected.BaseViewModel
-import `in`.surajsau.jisho.viewmodel.expected.State
+import `in`.surajsau.jisho.viewmodel.expected.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 
-public class SentenceDetailViewModel : BaseViewModel<SentenceDetailState>(), KoinComponent {
+public class SentenceDetailViewModel : BaseViewModel<SentenceDetailUiState>(), KoinComponent {
 
     private val getSentenceDetails: GetSentenceDetails = get()
     private val addNoteForSentence: AddNoteForSentence = get()
@@ -27,24 +27,24 @@ public class SentenceDetailViewModel : BaseViewModel<SentenceDetailState>(), Koi
 
     private val _isLoading = MutableStateFlow(false)
 
-    override val state: StateFlow<SentenceDetailState>
+    override val state: StateFlow<SentenceDetailUiState>
         get() = combine(
             _sentence,
             _isLoading,
             _showEditorDialog
         ) { sentence, isLoading, showEditorDialog ->
             if (sentence == null) {
-                return@combine SentenceDetailState(isLoading = isLoading)
+                return@combine SentenceDetailUiState(isLoading = isLoading)
             }
 
-            SentenceDetailState(
+            SentenceDetailUiState(
                 japanese = sentence.japanese,
                 english = sentence.english,
                 note = sentence.note?.text ?: "",
                 showNoteEditorDialog = showEditorDialog,
                 isLoading = isLoading
             )
-        }.stateIn(scope, SharingStarted.WhileSubscribed(), SentenceDetailState())
+        }.stateIn(scope, SharingStarted.WhileSubscribed(), SentenceDetailUiState())
 
     public fun initWith(id: Long) {
         scope.launch {
@@ -81,13 +81,13 @@ public class SentenceDetailViewModel : BaseViewModel<SentenceDetailState>(), Koi
     }
 }
 
-public data class SentenceDetailState(
+public data class SentenceDetailUiState(
     val japanese: String = "",
     val english: String = "",
     val note: String = "",
     val isLoading: Boolean = false,
     val showNoteEditorDialog: Boolean = false
-) : State {
+) : UiState {
 
     val showAddButton: Boolean
         get() = note.isEmpty()

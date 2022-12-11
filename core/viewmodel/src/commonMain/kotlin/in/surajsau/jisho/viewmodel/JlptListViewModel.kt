@@ -3,7 +3,7 @@ package `in`.surajsau.jisho.viewmodel
 import `in`.surajsau.jisho.data.GetAllForJlptLevel
 import `in`.surajsau.jisho.model.SearchResult
 import `in`.surajsau.jisho.viewmodel.expected.BaseViewModel
-import `in`.surajsau.jisho.viewmodel.expected.State
+import `in`.surajsau.jisho.viewmodel.expected.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 
-public class JlptListViewModel : BaseViewModel<JlptListState>(), KoinComponent {
+public class JlptListViewModel : BaseViewModel<JlptListUiState>(), KoinComponent {
 
     private val getAllForJlptLevel: GetAllForJlptLevel = get()
 
@@ -21,18 +21,18 @@ public class JlptListViewModel : BaseViewModel<JlptListState>(), KoinComponent {
     private val _title = MutableStateFlow("")
     private val _isLoading = MutableStateFlow(false)
 
-    override val state: StateFlow<JlptListState>
+    override val state: StateFlow<JlptListUiState>
         get() = combine(
             _title,
             _items,
             _isLoading
         ) { title, items, isLoading ->
-            JlptListState(
+            JlptListUiState(
                 title = title,
                 items = items,
                 isLoading = isLoading
             )
-        }.stateIn(scope, SharingStarted.WhileSubscribed(), JlptListState())
+        }.stateIn(scope, SharingStarted.WhileSubscribed(), JlptListUiState())
 
     public fun initWith(level: Int) {
         scope.launch {
@@ -47,8 +47,8 @@ public class JlptListViewModel : BaseViewModel<JlptListState>(), KoinComponent {
     }
 }
 
-public data class JlptListState(
+public data class JlptListUiState(
     val title: String = "",
     val items: List<SearchResult> = emptyList(),
     val isLoading: Boolean = false,
-) : State
+) : UiState

@@ -9,17 +9,107 @@ var package = Package(
     platforms: [
         .iOS(.v15),
     ],
-    products: [],
+    products: [
+        .library(name: "Utils", targets: ["Utils"]),
+        .library(name: "DownloadFeature", targets: ["DownloadFeature"]),
+        .library(name: "DetailsFeature", targets: ["DetailsFeature"]),
+        .library(name: "HomeFeature", targets: ["HomeFeature"]),
+        .library(name: "KanjiFeature", targets: ["KanjiFeature"]),
+        .library(name: "ReferenceFeature", targets: ["ReferenceFeature"]),
+        .library(name: "SearchFeature", targets: ["SearchFeature"]),
+        .library(name: "SentenceFeature", targets: ["SentenceFeature"]),
+        .library(name: "SettingsFeature", targets: ["SettingsFeature"]),
+        .library(name: "TaggedFeature", targets: ["TaggedFeature"]),
+        .plugin(name: "swiftlint", targets: ["SwiftLintCommandPlugin"]),
+    ],
     dependencies: [
         .package(url: "https://github.com/firebase/firebase-ios-sdk.git", from: "9.6.0"),
-        .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "0.40.2"),
         .package(url: "https://github.com/cybozu/LicenseList", from: "0.1.5"),
         .package(url: "https://github.com/onevcat/Kingfisher", from: "7.3.2"),
+        .package(url: "https://github.com/rickclephas/KMP-NativeCoroutines.git", exact: "0.13.0")
     ],
     targets: [
+        .target(
+            name: "DetailsFeature",
+            dependencies: [
+                .target(name: "shared"),
+                .target(name: "Utils"),
+                .target(name: "SentenceFeature")
+            ]
+        ),
+        .target(
+            name: "DownloadFeature",
+            dependencies: [
+                .target(name: "download"),
+                .target(name: "shared"),
+                .target(name: "Utils")
+            ]
+        ),
+        .target(
+            name: "HomeFeature",
+            dependencies: [
+                .target(name: "SearchFeature"),
+                .target(name: "TaggedFeature"),
+                .target(name: "Utils")
+            ]
+        ),
+        .target(
+            name: "KanjiFeature",
+            dependencies: [
+                .target(name: "shared"),
+                .target(name: "Utils")
+            ]
+        ),
+        .target(
+            name: "ReferenceFeature",
+            dependencies: [
+                .target(name: "KanjiFeature"),
+                .target(name: "SentenceFeature")
+            ]
+        ),
+        .target(
+            name: "SearchFeature",
+            dependencies: [
+                .target(name: "Utils"),
+                .target(name: "shared"),
+                .target(name: "DetailsFeature")
+            ]
+        ),
+        .target(
+            name: "SentenceFeature",
+            dependencies: [
+                .target(name: "Utils"),
+                .target(name: "shared")
+            ]
+        ),
+        .target(
+            name: "SettingsFeature",
+            dependencies: [
+                .target(name: "Utils"),
+                .target(name: "shared")
+            ]
+        ),
+        .target(
+            name: "TaggedFeature",
+            dependencies: [
+                .target(name: "Utils"),
+                .target(name: "shared")
+            ]
+        ),
+        .target(
+            name: "Utils",
+            dependencies: [
+                .target(name: "shared"),
+                .product(name: "KMPNativeCoroutinesCombine", package: "KMP-NativeCoroutines"),
+            ]
+        ),
         .binaryTarget(
             name: "shared",
             path: "../shared/build/XCFrameworks/debug/shared.xcframework"
+        ),
+        .binaryTarget(
+            name: "download",
+            path: "../download/build/XCFrameworks/debug/download.xcframework"
         ),
         .plugin(
             name: "SwiftLintPlugin",

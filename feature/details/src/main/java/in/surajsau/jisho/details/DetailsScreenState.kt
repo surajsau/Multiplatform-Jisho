@@ -1,6 +1,5 @@
 package `in`.surajsau.jisho.details
 
-import android.util.Log
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
@@ -8,7 +7,7 @@ import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import `in`.surajsau.jisho.details.model.DetailsModel
-import `in`.surajsau.jisho.viewmodel.DetailsState
+import `in`.surajsau.jisho.viewmodel.DetailsUiState
 import `in`.surajsau.jisho.viewmodel.DetailsViewModel
 import org.koin.androidx.compose.koinViewModel
 
@@ -33,7 +32,7 @@ class DetailsScreenState(
         viewModel.initWith(id = model.id, word = model.word)
     }
 
-    val uiState: DetailsState
+    val uiState: DetailsUiState
         @Composable get() = viewModel.state.collectAsStateWithLifecycle().value
 
     fun onLikeClicked() {

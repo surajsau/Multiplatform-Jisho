@@ -12,7 +12,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import `in`.surajsau.jisho.viewmodel.SearchState
+import `in`.surajsau.jisho.viewmodel.SearchUiState
 import `in`.surajsau.jisho.viewmodel.SearchViewModel
 import org.koin.androidx.compose.koinViewModel
 
@@ -37,7 +37,7 @@ class SearchScreenState constructor(
 
     private var isSearchTextFocused by mutableStateOf(true)
 
-    val uiState: SearchState
+    val uiState: SearchUiState
         @Composable get() = viewModel.state.collectAsStateWithLifecycle().value
 
     val searchBarCollapsed: Boolean

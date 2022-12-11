@@ -14,7 +14,7 @@ import `in`.surajsau.jisho.model.jmdict.Entry
 import `in`.surajsau.jisho.model.kanjidic.Literal
 import `in`.surajsau.jisho.utils.isKanji
 import `in`.surajsau.jisho.viewmodel.expected.BaseViewModel
-import `in`.surajsau.jisho.viewmodel.expected.State
+import `in`.surajsau.jisho.viewmodel.expected.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -25,7 +25,7 @@ import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 
-public class DetailsViewModel : BaseViewModel<DetailsState>(), KoinComponent {
+public class DetailsViewModel : BaseViewModel<DetailsUiState>(), KoinComponent {
 
     private val getEntry: GetEntry = get()
     private val getKanji: GetKanji = get()
@@ -54,7 +54,7 @@ public class DetailsViewModel : BaseViewModel<DetailsState>(), KoinComponent {
         )
     }
 
-    override val state: StateFlow<DetailsState> = combine(
+    override val state: StateFlow<DetailsUiState> = combine(
             _entry.filterNotNull(),
             _conjugation,
             _kanjis,
@@ -85,7 +85,7 @@ public class DetailsViewModel : BaseViewModel<DetailsState>(), KoinComponent {
 
             val alternatives = entry.kanjis.drop(1).joinToString { it.value }
 
-            DetailsState(
+            DetailsUiState(
                 header = header,
                 alternatives = alternatives,
                 meanings = meanings,
@@ -95,7 +95,7 @@ public class DetailsViewModel : BaseViewModel<DetailsState>(), KoinComponent {
                 bucket = bucket
             )
         }
-        .stateIn(scope, SharingStarted.WhileSubscribed(), DetailsState())
+        .stateIn(scope, SharingStarted.WhileSubscribed(), DetailsUiState())
 
     public fun initWith(id: Long, word: String) {
         scope.launch {
@@ -224,7 +224,7 @@ public class DetailsViewModel : BaseViewModel<DetailsState>(), KoinComponent {
     }
 }
 
-public data class DetailsState(
+public data class DetailsUiState(
     val header: DetailsViewModel.Header = DetailsViewModel.Header("", ""),
     val alternatives: String = "",
     val bucket: Bucket? = null,
@@ -232,7 +232,7 @@ public data class DetailsState(
     val kanjis: List<DetailsViewModel.KanjiItem> = emptyList(),
     val sentences: DetailsViewModel.Sentences = DetailsViewModel.Sentences(emptyList(), 0),
     val conjugations: DetailsViewModel.Conjugation? = null,
-): State {
+): UiState {
 
     val showAlternative: Boolean
         get() = this.alternatives.isNotEmpty()

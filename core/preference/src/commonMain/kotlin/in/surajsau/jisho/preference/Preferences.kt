@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import org.koin.core.scope.Scope
 
+@OptIn(ExperimentalSettingsApi::class)
 public expect fun Scope.settings(): FlowSettings
 
 @OptIn(ExperimentalSettingsApi::class)

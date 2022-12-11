@@ -6,7 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.StateFlow
 
-public actual abstract class BaseViewModel<S : State> {
+public actual abstract class BaseViewModel<S : UiState> {
     public actual abstract val state: StateFlow<S>
 
     private var hasCleared = false

@@ -4,7 +4,7 @@ import `in`.surajsau.jisho.data.GetSentencesForWord
 import `in`.surajsau.jisho.model.SentenceQuery
 import `in`.surajsau.jisho.model.SentenceResult
 import `in`.surajsau.jisho.viewmodel.expected.BaseViewModel
-import `in`.surajsau.jisho.viewmodel.expected.State
+import `in`.surajsau.jisho.viewmodel.expected.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -14,16 +14,16 @@ import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 
-public class SentenceListViewModel : BaseViewModel<SentenceListState>(), KoinComponent {
+public class SentenceListViewModel : BaseViewModel<SentenceListUiState>(), KoinComponent {
 
     private val getSentencesForWord: GetSentencesForWord = get()
 
     private val _sentences = MutableStateFlow<List<SentenceResult>>(emptyList())
 
-    override val state: StateFlow<SentenceListState>
+    override val state: StateFlow<SentenceListUiState>
         get() = _sentences
-            .map { SentenceListState(sentences = it) }
-            .stateIn(scope, SharingStarted.WhileSubscribed(), SentenceListState())
+            .map { SentenceListUiState(sentences = it) }
+            .stateIn(scope, SharingStarted.WhileSubscribed(), SentenceListUiState())
 
     public fun initWith(word: String) {
         scope.launch {
@@ -32,6 +32,6 @@ public class SentenceListViewModel : BaseViewModel<SentenceListState>(), KoinCom
     }
 }
 
-public data class SentenceListState(
+public data class SentenceListUiState(
     val sentences: List<SentenceResult> = emptyList()
-) : State
+) : UiState

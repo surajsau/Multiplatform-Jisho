@@ -7,7 +7,7 @@ android.namespace = "in.surajsau.jisho.app"
 dependencies {
     implementation(projects.core.model)
     implementation(projects.core.preference)
-    implementation(projects.core.download)
+    implementation(projects.download)
 
     implementation(projects.feature.download)
     implementation(projects.feature.home)

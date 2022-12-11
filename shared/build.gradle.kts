@@ -27,6 +27,7 @@ kotlin {
         val xcframework = XCFramework(xcFrameworkName = xcframeworkName)
 
         val exportProjects = listOf(
+            projects.core.model,
             projects.core.viewmodel,
             projects.fake,
             projects.core.utils,

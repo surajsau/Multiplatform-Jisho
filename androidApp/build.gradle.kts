@@ -37,7 +37,7 @@ dependencies {
     implementation(projects.core.ui)
     implementation(projects.core.preference)
     implementation(projects.core.app)
-    implementation(projects.core.download)
+    implementation(projects.download)
 
     implementation(projects.feature.home)
     implementation(projects.feature.download)
