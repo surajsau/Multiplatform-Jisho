@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.android.library) apply false
     @Suppress("DSL_SCOPE_VIOLATION")
     alias(libs.plugins.kotlin.gradle) apply false
+    id("jisho.primitive.dependencygraph")
 }
 
 buildscript {

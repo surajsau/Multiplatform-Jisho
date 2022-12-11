@@ -42,7 +42,6 @@ kotlin {
                 exportProjects.forEach { project ->
                     export(project)
                 }
-                export(libs.moko.resources.core)
             }
         }
 

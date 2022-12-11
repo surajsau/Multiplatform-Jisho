@@ -89,6 +89,10 @@ gradlePlugin {
             id = "jisho.primitive.detekt"
             implementationClass = "in.surajsau.jisho.primitive.DetektPlugin"
         }
+        register("dependencyGraph") {
+            id = "jisho.primitive.dependencygraph"
+            implementationClass =  "in.surajsau.jisho.primitive.DependencyGraphPlugin"
+        }
         register("moko.resources") {
             id = "jisho.primitive.mokoresources"
             implementationClass = "in.surajsau.jisho.primitive.MokoResourcesPlugin"
