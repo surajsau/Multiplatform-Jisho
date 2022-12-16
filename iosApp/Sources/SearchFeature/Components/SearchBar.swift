@@ -10,11 +10,11 @@ import Utils
 import UIKit
 
 struct SearchBar: View {
-    
+
     @Binding var text: String
-    
+
     @State private var isEditing: Bool = false
-        
+
     var body: some View {
         HStack {
             HStack {
@@ -25,7 +25,7 @@ struct SearchBar: View {
                         self.isEditing = true
                     }
                 })
-                
+
                 Button(action: {
                     self.text = ""
                 }) {
@@ -33,12 +33,12 @@ struct SearchBar: View {
                 }
             }
             .padding()
-            
-            if self.isEditing  {
+
+            if self.isEditing {
                 Button("Cancel") {
                     UIApplication.shared.endEditing(true)
                     self.text = ""
-                    
+
                     withAnimation {
                         self.isEditing = false
                     }

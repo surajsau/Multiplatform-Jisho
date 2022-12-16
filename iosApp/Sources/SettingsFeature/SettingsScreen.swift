@@ -8,10 +8,10 @@
 import SwiftUI
 
 public struct SettingScreen: View {
-    
-    public init(){}
- 
+
+    public init() {}
+
     public var body: some View {
-        ZStack{}
+        ZStack {}
     }
 }

@@ -6,43 +6,47 @@
 //
 
 import SwiftUI
+import KanaFeature
+import JlptFeature
+import KanjiFeature
+import Utils
 
 enum Reference {
-    case Kana
-    case Kanji
-    case Jlpt
+    case kana
+    case kanji
+    case jlpt
 }
 
 struct ReferenceScreen: View {
-   
-    @State var selectedReference: Reference? = nil
-    
+
+    @State var selectedReference: Reference?
+
     var body: some View {
         ZStack {
             VStack {
                 VStack(spacing: 16) {
-                    NavigationLink(tag: .Kana, selection: self.$selectedReference) {
+                    NavigationLink(tag: .kana, selection: self.$selectedReference) {
                         KanaResourceScreen()
                     } label: {
-                        ReferenceRow(title: "Kana", description: "Hiragana & Katakana", color: Color(0xFF784F))
+                        ReferenceRow(title: "Kana", description: "Hiragana & Katakana", color: Color("#FF784F"))
                     }
-                    
-                    NavigationLink(tag: .Kanji, selection: self.$selectedReference) {
+
+                    NavigationLink(tag: .kanji, selection: self.$selectedReference) {
                         KanjiResourceScreen()
                     } label: {
-                        ReferenceRow(title: "Kanji", description: "Catalog of Kanji characters", color: Color(0xdb9d47))
+                        ReferenceRow(title: "Kanji", description: "Catalog of Kanji characters", color: Color("#db9d47"))
                     }
                     .isDetailLink(true)
-                    
-                    NavigationLink(tag: .Jlpt, selection: self.$selectedReference) {
+
+                    NavigationLink(tag: .jlpt, selection: self.$selectedReference) {
                         JlptResourceScreen()
                     } label: {
-                        ReferenceRow(title: "JLPT", description: "Vocabulary resources for Japanese Language Proficiency Test", color: Color(0x3185fc))
+                        ReferenceRow(title: "JLPT", description: "Vocabulary resources for Japanese Language Proficiency Test", color: Color("#3185fc"))
                     }
                     .isDetailLink(true)
                 }
                 .padding()
-                
+
                 Spacer()
             }
         }

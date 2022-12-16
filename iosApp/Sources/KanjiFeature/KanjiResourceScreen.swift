@@ -8,28 +8,30 @@
 import SwiftUI
 import shared
 
-struct KanjiResourceScreen: View {
-    
+public struct KanjiResourceScreen: View {
+
     @Environment(\.presentationMode) var presentationMode
-    
-    var body: some View {
-        
+
+    public init() {}
+
+    public var body: some View {
+
         ZStack {
             VStack {
-                
+
                 VStack(alignment: .leading) {
                     Text("Grades")
                         .font(.title)
                         .fontWeight(.semibold)
-                    
+
                     let columns = [
                         GridItem(.adaptive(minimum: 72), spacing: 24)
                     ]
-                    
+
                     Text("小学校（1-6）")
                         .font(.title2)
                         .fontWeight(.semibold)
-                    
+
                     LazyVGrid(columns: columns, spacing: 24) {
                         ForEach(1...6, id: \.self) { grade in
                             NavigationLink {
@@ -40,11 +42,11 @@ struct KanjiResourceScreen: View {
                         }
                     }
                     .padding(.vertical)
-                    
+
                     Text("中学校（7-9）")
                         .font(.title2)
                         .fontWeight(.semibold)
-                    
+
                     LazyVGrid(columns: columns) {
                         ForEach(7...9, id: \.self) { grade in
                             NavigationLink {
@@ -55,7 +57,7 @@ struct KanjiResourceScreen: View {
                         }
                     }
                     .padding(.vertical)
-                    
+
                     NavigationLink {
                         KanjiListScreen(query: KanjiQueryAll())
                     } label: {
@@ -63,7 +65,7 @@ struct KanjiResourceScreen: View {
                     }
                 }
                 .padding()
-                
+
                 Spacer()
             }
         }

@@ -15,13 +15,13 @@ public class NativeViewModel<S: UiState, VM: BaseViewModel<S>>: ObservableObject
 
     public let viewModel: VM
 
-    @Published public var state: S? = nil
-    
+    @Published public var state: S?
+
     private var cancellables: [AnyCancellable] = []
-    
+
     public init(viewModel: VM) {
         self.viewModel = viewModel
-        
+
         cancellables.append(
             createPublisher(for: viewModel.stateNative)
                 .receive(on: RunLoop.main)
@@ -30,7 +30,7 @@ public class NativeViewModel<S: UiState, VM: BaseViewModel<S>>: ObservableObject
                 })
         )
     }
-    
+
     deinit {
         cancellables.forEach { $0.cancel() }
         viewModel.onCleared()

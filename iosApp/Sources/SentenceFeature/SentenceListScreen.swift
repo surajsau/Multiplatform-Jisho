@@ -10,17 +10,17 @@ import shared
 import Utils
 
 public struct SentenceListScreen: View {
-    
+
     @Environment(\.presentationMode) var presentationMode
-    
+
     @ObservedObject private var nativeVM = NativeViewModel(viewModel: SentenceListViewModel.init())
-    
+
     private let word: String
-    
+
     public init(word: String) {
         self.word = word
     }
-    
+
     public var body: some View {
         ZStack {
             VStack {
@@ -40,7 +40,7 @@ public struct SentenceListScreen: View {
                         .padding(.vertical)
                     }
                 }
-                
+
                 Spacer()
             }
         }
@@ -48,5 +48,5 @@ public struct SentenceListScreen: View {
             nativeVM.viewModel.doInitWith(word: word)
         }
     }
-    
+
 }

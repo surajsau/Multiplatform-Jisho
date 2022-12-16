@@ -10,7 +10,7 @@ import DownloadFeature
 @main
 struct JishoApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
+
     var body: some Scene {
         WindowGroup {
             DownloadScreen()

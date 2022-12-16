@@ -9,34 +9,30 @@ import SwiftUI
 import shared
 import Utils
 
-public struct KanjiListScreen: View {
-    
-    @Environment(\.presentationMode) var presentationMode
-    
-    @ObservedObject private var nativeVM = NativeViewModel(viewModel: KanjiListViewModel.init())
-    
-    private let query: KanjiQuery
+struct KanjiListScreen: View {
 
-    public init(query: KanjiQuery) {
-        self.query = query
-    }
-    
-    public var body: some View {
+    @Environment(\.presentationMode) var presentationMode
+
+    @ObservedObject var nativeVM = NativeViewModel(viewModel: KanjiListViewModel.init())
+
+    let query: KanjiQuery
+
+    var body: some View {
         ZStack {
-            if let state = self.dispatcher.state {
-                VStack {
-                    ScrollView {
-                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 72), spacing: 24)], spacing: 16) {
-                            ForEach(state.items, id: \.self) { item in
-                                KanjiGradeItem(grade: item.value)
-                            }
-                        }
-                        .padding()
-                    }
-                    
-                    Spacer()
-                }
-            }
+//            if let state = self.dispatcher.state {
+//                VStack {
+//                    ScrollView {
+//                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 72), spacing: 24)], spacing: 16) {
+//                            ForEach(state.items, id: \.self) { item in
+//                                KanjiGradeItem(grade: item.value)
+//                            }
+//                        }
+//                        .padding()
+//                    }
+//                    
+//                    Spacer()
+//                }
+//            }
         }
         .onAppear {
             nativeVM.viewModel.doInitWith(query: query)

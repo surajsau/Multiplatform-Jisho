@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct NoteTextField: View {
-    
+
     @Binding var noteText: String
-    
+
     let isEnabled: Bool
     let hint: String
-    
+
     var body: some View {
         VStack {
             TextField(self.hint, text: self.$noteText)

@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct DetailsAlternatives: View {
-    
+
     let alternative: String
-    
+
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -22,7 +22,7 @@ struct DetailsAlternatives: View {
                 Text(self.alternative)
                     .font(.body)
             }
-            
+
             Spacer()
         }
     }

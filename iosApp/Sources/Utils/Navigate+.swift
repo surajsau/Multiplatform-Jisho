@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension View {
-    
+
     func navigate(whenTrue toggle: Binding<Bool>) -> some View {
         NavigationLink(
             destination: self,

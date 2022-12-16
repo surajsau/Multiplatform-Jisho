@@ -8,12 +8,12 @@
 import SwiftUI
 
 public struct TaggedScreen: View {
-    
-    public init(){}
-    
+
+    public init() {}
+
     public var body: some View {
         ZStack {
-            
+
         }
     }
 }

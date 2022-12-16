@@ -15,6 +15,8 @@ var package = Package(
         .library(name: "DownloadFeature", targets: ["DownloadFeature"]),
         .library(name: "DetailsFeature", targets: ["DetailsFeature"]),
         .library(name: "HomeFeature", targets: ["HomeFeature"]),
+        .library(name: "JlptFeature", targets: ["JlptFeature"]),
+        .library(name: "KanaFeature", targets: ["KanaFeature"]),
         .library(name: "KanjiFeature", targets: ["KanjiFeature"]),
         .library(name: "ReferenceFeature", targets: ["ReferenceFeature"]),
         .library(name: "SearchFeature", targets: ["SearchFeature"]),
@@ -67,6 +69,22 @@ var package = Package(
             ]
         ),
         .target(
+            name: "JlptFeature",
+            dependencies: [
+                .target(name: "shared"),
+                .target(name: "Utils"),
+                .target(name: "DetailsFeature"),
+                .target(name: "SearchFeature")
+            ]
+        ),
+        .target(
+            name: "KanaFeature",
+            dependencies: [
+                .target(name: "shared"),
+                .target(name: "Utils")
+            ]
+        ),
+        .target(
             name: "KanjiFeature",
             dependencies: [
                 .target(name: "shared"),
@@ -77,7 +95,9 @@ var package = Package(
             name: "ReferenceFeature",
             dependencies: [
                 .target(name: "KanjiFeature"),
-                .target(name: "SentenceFeature")
+                .target(name: "SentenceFeature"),
+                .target(name: "KanaFeature"),
+                .target(name: "JlptFeature")
             ]
         ),
         .target(

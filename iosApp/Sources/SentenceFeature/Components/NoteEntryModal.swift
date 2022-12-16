@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct NoteEntryModal: View {
-    
+
     @Binding var noteText: String
-    
+
     var body: some View {
         ZStack(alignment: .top) {
             NoteTextField(noteText: self.$noteText, isEnabled: true, hint: "Add Note")
@@ -20,7 +20,7 @@ struct NoteEntryModal: View {
 }
 
 struct NoteEntryModalPreview: PreviewProvider {
-        
+
     static var previews: some View {
         NoteEntryModal(noteText: .constant(""))
     }

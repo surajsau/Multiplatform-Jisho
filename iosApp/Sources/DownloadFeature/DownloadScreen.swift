@@ -11,11 +11,11 @@ import shared
 import HomeFeature
 
 public struct DownloadScreen: View {
-    
+
     @ObservedObject var nativeVM = NativeViewModel(viewModel: DownloadViewModel())
-    
-    public init(){}
-    
+
+    public init() {}
+
     public var body: some View {
         ZStack(alignment: .center) {
             if let state = nativeVM.state {
