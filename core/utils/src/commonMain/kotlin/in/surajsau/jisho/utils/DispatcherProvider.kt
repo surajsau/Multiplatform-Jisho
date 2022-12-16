@@ -1,4 +1,4 @@
-package `in`.surajsau.jisho.data.expected
+package `in`.surajsau.jisho.utils
 
 import kotlinx.coroutines.CoroutineDispatcher
 

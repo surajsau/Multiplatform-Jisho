@@ -15,11 +15,5 @@ kotlin {
                 api(libs.napier.core)
             }
         }
-        val androidMain by getting {
-            dependencies {
-                implementation(project.dependencies.platform(libs.compose.bom))
-                implementation(libs.compose.runtime)
-            }
-        }
     }
 }

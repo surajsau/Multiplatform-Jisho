@@ -15,6 +15,7 @@ kotlin {
                 implementation(projects.core.data)
                 implementation(projects.core.model)
                 implementation(projects.core.utils)
+                implementation(projects.download)
             }
         }
         val androidMain by getting {

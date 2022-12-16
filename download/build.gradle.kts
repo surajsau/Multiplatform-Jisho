@@ -35,8 +35,8 @@ kotlin {
 
         val androidMain by getting {
             dependencies {
-                implementation(project.dependencies.platform(libs.firebase.bom))
-                implementation("com.google.firebase:firebase-storage-ktx")
+                api(project.dependencies.platform(libs.firebase.bom))
+                api("com.google.firebase:firebase-storage-ktx")
             }
         }
 

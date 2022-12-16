@@ -1,7 +1,7 @@
 package `in`.surajsau.jisho.data
 
 import `in`.surajsau.jisho.data.db.Jisho
-import `in`.surajsau.jisho.data.expected.DispatcherProvider
+import `in`.surajsau.jisho.utils.DispatcherProvider
 import `in`.surajsau.jisho.model.Note
 import `in`.surajsau.jisho.model.NoteResult
 import kotlinx.coroutines.withContext

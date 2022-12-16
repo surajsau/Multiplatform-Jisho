@@ -10,6 +10,7 @@ var package = Package(
         .iOS(.v15),
     ],
     products: [
+//        .library(name: "Application", targets: ["Application"]),
         .library(name: "Utils", targets: ["Utils"]),
         .library(name: "DownloadFeature", targets: ["DownloadFeature"]),
         .library(name: "DetailsFeature", targets: ["DetailsFeature"]),
@@ -26,9 +27,18 @@ var package = Package(
         .package(url: "https://github.com/firebase/firebase-ios-sdk.git", from: "9.6.0"),
         .package(url: "https://github.com/cybozu/LicenseList", from: "0.1.5"),
         .package(url: "https://github.com/onevcat/Kingfisher", from: "7.3.2"),
-        .package(url: "https://github.com/rickclephas/KMP-NativeCoroutines.git", exact: "0.13.0")
+        .package(url: "https://github.com/rickclephas/KMP-NativeCoroutines.git", exact: "0.13.0"),
+        .package(url: "https://github.com/1024jp/GzipSwift.git", from: "5.1.1"),
     ],
     targets: [
+//        .target(
+//            name: "Application",
+//            dependencies: [
+//                .target(name: "DownloadFeature"),
+//                .target(name: "shared"),
+//                .product(name: "FirebaseStorage", package: "firebase-ios-sdk"),
+//            ]
+//        ),
         .target(
             name: "DetailsFeature",
             dependencies: [
@@ -42,7 +52,10 @@ var package = Package(
             dependencies: [
                 .target(name: "download"),
                 .target(name: "shared"),
-                .target(name: "Utils")
+                .target(name: "Utils"),
+                .target(name: "HomeFeature"),
+                .product(name: "FirebaseStorage", package: "firebase-ios-sdk"),
+                .product(name: "Gzip", package: "GzipSwift")
             ]
         ),
         .target(
@@ -105,11 +118,11 @@ var package = Package(
         ),
         .binaryTarget(
             name: "shared",
-            path: "../shared/build/XCFrameworks/debug/shared.xcframework"
+            path: "../iosApp/build/shared.xcframework"
         ),
         .binaryTarget(
             name: "download",
-            path: "../download/build/XCFrameworks/debug/download.xcframework"
+            path: "../iosApp/build/download.xcframework"
         ),
         .plugin(
             name: "SwiftLintPlugin",

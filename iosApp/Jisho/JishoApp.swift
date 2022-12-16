@@ -1,11 +1,10 @@
 //
 //  JishoApp.swift
 //
-//  Created by surajsau on 2022/12/11.
+//  Created surajsau on 2022/12/15.
 //
 
 import SwiftUI
-import DownloadFeature
 
 @main
 struct JishoApp: App {

@@ -2,12 +2,10 @@ package `in`.surajsau.jisho.data
 
 import `in`.surajsau.jisho.data.db.Jisho
 import `in`.surajsau.jisho.data.expected.createDriver
-import `in`.surajsau.jisho.data.expected.getDispatcherProvider
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
 public val DataModule: Module = module {
-    factory { getDispatcherProvider() }
 
     factory { AddNoteForSentence(get(), get()) }
     factory { GetAllForJlptLevel(get(), get()) }

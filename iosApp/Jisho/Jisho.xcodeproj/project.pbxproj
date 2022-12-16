@@ -7,16 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E5D3E11029459CF8000ED618 /* JishoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D3E10F29459CF8000ED618 /* JishoApp.swift */; };
-		E5D3E11229459CF8000ED618 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D3E11129459CF8000ED618 /* ContentView.swift */; };
+		E5A2144D294B6AA10014CF17 /* iosApp in Sources */ = {isa = PBXBuildFile; fileRef = E5D3E11E29459D63000ED618 /* iosApp */; };
+		E5A21451294B6AE90014CF17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2144F294B6AE90014CF17 /* AppDelegate.swift */; };
+		E5A21454294B6C920014CF17 /* JishoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A21453294B6C920014CF17 /* JishoApp.swift */; };
 		E5D3E11429459CF9000ED618 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5D3E11329459CF9000ED618 /* Assets.xcassets */; };
 		E5D3E11729459CF9000ED618 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5D3E11629459CF9000ED618 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E5A2144F294B6AE90014CF17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E5A21453294B6C920014CF17 /* JishoApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JishoApp.swift; sourceTree = "<group>"; };
 		E5D3E10C29459CF8000ED618 /* Jisho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jisho.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E5D3E10F29459CF8000ED618 /* JishoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JishoApp.swift; sourceTree = "<group>"; };
-		E5D3E11129459CF8000ED618 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E5D3E11329459CF9000ED618 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E5D3E11629459CF9000ED618 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E5D3E11E29459D63000ED618 /* iosApp */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = iosApp; path = ..; sourceTree = "<group>"; };
@@ -36,7 +37,7 @@
 		E5D3E10329459CF8000ED618 = {
 			isa = PBXGroup;
 			children = (
-				E5D3E11D29459D63000ED618 /* Packages */,
+				E5D3E11E29459D63000ED618 /* iosApp */,
 				E5D3E10E29459CF8000ED618 /* Jisho */,
 				E5D3E10D29459CF8000ED618 /* Products */,
 			);
@@ -53,8 +54,8 @@
 		E5D3E10E29459CF8000ED618 /* Jisho */ = {
 			isa = PBXGroup;
 			children = (
-				E5D3E10F29459CF8000ED618 /* JishoApp.swift */,
-				E5D3E11129459CF8000ED618 /* ContentView.swift */,
+				E5A2144F294B6AE90014CF17 /* AppDelegate.swift */,
+				E5A21453294B6C920014CF17 /* JishoApp.swift */,
 				E5D3E11329459CF9000ED618 /* Assets.xcassets */,
 				E5D3E11529459CF9000ED618 /* Preview Content */,
 			);
@@ -67,14 +68,6 @@
 				E5D3E11629459CF9000ED618 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		E5D3E11D29459D63000ED618 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				E5D3E11E29459D63000ED618 /* iosApp */,
-			);
-			name = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,8 +140,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5D3E11229459CF8000ED618 /* ContentView.swift in Sources */,
-				E5D3E11029459CF8000ED618 /* JishoApp.swift in Sources */,
+				E5A21451294B6AE90014CF17 /* AppDelegate.swift in Sources */,
+				E5A2144D294B6AA10014CF17 /* iosApp in Sources */,
+				E5A21454294B6C920014CF17 /* JishoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +274,8 @@
 				DEVELOPMENT_TEAM = 2P8932ZD2T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSPrincipalClass = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -309,6 +305,8 @@
 				DEVELOPMENT_TEAM = 2P8932ZD2T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSPrincipalClass = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
