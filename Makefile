@@ -16,15 +16,11 @@ clean: # clean build
 	rm -rf iosApp/build
 	./gradlew clean
 
-.PHONY: build-%
-build-%: # generate {module}.xcframework to be shared in iosApp
-	./gradlew $(*):assembleXCFramework
-
-.PHONY: ios-build-%
-ios-build-%: # generate {module}.xcframework to be shared in iosApp and move it to iosApp/build folder
-	@make build-$(*)
+.PHONY: ios-build
+ios-build: # generate {module}.xcframework to be shared in iosApp and move it to iosApp/build folder
+	./gradlew shared:assembleXCFramework
 	mkdir -p "iosApp/build"
-	cp -r "$(*)/build/XCFrameworks/$(FLAVOR)/$(*).xcframework" "iosApp/build"
+	cp -r "shared/build/XCFrameworks/$(FLAVOR)/shared.xcframework" "iosApp/build"
 
 .PHONY: test-%
 test-%: # run unit tests for core module

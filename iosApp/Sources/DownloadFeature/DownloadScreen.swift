@@ -5,14 +5,16 @@
 //  Created by surajsau on 2022/12/11.
 //
 
+import HomeFeature
+import shared
 import SwiftUI
 import Utils
-import shared
-import HomeFeature
 
 public struct DownloadScreen: View {
 
-    @ObservedObject var nativeVM = NativeViewModel(viewModel: DownloadViewModel())
+    @ObservedObject var nativeVM = NativeViewModel(
+        viewModel: DownloadViewModel(downloadManager: NativeDownloadManager())
+    )
 
     public init() {}
 
@@ -25,9 +27,6 @@ public struct DownloadScreen: View {
                     ProgressView("Loading")
                 }
             }
-        }
-        .onAppear {
-            nativeVM.viewModel.doInit()
         }
     }
 }

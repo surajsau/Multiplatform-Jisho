@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>116750257622-lc0q5focd62fo9dg40sbvd15018sd3j7.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.116750257622-lc0q5focd62fo9dg40sbvd15018sd3j7</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>116750257622-hjsv4m78d77lkve0rrcrg3q86st7vpo4.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAYB_DLd0bZhGs7qurwkff526Z9fMnfeD8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>116750257622</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>in.surajsau.jisho.ios</string>
+	<key>PROJECT_ID</key>
+	<string>sofa-score-89473</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sofa-score-89473.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:116750257622:ios:b82ededb8bbc9c44b9e877</string>
+	<key>DATABASE_URL</key>
+	<string>https://sofa-score-89473.firebaseio.com</string>
+</dict>
+</plist>

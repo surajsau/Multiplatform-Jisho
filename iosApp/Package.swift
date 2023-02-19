@@ -10,7 +10,6 @@ var package = Package(
         .iOS(.v15)
     ],
     products: [
-//        .library(name: "Application", targets: ["Application"]),
         .library(name: "Utils", targets: ["Utils"]),
         .library(name: "DownloadFeature", targets: ["DownloadFeature"]),
         .library(name: "DetailsFeature", targets: ["DetailsFeature"]),
@@ -33,14 +32,6 @@ var package = Package(
         .package(url: "https://github.com/1024jp/GzipSwift.git", from: "5.1.1")
     ],
     targets: [
-//        .target(
-//            name: "Application",
-//            dependencies: [
-//                .target(name: "DownloadFeature"),
-//                .target(name: "shared"),
-//                .product(name: "FirebaseStorage", package: "firebase-ios-sdk"),
-//            ]
-//        ),
         .target(
             name: "DetailsFeature",
             dependencies: [
@@ -52,7 +43,6 @@ var package = Package(
         .target(
             name: "DownloadFeature",
             dependencies: [
-                .target(name: "download"),
                 .target(name: "shared"),
                 .target(name: "Utils"),
                 .target(name: "HomeFeature"),
@@ -139,10 +129,6 @@ var package = Package(
         .binaryTarget(
             name: "shared",
             path: "../iosApp/build/shared.xcframework"
-        ),
-        .binaryTarget(
-            name: "download",
-            path: "../iosApp/build/download.xcframework"
         ),
         .plugin(
             name: "SwiftLintPlugin",

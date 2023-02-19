@@ -5,18 +5,20 @@
 //  Created by surajsau on 2022/12/11.
 //
 
-import download
+import shared
 import FirebaseStorage
 import Gzip
+import Utils
+import os
 
 public class NativeDownloadManager: DownloadManager {
+    private let logger = Logger.logger(category: "NativeDownloadManager")
 
     static let ZipFileName = "jmdict.db.gz"
 
     private let storage = Storage.storage()
 
     private let databaseFile = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            .appendingPathComponent("databases")
             .appendingPathComponent("jmdict.db")
 
     private let downloadedFile = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -42,7 +44,7 @@ public class NativeDownloadManager: DownloadManager {
 
     public func extractFile(onCompletion: @escaping (FileStatus) -> Void) {
         do {
-            let data = try Data(contentsOf: self.downloadedFile)
+            let data = try Data(contentsOf: downloadedFile)
             let decompressedData: Data
             if data.isGzipped {
                 decompressedData = try data.gunzipped()

@@ -20,7 +20,7 @@ public actual abstract class BaseViewModel<S : UiState> {
     }
 
     protected actual open fun onCleared() {
-        hasCleared = false
+        hasCleared = true
         (scope as? CloseableCoroutineScope)?.close()
     }
 }

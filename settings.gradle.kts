@@ -19,7 +19,7 @@ include(
     ":core:ui",
     ":core:utils",
     ":core:viewmodel",
-    ":download",
+    ":core:download",
     ":fake",
     ":feature:acknowledgement",
     ":feature:details",

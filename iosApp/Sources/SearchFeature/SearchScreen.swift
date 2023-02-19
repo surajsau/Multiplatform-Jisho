@@ -11,7 +11,7 @@ import Utils
 import DetailsFeature
 
 public struct SearchScreen: View {
-    @ObservedObject var nativeVM = NativeViewModel(viewModel: SearchViewModel.init())
+    @ObservedObject var nativeVM = NativeViewModel(viewModel: SearchViewModel())
 
     @State var searchText: String = ""
 
@@ -19,13 +19,27 @@ public struct SearchScreen: View {
 
     public var body: some View {
         ZStack {
-//            VStack {
-//                SearchBar(text: $searchText)
-//                    .alignmentGuide(.top) { $0[.top] }
-//                    .onChange(of: self.searchText) { text in
-//                        nativeVM.viewModel.onSearchTextChanged(text: text)
-//                    }
-//
+            VStack {
+                SearchBar(text: $searchText)
+                    .alignmentGuide(.top) { $0[.top] }
+                    .onChange(of: self.searchText) { text in
+                        nativeVM.viewModel.onSearchTextChanged(text: text)
+                    }
+                
+                if let results = nativeVM.state?.results {
+                    LazyVStack(spacing: 14) {
+                        ForEach(results, id: \.id) { result in
+                            NavigationLink {
+                                DetailsScreen(id: result.id, word: result.value)
+                            } label: {
+                                SearchResultRow(model: result)
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
+                    .padding(.vertical)
+                }
+
 //                ZStack(alignment: .top) {
 //                    switch nativeVM.state {
 //                    case is SearchViewModelStateResults:
@@ -49,8 +63,8 @@ public struct SearchScreen: View {
 //                    default: EmptyView()
 //                    }
 //                }
-//                Spacer()
-//            }
+                Spacer()
+            }
         }
     }
 }

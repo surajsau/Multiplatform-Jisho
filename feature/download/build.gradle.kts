@@ -9,5 +9,5 @@ dependencies {
     implementation(projects.core.utils)
     implementation(projects.shared)
 
-    implementation(projects.download)
+    implementation(projects.core.download)
 }
