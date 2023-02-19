@@ -5,7 +5,7 @@ plugins {
 android.namespace = "in.surajsau.jisho.reference.jlpt"
 
 dependencies {
-    implementation(project(":shared"))
+    implementation(projects.shared)
     implementation(projects.core.ui)
     implementation(projects.core.utils)
     implementation(projects.core.model)

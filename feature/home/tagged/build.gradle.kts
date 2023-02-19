@@ -5,9 +5,9 @@ plugins {
 android.namespace = "in.surajsau.jisho.tagged"
 
 dependencies {
-    implementation(project(":core:utils"))
-    implementation(project(":core:ui"))
-    implementation(project(":shared"))
+    implementation(projects.core.utils)
+    implementation(projects.core.ui)
+    implementation(projects.shared)
 
     implementation(libs.compose.icons.extended)
 }

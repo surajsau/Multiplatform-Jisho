@@ -2,11 +2,12 @@ package `in`.surajsau.jisho.data
 
 import `in`.surajsau.jisho.data.db.Jisho
 import `in`.surajsau.jisho.data.expected.createDriver
+import `in`.surajsau.jisho.utils.UtilsModule
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
 public val DataModule: Module = module {
-
+    includes(UtilsModule)
     factory { AddNoteForSentence(get(), get()) }
     factory { GetAllForJlptLevel(get(), get()) }
     factory { GetConjugations(get(), get()) }

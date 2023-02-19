@@ -25,14 +25,11 @@ core-utils = "0.0.1"
 coroutine = "1.6.4"
 datastore = "1.0.0"
 detekt = "1.22.0"
-firebase = "30.3.1"
+firebase = "31.2.2"
 firebase-auth = "21.0.8"
 firebase-auth-ui = "7.2.0"
-firebase-common = "20.3.0"
 firebase-crashlytics = "2.9.4"
-firebase-firestore = "24.3.1"
 firebase-kmm = "1.6.2"
-firebase-storage = "20.0.2"
 glance = "1.0.0-alpha05"
 hilt = "2.43.2"
 hilt-navigation = "1.0.0"
@@ -137,8 +134,8 @@ sqldelight-driver-android = { module = "app.cash.sqldelight:android-driver", ver
 sqldelight-driver-native = { module = "app.cash.sqldelight:native-driver", version.ref = "sqldelight" }
 
 # firebase
-firebase-bom = { module = "com.google.firebase:firebase-bom", version = "30.3.1" }
-firebase-common = { module = "com.google.firebase:firebase-common", version.ref = "firebase-common" }
+firebase-bom = "com.google.firebase:firebase-bom:31.2.2"
+firebase-common = { module = "com.google.firebase:firebase-common-ktx" }
 firebase-auth-ui = { module = "com.firebaseui:firebase-ui-auth", version.ref = "firebase-auth-ui" }
 firebase-firestore = { module = "com.google.firebase:firebase-firestore-ktx" }
 firebase-storage = { module = "com.google.firebase:firebase-storage-ktx" }

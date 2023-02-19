@@ -11,12 +11,12 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.get
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
-public class DownloadViewModel : BaseViewModel<DownloadUiState>(), KoinComponent {
-
-    private val downloadManager: DownloadManager = get()
+public class DownloadViewModel(
+    private val downloadManager: DownloadManager
+) : BaseViewModel<DownloadUiState>() {
 
     private val _downloadFileExists = MutableStateFlow(false)
     private val _statusMessage = MutableStateFlow("")
@@ -30,38 +30,42 @@ public class DownloadViewModel : BaseViewModel<DownloadUiState>(), KoinComponent
         }
             .stateIn(scope, SharingStarted.WhileSubscribed(), DownloadUiState())
 
-    public fun doInit() {
+    init {
         if (downloadManager.checkIfDatabaseExists()) {
             _downloadFileExists.value = true
-            return
-        }
+        } else {
+            scope.launch {
+                _statusMessage.value = "Downloading file..."
 
-        scope.launch {
-            _statusMessage.value = "Downloading file..."
+                val downloadFileStatus = suspendCoroutine { cont ->
+                    downloadManager.downloadFile { cont.resume(it) }
+                }
 
-            val downloadFileStatus = downloadManager.downloadFile()
+                if (downloadFileStatus is FileStatus.Error) {
+                    _downloadFileExists.value = false
+                    _statusMessage.value = downloadFileStatus.exception.message
+                        ?: "Some error occured while downloading"
+                    return@launch
+                }
 
-            if (downloadFileStatus is FileStatus.Error) {
-                _downloadFileExists.value = false
-                _statusMessage.value = downloadFileStatus.exception.message ?: "Some error occured while downloading"
-                return@launch
+                _statusMessage.value = "Extracting file..."
+                val extractFileStatus = suspendCoroutine { cont ->
+                    downloadManager.extractFile { cont.resume(it) }
+                }
+
+                if (extractFileStatus is FileStatus.Error) {
+                    _downloadFileExists.value = false
+                    _statusMessage.value = extractFileStatus.exception.message ?: "Some error occured while extracting"
+                    return@launch
+                }
+
+                _statusMessage.value = "Done"
+
+                // to show animation
+                delay(1_000)
+
+                _downloadFileExists.value = true
             }
-
-            _statusMessage.value = "Extracting file..."
-            val extractFileStatus = downloadManager.extractFile()
-
-            if (extractFileStatus is FileStatus.Error) {
-                _downloadFileExists.value = false
-                _statusMessage.value = extractFileStatus.exception.message ?: "Some error occured while extracting"
-                return@launch
-            }
-
-            _statusMessage.value = "Done"
-
-            // to show animation
-            delay(1_000)
-
-            _downloadFileExists.value = true
         }
     }
 

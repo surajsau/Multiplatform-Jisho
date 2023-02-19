@@ -5,9 +5,9 @@ plugins {
 android.namespace = "in.surajsau.jisho.feature.download"
 
 dependencies {
-
+    implementation(projects.core.ui)
     implementation(projects.core.utils)
-    implementation(project(":shared"))
+    implementation(projects.shared)
 
     implementation(projects.download)
 }

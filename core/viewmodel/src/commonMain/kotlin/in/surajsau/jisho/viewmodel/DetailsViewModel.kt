@@ -5,7 +5,6 @@ import `in`.surajsau.jisho.data.GetEntry
 import `in`.surajsau.jisho.data.GetKanji
 import `in`.surajsau.jisho.data.GetNumberOfSentencesForWord
 import `in`.surajsau.jisho.data.GetSentencesForWord
-import `in`.surajsau.jisho.data.GetBucket
 import `in`.surajsau.jisho.model.Bucket
 import `in`.surajsau.jisho.model.ConjugationResult
 import `in`.surajsau.jisho.model.SentenceQuery
@@ -29,7 +28,6 @@ public class DetailsViewModel : BaseViewModel<DetailsUiState>(), KoinComponent {
 
     private val getEntry: GetEntry = get()
     private val getKanji: GetKanji = get()
-    private val geBucket: GetBucket = get()
     private val getSentencesForWord: GetSentencesForWord = get()
     private val getNumberOfSentencesForWord: GetNumberOfSentencesForWord = get()
     private val getConjugations: GetConjugations = get()

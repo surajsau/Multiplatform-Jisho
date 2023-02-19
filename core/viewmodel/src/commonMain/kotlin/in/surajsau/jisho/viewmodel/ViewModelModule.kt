@@ -12,5 +12,4 @@ public val ViewModelModule: Module = module {
     single { SentenceDetailViewModel() }
     single { JlptListViewModel() }
     single { SentenceListViewModel() }
-    single { DownloadViewModel() }
 }

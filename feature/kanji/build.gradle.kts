@@ -7,9 +7,9 @@ android.namespace = "in.surajsau.jisho.reference.kanji"
 dependencies {
     implementation(projects.core.model)
 
-    implementation(project(":shared"))
-    implementation(project(":core:ui"))
-    implementation(project(":core:utils"))
+    implementation(projects.shared)
+    implementation(projects.core.ui)
+    implementation(projects.core.utils)
 
-    implementation(project(":shared"))
+    implementation(projects.shared)
 }
