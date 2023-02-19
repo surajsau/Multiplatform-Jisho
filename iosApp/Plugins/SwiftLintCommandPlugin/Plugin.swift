@@ -9,14 +9,13 @@ struct SwiftLintCommandPlugin: CommandPlugin {
         var args = arguments
         args += [
             "lint",
-            "--in-process-sourcekit", // alternative to the environment variable
+            "--in-process-sourcekit" // alternative to the environment variable
         ]
         let process = try Process.run(swiftlint, arguments: args)
         process.waitUntilExit()
         if process.terminationReason == .exit && process.terminationStatus == 0 {
             print("Linting succeeded!")
-        }
-        else {
+        } else {
             Diagnostics.error("Linting error occured!")
         }
     }

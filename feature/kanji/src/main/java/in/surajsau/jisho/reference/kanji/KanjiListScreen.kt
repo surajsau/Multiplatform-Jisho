@@ -10,7 +10,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import `in`.surajsau.jisho.reference.kanji.components.KanjiGridItem
 import `in`.surajsau.jisho.model.KanjiQuery
@@ -18,7 +17,6 @@ import `in`.surajsau.jisho.model.KanjiResult
 import `in`.surajsau.jisho.viewmodel.KanjiListViewModel
 import org.koin.androidx.compose.get
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun KanjiListScreen(
     modifier: Modifier = Modifier,

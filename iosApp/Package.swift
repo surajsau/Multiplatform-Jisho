@@ -7,7 +7,7 @@ var package = Package(
     name: "JishoPackage",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v15),
+        .iOS(.v15)
     ],
     products: [
 //        .library(name: "Application", targets: ["Application"]),
@@ -23,14 +23,14 @@ var package = Package(
         .library(name: "SentenceFeature", targets: ["SentenceFeature"]),
         .library(name: "SettingsFeature", targets: ["SettingsFeature"]),
         .library(name: "TaggedFeature", targets: ["TaggedFeature"]),
-        .plugin(name: "swiftlint", targets: ["SwiftLintCommandPlugin"]),
+        .plugin(name: "swiftlint", targets: ["SwiftLintCommandPlugin"])
     ],
     dependencies: [
         .package(url: "https://github.com/firebase/firebase-ios-sdk.git", from: "9.6.0"),
         .package(url: "https://github.com/cybozu/LicenseList", from: "0.1.5"),
         .package(url: "https://github.com/onevcat/Kingfisher", from: "7.3.2"),
-        .package(url: "https://github.com/rickclephas/KMP-NativeCoroutines.git", exact: "0.13.0"),
-        .package(url: "https://github.com/1024jp/GzipSwift.git", from: "5.1.1"),
+        .package(url: "https://github.com/rickclephas/KMP-NativeCoroutines.git", exact: "0.13.3"),
+        .package(url: "https://github.com/1024jp/GzipSwift.git", from: "5.1.1")
     ],
     targets: [
 //        .target(
@@ -133,7 +133,7 @@ var package = Package(
             name: "Utils",
             dependencies: [
                 .target(name: "shared"),
-                .product(name: "KMPNativeCoroutinesCombine", package: "KMP-NativeCoroutines"),
+                .product(name: "KMPNativeCoroutinesCombine", package: "KMP-NativeCoroutines")
             ]
         ),
         .binaryTarget(
@@ -148,7 +148,7 @@ var package = Package(
             name: "SwiftLintPlugin",
             capability: .buildTool(),
             dependencies: [
-                .target(name: "SwiftLintBinary"),
+                .target(name: "SwiftLintBinary")
             ]
         ),
         .plugin(
@@ -160,7 +160,7 @@ var package = Package(
             name: "SwiftGenPlugin",
             capability: .buildTool(),
             dependencies: [
-                .target(name: "swiftgen"),
+                .target(name: "swiftgen")
             ]
         ),
         .plugin(

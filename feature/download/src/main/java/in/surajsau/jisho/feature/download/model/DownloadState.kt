@@ -36,7 +36,7 @@ class DownloadState(
             return@withContext
         }
 
-        if ((downloadManager.extractFile() is FileStatus.Error)) {
+        if (downloadManager.extractFile() is FileStatus.Error) {
             return@withContext
         }
 

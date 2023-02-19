@@ -2,10 +2,6 @@ package `in`.surajsau.jisho.viewmodel
 
 import `in`.surajsau.jisho.data.GetFilteredKanjis
 import `in`.surajsau.jisho.model.KanjiQuery
-import `in`.surajsau.jisho.model.KanjiQueryAll
-import `in`.surajsau.jisho.model.KanjiQueryAllSchool
-import `in`.surajsau.jisho.model.KanjiQueryFreq
-import `in`.surajsau.jisho.model.KanjiQueryGrade
 import `in`.surajsau.jisho.model.KanjiResult
 import `in`.surajsau.jisho.viewmodel.expected.BaseViewModel
 import `in`.surajsau.jisho.viewmodel.expected.UiState
@@ -36,10 +32,10 @@ public class KanjiListViewModel : BaseViewModel<KanjiListUiState>(), KoinCompone
             val state = KanjiListUiState(
                 items = items,
                 title = when (query) {
-                    is KanjiQueryGrade -> "Kanjis for Grade ${query.grade}"
-                    is KanjiQueryAllSchool -> "All school Kanjis"
-                    is KanjiQueryFreq -> "Kanjis with frequency ${query.from}-${query.to}"
-                    is KanjiQueryAll -> "All Kanjis"
+                    is KanjiQuery.Grade -> "Kanjis for Grade ${query.grade}"
+                    is KanjiQuery.AllSchool -> "All school Kanjis"
+                    is KanjiQuery.Freq -> "Kanjis with frequency ${query.from}-${query.to}"
+                    is KanjiQuery.All -> "All Kanjis"
                 }
             )
             Napier.d("State: $state")

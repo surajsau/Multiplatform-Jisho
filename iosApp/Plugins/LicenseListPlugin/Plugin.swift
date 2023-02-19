@@ -11,14 +11,14 @@ struct LicenseListPlugin: BuildToolPlugin {
             return []
         }
         let sourcePackageDirectory = NSString(string: pluginWorkDirectory).substring(with: matchRange)
-        
+
         return [
             .prebuildCommand(
                 displayName: "LicenseList",
                 executable: try context.tool(named: "spp").path,
                 arguments: [
                     target.directory.string,
-                    sourcePackageDirectory,
+                    sourcePackageDirectory
                 ],
                 environment: [:],
                 outputFilesDirectory: context.pluginWorkDirectory

@@ -13,8 +13,6 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 public class DownloadViewModel : BaseViewModel<DownloadUiState>(), KoinComponent {
 
@@ -41,11 +39,7 @@ public class DownloadViewModel : BaseViewModel<DownloadUiState>(), KoinComponent
         scope.launch {
             _statusMessage.value = "Downloading file..."
 
-            val downloadFileStatus = suspendCoroutine { cont ->
-                downloadManager.downloadFile {
-                    cont.resume(it)
-                }
-            }
+            val downloadFileStatus = downloadManager.downloadFile()
 
             if (downloadFileStatus is FileStatus.Error) {
                 _downloadFileExists.value = false
@@ -54,11 +48,7 @@ public class DownloadViewModel : BaseViewModel<DownloadUiState>(), KoinComponent
             }
 
             _statusMessage.value = "Extracting file..."
-            val extractFileStatus = suspendCoroutine { cont ->
-                downloadManager.extractFile {
-                    cont.resume(it)
-                }
-            }
+            val extractFileStatus = downloadManager.extractFile()
 
             if (extractFileStatus is FileStatus.Error) {
                 _downloadFileExists.value = false

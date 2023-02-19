@@ -6,7 +6,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import `in`.surajsau.jisho.viewmodel.TagsUiState
 import `in`.surajsau.jisho.viewmodel.TagsViewModel
@@ -19,7 +18,6 @@ fun remmeberTagsScreenModel(
     return remember { TagsScreenModel(viewModel = viewModel) }
 }
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Stable
 class TagsScreenModel (
     private val viewModel: TagsViewModel

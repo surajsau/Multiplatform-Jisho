@@ -4,7 +4,6 @@ import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import `in`.surajsau.jisho.details.model.DetailsModel
 import `in`.surajsau.jisho.viewmodel.DetailsUiState
@@ -22,7 +21,6 @@ fun rememberDetailsScreenState(
     }
 }
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 class DetailsScreenState(
     val scrollState: ScrollState,
     val model: DetailsModel,

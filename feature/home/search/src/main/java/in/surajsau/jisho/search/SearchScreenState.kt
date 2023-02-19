@@ -10,7 +10,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.SoftwareKeyboardController
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import `in`.surajsau.jisho.viewmodel.SearchUiState
 import `in`.surajsau.jisho.viewmodel.SearchViewModel
@@ -28,7 +27,7 @@ fun rememberSearchScreenState(
 }
 
 @Stable
-@OptIn(ExperimentalLifecycleComposeApi::class, ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalComposeUiApi::class)
 class SearchScreenState constructor(
     private val viewModel: SearchViewModel,
     private val keyboardController: SoftwareKeyboardController?

@@ -22,7 +22,7 @@ class AndroidKotlinPlugin : Plugin<Project> {
                         "-Xcontext-receivers"
                     )
 
-                    jvmTarget = org.gradle.api.JavaVersion.VERSION_1_8.toString()
+                    jvmTarget = org.gradle.api.JavaVersion.VERSION_17.toString()
                 }
             }
         }

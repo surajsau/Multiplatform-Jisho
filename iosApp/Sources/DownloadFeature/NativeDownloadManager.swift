@@ -25,8 +25,8 @@ public class NativeDownloadManager: DownloadManager {
     public init() {}
 
     public func checkIfDatabaseExists() -> Bool {
-        let exists = try! self.databaseFile.checkResourceIsReachable()
-        return exists
+        let exists = try? self.databaseFile.checkResourceIsReachable()
+        return exists ?? false
     }
 
     public func downloadFile(onCompletion: @escaping (FileStatus) -> Void) {

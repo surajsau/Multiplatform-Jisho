@@ -1,7 +1,7 @@
 package `in`.surajsau.jisho.data.expected
 
-import com.squareup.sqldelight.db.SqlDriver
-import com.squareup.sqldelight.drivers.native.NativeSqliteDriver
+import app.cash.sqldelight.db.SqlDriver
+import app.cash.sqldelight.driver.native.NativeSqliteDriver
 import `in`.surajsau.jisho.data.db.Jisho
 import org.koin.core.scope.Scope
 

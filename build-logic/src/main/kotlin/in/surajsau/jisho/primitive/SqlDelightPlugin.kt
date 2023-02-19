@@ -1,6 +1,6 @@
 package `in`.surajsau.jisho.primitive
 
-import com.squareup.sqldelight.gradle.SqlDelightExtension
+import app.cash.sqldelight.gradle.SqlDelightExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -10,7 +10,7 @@ class SqlDelightPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {
-                apply("com.squareup.sqldelight")
+                apply("app.cash.sqldelight")
             }
 
             kotlin {
@@ -38,9 +38,9 @@ class SqlDelightPlugin : Plugin<Project> {
 
 private fun Project.setup() {
     extensions.configure<SqlDelightExtension>("sqldelight") {
-        database("Jisho") {
-            packageName = "in.surajsau.jisho.data.db"
-            sourceFolders = listOf("sqldelight")
+        databases.create("Jisho") {
+            packageName.set("in.surajsau.jisho.data.db")
+            sourceFolders.set(listOf("sqldelight"))
         }
     }
 }

@@ -3,7 +3,3 @@ plugins {
 }
 
 android.namespace = "in.surajsau.jisho.transition"
-
-dependencies {
-
-}

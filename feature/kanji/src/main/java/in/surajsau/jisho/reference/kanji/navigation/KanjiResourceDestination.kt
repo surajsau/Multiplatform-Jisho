@@ -6,10 +6,9 @@ import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.composable
 import `in`.surajsau.jisho.model.KanjiQuery
-import `in`.surajsau.jisho.model.KanjiQueryFreq
 import `in`.surajsau.jisho.model.KanjiResult
-import `in`.surajsau.jisho.reference.kanji.KanjiResourceScreen
 import `in`.surajsau.jisho.reference.kanji.KanjiListScreen
+import `in`.surajsau.jisho.reference.kanji.KanjiResourceScreen
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.kanjiNavGraph(
@@ -50,7 +49,7 @@ fun NavGraphBuilder.kanjiNavGraph(
         val to = args.getLong("to")
 
         KanjiListScreen(
-            query = KanjiQueryFreq(from, to),
+            query = KanjiQuery.Freq(from, to),
             onGridItemTap = onKanjiGridItemClicked
         )
     }

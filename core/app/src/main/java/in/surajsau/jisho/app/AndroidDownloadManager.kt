@@ -9,15 +9,11 @@ import `in`.surajsau.jisho.download.FileStatus
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.koin.android.ext.koin.androidApplication
-import org.koin.core.scope.Scope
 import java.io.BufferedOutputStream
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.util.zip.GZIPInputStream
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 class AndroidDownloadManager constructor(
     private val context: Context

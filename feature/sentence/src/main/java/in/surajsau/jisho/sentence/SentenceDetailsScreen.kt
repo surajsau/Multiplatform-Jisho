@@ -19,7 +19,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import `in`.surajsau.jisho.sentence.components.NotesTextField
 import `in`.surajsau.jisho.ui.theme.components.JishoScaffold
@@ -27,7 +26,7 @@ import `in`.surajsau.jisho.viewmodel.SentenceDetailViewModel
 import `in`.surajsau.jisho.ui.R
 import org.koin.androidx.compose.koinViewModel
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalLifecycleComposeApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SentenceDetailsScreen(
     modifier: Modifier = Modifier,

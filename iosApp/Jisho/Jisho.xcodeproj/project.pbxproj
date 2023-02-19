@@ -61,8 +61,8 @@
 		E5D3E10329459CF8000ED618 = {
 			isa = PBXGroup;
 			children = (
-				E5D3E11E29459D63000ED618 /* iosApp */,
 				E5D3E10E29459CF8000ED618 /* Jisho */,
+				E5D3E11E29459D63000ED618 /* iosApp */,
 				E5D3E10D29459CF8000ED618 /* Products */,
 				E5C8F165294C50A8004AB979 /* Frameworks */,
 			);

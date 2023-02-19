@@ -19,15 +19,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import `in`.surajsau.jisho.sentence.components.SentenceRow
+import `in`.surajsau.jisho.ui.R
 import `in`.surajsau.jisho.ui.theme.components.JishoScaffold
 import `in`.surajsau.jisho.viewmodel.SentenceListViewModel
-import `in`.surajsau.jisho.ui.R
 import org.koin.androidx.compose.koinViewModel
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalLifecycleComposeApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SentenceListScreen(
     modifier: Modifier = Modifier,

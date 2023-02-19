@@ -1,7 +1,7 @@
 plugins {
     id("jisho.convention.kmp")
     id("jisho.primitive.sqldelight")
-    id("com.rickclephas.kmp.nativecoroutines") version "0.13.0"
+    id("com.rickclephas.kmp.nativecoroutines") version "0.13.3"
     id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
 }
 

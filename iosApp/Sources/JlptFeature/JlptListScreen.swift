@@ -21,31 +21,31 @@ struct JlptListScreen: View {
 
     var body: some View {
         ZStack {
-            VStack {
-                if let state = self.dispatcher.state {
-
-                    if state.isLoading {
-                        ProgressView()
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    } else {
-                        ScrollView(.vertical) {
-                            LazyVStack(spacing: 14) {
-                                ForEach(state.items, id: \.self) { result in
-                                    NavigationLink {
-                                        DetailsScreen(id: result.id, word: result.value)
-                                    } label: {
-                                        SearchResultRow(model: result)
-                                    }
-                                    .buttonStyle(.plain)
-                                }
-                            }
-                            .padding(.vertical)
-                        }
-
-                        Spacer()
-                    }
-                }
-            }
+//            if let state = self.dispatcher.state {
+//                VStack {
+//
+//                    if state.isLoading {
+//                        ProgressView()
+//                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                    } else {
+//                        ScrollView(.vertical) {
+//                            LazyVStack(spacing: 14) {
+//                                ForEach(state.items, id: \.self) { result in
+//                                    NavigationLink {
+//                                        DetailsScreen(id: result.id, word: result.value)
+//                                    } label: {
+//                                        SearchResultRow(model: result)
+//                                    }
+//                                    .buttonStyle(.plain)
+//                                }
+//                            }
+//                            .padding(.vertical)
+//                        }
+//
+//                        Spacer()
+//                    }
+//                }
+//            }
         }
         .onAppear {
             nativeVM.viewModel.doInitWith(level: Int32(self.level))

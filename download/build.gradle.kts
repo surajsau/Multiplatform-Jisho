@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     id("jisho.convention.kmp")
-    id("com.rickclephas.kmp.nativecoroutines") version "0.13.0"
+    id("com.rickclephas.kmp.nativecoroutines") version "0.13.3"
 }
 
 android.namespace = "in.surajsau.jisho.download"
@@ -32,13 +32,5 @@ kotlin {
                 xcframework.add(this)
             }
         }
-
-        val androidMain by getting {
-            dependencies {
-                api(project.dependencies.platform(libs.firebase.bom))
-                api("com.google.firebase:firebase-storage-ktx")
-            }
-        }
-
     }
 }

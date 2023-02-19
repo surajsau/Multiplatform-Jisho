@@ -1,9 +1,9 @@
 package `in`.surajsau.jisho.primitive
 
+import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
-import java.io.File
 
 @Suppress("Unused")
 class AndroidComposePlugin : Plugin<Project> {
@@ -17,6 +17,7 @@ class AndroidComposePlugin : Plugin<Project> {
                 }
 
                 kotlinOptions {
+                    jvmTarget = JavaVersion.VERSION_17.toString()
                     freeCompilerArgs = freeCompilerArgs + buildComposeMetricsParameters()
                 }
             }

@@ -13,13 +13,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import `in`.surajsau.jisho.reference.jlpt.components.ResultRow
 import `in`.surajsau.jisho.viewmodel.JlptListViewModel
 import org.koin.androidx.compose.getViewModel
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun JlptListScreen(
     modifier: Modifier = Modifier,
