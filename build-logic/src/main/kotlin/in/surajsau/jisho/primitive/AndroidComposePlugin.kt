@@ -25,7 +25,6 @@ class AndroidComposePlugin : Plugin<Project> {
             dependencies {
                 add("kotlinCompilerPluginClasspath", libs.findLibrary("compose-compiler").get())
 
-                bom(libs.findLibrary("compose-bom"))
                 implementation(libs.findLibrary("compose-ui"))
                 implementation(libs.findLibrary("compose-activity"))
                 implementation(libs.findLibrary("compose-tooling"))

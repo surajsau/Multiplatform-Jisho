@@ -15,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 import `in`.surajsau.jisho.search.components.ResultRow
 import `in`.surajsau.jisho.search.components.SearchBar
@@ -43,8 +42,9 @@ fun SearchScreen(
                     screenState.onFocusChanged(it.hasFocus)
                 },
             text = screenState.searchText,
-            collapsed = screenState.searchBarCollapsed,
-            onTextChanged = screenState::onTextChanged
+            focused = screenState.searchBarFocused,
+            onTextChanged = screenState::onTextChanged,
+            onKeyboardAction = { focusRequester.freeFocus() }
         )
 
         LazyColumn(

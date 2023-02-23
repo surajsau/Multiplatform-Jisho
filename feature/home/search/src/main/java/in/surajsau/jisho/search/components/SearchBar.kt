@@ -1,16 +1,18 @@
 package `in`.surajsau.jisho.search.components
 
 import android.content.res.Configuration
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.animateDp
-import androidx.compose.animation.core.animateInt
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
+import androidx.compose.material.Surface
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -24,58 +26,48 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import `in`.surajsau.jisho.ui.R
 import `in`.surajsau.jisho.ui.theme.JishoTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
 @Composable
 fun SearchBar(
     modifier: Modifier = Modifier,
-    collapsed: Boolean,
+    focused: Boolean,
     text: String,
-    onTextChanged: (String) -> Unit
+    onTextChanged: (String) -> Unit,
+    onKeyboardAction: () -> Unit,
 ) {
-    val transition = updateTransition(
-        targetState = collapsed,
-        label = "Search Bar"
-    )
-
-    val searchBarHeight by transition.animateDp(label = "Height") {
-        if (collapsed) 56.dp else 152.dp
-    }
-
-    val searchBarFontSize by transition.animateInt(label = "Text Size") {
-        if (collapsed) 18 else 36
-    }
-
-    val padding by transition.animateDp(label = "Padding") {
-        if (collapsed) 16.dp else 0.dp
-    }
-
-    val cornerRadius by transition.animateDp(label = "Padding") {
-        if (collapsed) 36.dp else 0.dp
-    }
+    val transition = updateTransition(targetState = focused, label = "Search Bar")
+    val boxElevation by transition.animateDp(label = "Padding") { if (it) 2.dp else 0.dp }
+    val textFieldPadding by transition.animateDp(label = "Text field padding") { if(it) 0.dp else 16.dp }
 
     Box(
         modifier = modifier
-            .padding(padding)
-            .height(searchBarHeight)
-            .background(
-                color = MaterialTheme.colorScheme.surfaceColorAtElevation(2.dp),
-                shape = RoundedCornerShape(cornerRadius)
-            ),
-        contentAlignment = if (collapsed) Alignment.CenterStart else Alignment.BottomStart
+            .background(color = MaterialTheme.colorScheme.surfaceColorAtElevation(boxElevation))
+            .padding(all = textFieldPadding),
+        contentAlignment = Alignment.CenterStart
     ) {
         TextField(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(
+                    color = MaterialTheme.colorScheme.surfaceColorAtElevation(2.dp),
+                    shape = RoundedCornerShape(36.dp)
+                ),
             value = text,
             placeholder = {
                 Text(
                     text = "Search",
-                    style = TextStyle(fontSize = searchBarFontSize.sp)
+                    style = TextStyle(fontSize = 16.sp),
                 )
             },
             leadingIcon = {
@@ -90,11 +82,31 @@ fun SearchBar(
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent
             ),
-            textStyle = TextStyle(
-                fontSize = searchBarFontSize.sp
-            )
+            textStyle = TextStyle(fontSize = 16.sp),
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Text,
+                imeAction = ImeAction.Done,
+                capitalization = KeyboardCapitalization.None
+            ),
+            keyboardActions = KeyboardActions { onKeyboardAction() }
         )
     }
+}
+
+private class SearchBarStateParam: PreviewParameterProvider<SearchBarStateParam.Data> {
+
+    override val values: Sequence<Data>
+        get() = sequenceOf(
+            Data(collapsed = true, text = ""),
+            Data(collapsed = true, text = "嬉しい"),
+            Data(collapsed = false, text = ""),
+            Data(collapsed = false, text = "嬉しい"),
+        )
+    data class Data(
+        val collapsed: Boolean,
+        val text: String
+    )
 }
 
 @Preview(
@@ -108,12 +120,16 @@ fun SearchBar(
     showBackground = true
 )
 @Composable
-private fun previewSearchBar() {
+private fun previewSearchBar(@PreviewParameter(SearchBarStateParam::class) state: SearchBarStateParam.Data) {
     JishoTheme {
-        SearchBar(
-            text = "",
-            collapsed = false,
-            onTextChanged = {}
-        )
+        Surface {
+            SearchBar(
+                modifier = Modifier.fillMaxWidth(),
+                text = state.text,
+                focused = state.collapsed,
+                onTextChanged = {},
+                onKeyboardAction = {}
+            )
+        }
     }
 }

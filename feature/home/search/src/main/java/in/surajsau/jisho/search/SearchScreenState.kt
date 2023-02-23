@@ -1,6 +1,5 @@
 package `in`.surajsau.jisho.search
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
@@ -39,7 +38,7 @@ class SearchScreenState constructor(
     val uiState: SearchUiState
         @Composable get() = viewModel.state.collectAsStateWithLifecycle().value
 
-    val searchBarCollapsed: Boolean
+    val searchBarFocused: Boolean
         @Composable get() = isSearchTextFocused || uiState.results.isNotEmpty()
 
     fun onTextChanged(text: String) {
@@ -56,9 +55,6 @@ class SearchScreenState constructor(
     }
 
     fun onFocusChanged(hasFocus: Boolean) {
-        Log.e("SearchScreen", "onFocusChanged $hasFocus")
-        if (!hasFocus) {
-            isSearchTextFocused = false
-        }
+        isSearchTextFocused = hasFocus
     }
 }

@@ -1,6 +1,6 @@
 [versions]
 accompanist = "0.27.0"
-agp = "8.1.0-alpha04"
+agp = "8.1.0-alpha06"
 android-desugar = "2.0.2"
 androidx-appcompat = "1.6.1"
 androidx-concurrent-futures = "1.1.0"
@@ -16,7 +16,7 @@ androidx-benchmark = "1.2.0-alpha09"
 androidx-profileinstaller = "1.2.0"
 benmanesversion = "0.42.0"
 coil = "2.2.2"
-compose = "2023.01.00"
+compose = "1.4.0-beta01"
 compose-activity = "1.6.1"
 compose-compiler = "1.4.0"
 core-domain = "0.0.1"
@@ -93,18 +93,17 @@ androidx-shortcuts = { module = "androidx.core:core-google-shortcuts", version.r
 androidx-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 androidx-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 androidx-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose" }
 compose-compiler = { group = "androidx.compose.compiler", name = "compiler", version.ref = "compose-compiler" }
-compose-ui = { group = "androidx.compose.ui", name = "ui" }
-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
-compose-tooling =  { group = "androidx.compose.ui", name = "ui-tooling" }
+compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "compose" }
+compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "compose" }
+compose-tooling =  { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "compose" }
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "compose-activity" }
-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
+compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "compose" }
 compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
 google-material3 = { group = "com.google.android.material", name = "material", version.ref = "material3" }
-compose-icons-core = { group = "androidx.compose.material", name = "material-icons-core" }
-compose-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
-compose-material = { group = "androidx.compose.material", name = "material" }
+compose-icons-core = { group = "androidx.compose.material", name = "material-icons-core", version.ref = "compose" }
+compose-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "compose" }
+compose-material = { group = "androidx.compose.material", name = "material", version.ref = "compose" }
 compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3-compose" }
 androidx-concurrent-futures = { module = "androidx.concurrent:concurrent-futures-ktx", version.ref = "androidx-concurrent-futures" }
 
