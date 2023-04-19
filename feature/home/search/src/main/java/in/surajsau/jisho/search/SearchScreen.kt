@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import `in`.surajsau.jisho.search.components.ResultRow
 import `in`.surajsau.jisho.search.components.SearchBar
@@ -27,6 +28,7 @@ fun SearchScreen(
 ) {
     val uiState = screenState.uiState
 
+    val focusManager = LocalFocusManager.current
     val focusRequester = remember { FocusRequester() }
 
     LaunchedEffect(Unit) {
@@ -44,7 +46,7 @@ fun SearchScreen(
             text = screenState.searchText,
             focused = screenState.searchBarFocused,
             onTextChanged = screenState::onTextChanged,
-            onKeyboardAction = { focusRequester.freeFocus() }
+            onKeyboardAction = { focusManager.clearFocus() }
         )
 
         LazyColumn(
@@ -61,7 +63,7 @@ fun SearchScreen(
                         .padding(vertical = 8.dp),
                     result = item,
                     onItemClicked = {
-                        focusRequester.freeFocus()
+                        focusManager.clearFocus()
                         screenState.onFocusDismissed()
                         onItemClicked(item.id, item.value)
                     }

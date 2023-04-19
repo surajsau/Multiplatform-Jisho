@@ -14,12 +14,14 @@ import `in`.surajsau.jisho.reference.kanji.KanjiResourceScreen
 fun NavGraphBuilder.kanjiNavGraph(
     onGradeItemClicked: (Int) -> Unit,
     onAllGradesClicked: () -> Unit,
-    onKanjiGridItemClicked: (KanjiResult) -> Unit
+    onKanjiGridItemClicked: (KanjiResult) -> Unit,
+    onBackClicked: () -> Unit,
 ) {
     composable(route = KanjiNavGraph.mainRoute()) {
         KanjiResourceScreen(
             onGradeItemClicked = onGradeItemClicked,
-            onAllGradesClicked = onAllGradesClicked
+            onAllGradesClicked = onAllGradesClicked,
+            onBackClicked = {}
         )
     }
 

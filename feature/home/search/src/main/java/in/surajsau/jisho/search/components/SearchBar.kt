@@ -1,7 +1,6 @@
 package `in`.surajsau.jisho.search.components
 
 import android.content.res.Configuration
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.animateDp
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.background
@@ -35,9 +34,9 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import `in`.surajsau.jisho.ui.R
-import `in`.surajsau.jisho.ui.theme.JishoTheme
+import `in`.surajsau.jisho.ui.theme.PreviewContainer
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchBar(
     modifier: Modifier = Modifier,
@@ -121,7 +120,7 @@ private class SearchBarStateParam: PreviewParameterProvider<SearchBarStateParam.
 )
 @Composable
 private fun previewSearchBar(@PreviewParameter(SearchBarStateParam::class) state: SearchBarStateParam.Data) {
-    JishoTheme {
+    PreviewContainer {
         Surface {
             SearchBar(
                 modifier = Modifier.fillMaxWidth(),

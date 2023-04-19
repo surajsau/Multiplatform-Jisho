@@ -7,7 +7,6 @@ import com.google.firebase.storage.ktx.storage
 import `in`.surajsau.jisho.download.DownloadManager
 import `in`.surajsau.jisho.download.FileStatus
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.BufferedOutputStream
 import java.io.File
@@ -16,7 +15,8 @@ import java.io.FileOutputStream
 import java.util.zip.GZIPInputStream
 
 class AndroidDownloadManager constructor(
-    private val context: Context
+    private val context: Context,
+    private val ioScope: CoroutineScope
 ): DownloadManager {
 
     private val storage by lazy { Firebase.storage }
@@ -29,22 +29,20 @@ class AndroidDownloadManager constructor(
     }
 
     override fun downloadFile(onCompletion: (FileStatus) -> Unit) {
-        CoroutineScope(Dispatchers.IO).launch {
-            val reference = storage.reference.child(ZipFileName)
-            val localFile = File(context.filesDir, ZipFileName)
+        val reference = storage.reference.child(ZipFileName)
+        val localFile = File(context.filesDir, ZipFileName)
 
-            reference.getFile(localFile)
-                .addOnSuccessListener {
-                    onCompletion(FileStatus.Downloaded)
-                }.addOnFailureListener {
-                    Log.e("Downloader", "downloadFile error $it")
-                    onCompletion(FileStatus.Error(it))
-                }
-        }
+        reference.getFile(localFile)
+            .addOnSuccessListener {
+                onCompletion(FileStatus.Downloaded)
+            }.addOnFailureListener {
+                Log.e("Downloader", "downloadFile error $it")
+                onCompletion(FileStatus.Error(it))
+            }
     }
 
     override fun extractFile(onCompletion: (FileStatus) -> Unit) {
-        CoroutineScope(Dispatchers.IO).launch {
+        ioScope.launch {
             val result = runCatching {
                 val localFile = File(context.filesDir, ZipFileName)
                 val destFile = File(databaseDir, DbFileName)
