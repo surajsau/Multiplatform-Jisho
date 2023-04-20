@@ -31,8 +31,6 @@ class SearchScreenState constructor(
     private val viewModel: SearchViewModel,
     private val keyboardController: SoftwareKeyboardController?
 ) {
-    var searchText by mutableStateOf("")
-
     private var isSearchTextFocused by mutableStateOf(true)
 
     val uiState: SearchUiState
@@ -42,7 +40,6 @@ class SearchScreenState constructor(
         @Composable get() = isSearchTextFocused || uiState.results.isNotEmpty()
 
     fun onTextChanged(text: String) {
-        searchText = text
         viewModel.onSearchTextChanged(text)
     }
 

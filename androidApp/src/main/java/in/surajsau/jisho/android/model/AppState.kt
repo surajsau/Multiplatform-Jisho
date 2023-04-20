@@ -7,7 +7,6 @@ import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import `in`.surajsau.jisho.app.AppViewModel
 import `in`.surajsau.jisho.details.navigation.DetailsNavGraph
@@ -54,8 +53,11 @@ class AppState (
     val themePreference: ThemePreference
         @Composable get() = _viewModelState.themePreference
 
-    fun navigateToDetails(id: Long, word: String) {
-        navController.navigate(DetailsNavGraph.detailsRoute(id = "$id", word = word))
+    fun navigateToDetails(id: String, word: String) {
+        if (id.startsWith("w")) {
+            val detailId = id.substring(1)
+            navController.navigate(DetailsNavGraph.detailsRoute(id = detailId, word = word))
+        }
     }
 
     fun navigateToHome() {

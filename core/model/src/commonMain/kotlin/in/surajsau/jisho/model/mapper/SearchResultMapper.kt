@@ -1,15 +1,14 @@
 package `in`.surajsau.jisho.model.mapper
 
+import `in`.surajsau.jisho.model.SearchResult
+import `in`.surajsau.jisho.model.jmdict.JmdictQueryResult
+import `in`.surajsau.jisho.model.kanjidic.Kanji
+import `in`.surajsau.jisho.model.kanjidic.KanjiQueryResult
 import `in`.surajsau.jisho.model.mapper.jmdict.glossFromDb
 import `in`.surajsau.jisho.model.mapper.kanjidic.meaningFromDb
 import `in`.surajsau.jisho.model.mapper.kanjidic.readingFromDb
-import `in`.surajsau.jisho.model.SearchResult
-import `in`.surajsau.jisho.model.jmdict.JmdictQueryResult
-import `in`.surajsau.jisho.model.kanjidic.KanjiQueryResult
-import `in`.surajsau.jisho.model.kanjidic.Literal
 
 public fun JmdictQueryResult.mapToSearchResult(searchTerm: String): SearchResult {
-    val id = this.id
     val value = if (this.kanjiString.isEmpty()) {
         this.readingString
     } else {
@@ -29,11 +28,16 @@ public fun JmdictQueryResult.mapToSearchResult(searchTerm: String): SearchResult
     val meanings = this.glossString.glossFromDb()
         .joinToString(", ") { it.value }
 
-    return SearchResult(id, value, reading, meanings)
+    return SearchResult(
+        id = "w$id",
+        value = value,
+        reading = reading,
+        meanings = meanings
+    )
 }
 
 public fun KanjiQueryResult.mapToSearchResult(): SearchResult = SearchResult(
-    id = 0L,
+    id = "kq$id",
     value = this.value,
     reading = this.readingString.readingFromDb()
         .filter { (it.type == "ja_on") or (it.type == "ja_kun") }
@@ -43,8 +47,8 @@ public fun KanjiQueryResult.mapToSearchResult(): SearchResult = SearchResult(
         .joinToString(", ") { it.value }
 )
 
-public fun Literal.mapToSearchResult(): SearchResult = SearchResult(
-    id = 0L,
+public fun Kanji.mapToSearchResult(): SearchResult = SearchResult(
+    id = "k$id",
     value = this.value,
     reading = this.readings
         .filter { (it.type == "ja_on") or (it.type == "ja_kun") }

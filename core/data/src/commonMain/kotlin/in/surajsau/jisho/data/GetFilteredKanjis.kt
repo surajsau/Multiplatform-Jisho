@@ -22,18 +22,18 @@ public class GetFilteredKanjis internal constructor(
     }
 
     private fun getAll(): List<String> {
-        return db.kanjiQueries.getAllKanji().executeAsList()
+        return db.kanjiQueries.getAllKanji().executeAsList().map { it.literal }
     }
 
     private fun getKanjiWithinFrequency(from: Long, to: Long): List<String> {
-        return db.kanjiQueries.getKanjiWithinFreqRange(from, to).executeAsList()
+        return db.kanjiQueries.getKanjiWithinFreqRange(from, to).executeAsList().map { it.literal }
     }
 
     private fun getKanjiForGrade(grade: String): List<String> {
-        return db.kanjiQueries.getKanjiForGrade(grade).executeAsList()
+        return db.kanjiQueries.getKanjiForGrade(grade).executeAsList().map { it.literal }
     }
 
     private fun getAllSchoolKanjis(): List<String> {
-        return db.kanjiQueries.getKanjiWithGrades().executeAsList()
+        return db.kanjiQueries.getKanjiWithGrades().executeAsList().map { it.literal }
     }
 }

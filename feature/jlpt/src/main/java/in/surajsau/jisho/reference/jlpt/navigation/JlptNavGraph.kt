@@ -11,7 +11,7 @@ import `in`.surajsau.jisho.reference.jlpt.JlptResourceScreen
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.jlptNavGraph(
     navigateToJlptLevel: (Int) -> Unit,
-    navigateTodetails: (Long, String) -> Unit,
+    navigateTodetails: (String, String) -> Unit,
 ) {
     composable(route = JlptNavGraph.mainRoute()) {
         JlptResourceScreen(onItemClicked = navigateToJlptLevel)

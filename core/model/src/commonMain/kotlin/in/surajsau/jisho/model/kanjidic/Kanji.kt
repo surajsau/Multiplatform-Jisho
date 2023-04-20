@@ -1,6 +1,7 @@
 package `in`.surajsau.jisho.model.kanjidic
 
-public data class Literal(
+public data class Kanji(
+    val id: Long,
     val value: String,
     val radical: List<Radical>,
     val grade: Grade?,
@@ -8,7 +9,7 @@ public data class Literal(
     val freq: Freq?,
     val strokeCount: StrokeCount,
     val radicalNames: List<RadicalName>,
-    val readings: List<KReading>,
+    val readings: List<KanjiReading>,
     val meanings: List<Meaning>,
     val nanoris: List<Nanori>,
     val dicReferences: List<DicReference>,

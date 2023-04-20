@@ -7,7 +7,7 @@ import `in`.surajsau.jisho.home.HomeScreen
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.homeNavGraph(
-    onSearchItemClicked: (Long, String) -> Unit,
+    onSearchItemClicked: (String, String) -> Unit,
     onKanjiClicked: () -> Unit,
     onKanaClicked: () -> Unit,
     onJlptClicked: () -> Unit,

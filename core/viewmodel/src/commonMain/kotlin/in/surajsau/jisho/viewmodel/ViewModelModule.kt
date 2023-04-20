@@ -7,9 +7,9 @@ import org.koin.dsl.module
 public val ViewModelModule: Module = module {
     includes(DataModule)
     single { SearchViewModel() }
-    single { KanjiListViewModel() }
-    single { DetailsViewModel() }
-    single { SentenceDetailViewModel() }
-    single { JlptListViewModel() }
-    single { SentenceListViewModel() }
+    factory { KanjiListViewModel() }
+    factory { DetailsViewModel() }
+    factory { SentenceDetailViewModel() }
+    factory { SentenceListViewModel() }
+    factory { JlptListViewModel() }
 }

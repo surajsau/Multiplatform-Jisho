@@ -24,7 +24,7 @@ import `in`.surajsau.jisho.search.components.SearchBar
 fun SearchScreen(
     modifier: Modifier = Modifier,
     screenState: SearchScreenState = rememberSearchScreenState(),
-    onItemClicked: (Long, String) -> Unit,
+    onItemClicked: (String, String) -> Unit,
 ) {
     val uiState = screenState.uiState
 
@@ -43,7 +43,7 @@ fun SearchScreen(
                 .onFocusChanged {
                     screenState.onFocusChanged(it.hasFocus)
                 },
-            text = screenState.searchText,
+            text = screenState.uiState.searchText,
             focused = screenState.searchBarFocused,
             onTextChanged = screenState::onTextChanged,
             onKeyboardAction = { focusManager.clearFocus() }

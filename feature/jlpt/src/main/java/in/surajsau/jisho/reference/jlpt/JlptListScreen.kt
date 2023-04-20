@@ -23,7 +23,7 @@ fun JlptListScreen(
     modifier: Modifier = Modifier,
     level: Int,
     viewModel: JlptListViewModel = getViewModel(),
-    onItemClicked: (id: Long, word: String) -> Unit,
+    onItemClicked: (id: String, word: String) -> Unit,
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 

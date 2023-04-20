@@ -1,11 +1,11 @@
 package `in`.surajsau.jisho.data
 
 import `in`.surajsau.jisho.data.db.Jisho
-import `in`.surajsau.jisho.utils.DispatcherProvider
 import `in`.surajsau.jisho.model.SearchResult
 import `in`.surajsau.jisho.model.jmdict.JmdictQueryResult
 import `in`.surajsau.jisho.model.kanjidic.KanjiQueryResult
 import `in`.surajsau.jisho.model.mapper.mapToSearchResult
+import `in`.surajsau.jisho.utils.DispatcherProvider
 import kotlinx.coroutines.withContext
 
 public class GetAllForJlptLevel(
@@ -22,8 +22,8 @@ public class GetAllForJlptLevel(
     }
 
     private fun getKanjiForJlpt(level: Long): List<KanjiQueryResult> {
-        return db.kanjiQueries.getKanjiWithJlpt(query = level) { literal, reading, meaning ->
-            KanjiQueryResult(literal, reading!!, meaning!!)
+        return db.kanjiQueries.getKanjiWithJlpt(query = level) { id, literal, reading, meaning ->
+            KanjiQueryResult(id, literal, reading!!, meaning!!)
         }.executeAsList()
     }
 

@@ -3,6 +3,7 @@ package `in`.surajsau.jisho.details
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import `in`.surajsau.jisho.details.model.DetailsModel
@@ -21,6 +22,7 @@ fun rememberDetailsScreenState(
     }
 }
 
+@Stable
 class DetailsScreenState(
     val scrollState: ScrollState,
     val model: DetailsModel,

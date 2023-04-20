@@ -101,7 +101,7 @@ private fun previewSearchResult() {
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp),
                     result = SearchResult(
-                        id = 0L,
+                        id = "0",
                         value = "楽しい",
                         reading = "たのしい",
                         meanings = "fun・to have fun・enjoy"
@@ -116,7 +116,7 @@ private fun previewSearchResult() {
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp),
                     result = SearchResult(
-                        id = 0L,
+                        id = "0",
                         value = "楽しい",
                         reading = "たのしい",
                         meanings = "fun・to have fun・enjoy"

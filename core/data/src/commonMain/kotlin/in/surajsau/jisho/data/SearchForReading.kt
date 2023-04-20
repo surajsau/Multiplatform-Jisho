@@ -1,13 +1,12 @@
 package `in`.surajsau.jisho.data
 
 import `in`.surajsau.jisho.data.db.Jisho
-import `in`.surajsau.jisho.utils.DispatcherProvider
 import `in`.surajsau.jisho.model.SearchResult
 import `in`.surajsau.jisho.model.jmdict.JmdictQueryResult
 import `in`.surajsau.jisho.model.mapper.mapToSearchResult
+import `in`.surajsau.jisho.utils.DispatcherProvider
 import kotlinx.coroutines.withContext
 import org.koin.core.component.KoinComponent
-import org.koin.core.component.get
 
 public class SearchForReading internal constructor(
     private val db: Jisho,
@@ -19,7 +18,8 @@ public class SearchForReading internal constructor(
 
         val results = when {
             text.length == 1 -> {
-                searchForKanji(query = "$text%") + searchForKanji(query = "%$text")
+                searchForKanji(query = "$text%") +
+                    searchForKanji(query = "%$text")
             }
 
             else -> searchForKanji(query = "$text%")
@@ -46,9 +46,9 @@ public class SearchForReading internal constructor(
     }
 
     private fun searchForReading(query: String): List<JmdictQueryResult> {
-        return db.kanjiQueries.searchKanjiWithReading(query) { literal, reading, meaning, _ ->
+        return db.kanjiQueries.searchKanjiWithReading(query) { id, literal, reading, meaning, _ ->
             JmdictQueryResult(
-                id = 0L,
+                id = id,
                 kanjiString = literal,
                 readingString = reading ?: "",
                 glossString = meaning ?: "",

@@ -5,7 +5,7 @@ import androidx.navigation.compose.composable
 import `in`.surajsau.jisho.search.SearchScreen
 
 fun NavGraphBuilder.searchNavGraph(
-    onSearchItemClicked: (Long, String) -> Unit
+    onSearchItemClicked: (String, String) -> Unit
 ) {
     composable(route = "search") {
         SearchScreen(onItemClicked = onSearchItemClicked)

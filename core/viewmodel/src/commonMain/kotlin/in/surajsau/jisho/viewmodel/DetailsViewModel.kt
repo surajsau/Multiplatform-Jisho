@@ -10,7 +10,7 @@ import `in`.surajsau.jisho.model.ConjugationResult
 import `in`.surajsau.jisho.model.SentenceQuery
 import `in`.surajsau.jisho.model.SentenceResult
 import `in`.surajsau.jisho.model.jmdict.Entry
-import `in`.surajsau.jisho.model.kanjidic.Literal
+import `in`.surajsau.jisho.model.kanjidic.Kanji
 import `in`.surajsau.jisho.utils.isKanji
 import `in`.surajsau.jisho.viewmodel.expected.BaseViewModel
 import `in`.surajsau.jisho.viewmodel.expected.UiState
@@ -122,7 +122,7 @@ public class DetailsViewModel : BaseViewModel<DetailsUiState>(), KoinComponent {
         }
     }
 
-    private fun map(literal: Literal): KanjiItem {
+    private fun map(literal: Kanji): KanjiItem {
         val value = literal.value
         val meaning = literal
             .meanings

@@ -6,8 +6,6 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
-import `in`.surajsau.jisho.tagged.components.TagsTopAppBar
-import `in`.surajsau.jisho.tagged.navigation.tagsNavGraph
 import `in`.surajsau.jisho.home.component.BottomNavBar
 import `in`.surajsau.jisho.home.model.HomeDestination
 import `in`.surajsau.jisho.home.model.HomeState
@@ -17,6 +15,8 @@ import `in`.surajsau.jisho.reference.navigation.referenceNavGraph
 import `in`.surajsau.jisho.search.navigation.searchNavGraph
 import `in`.surajsau.jisho.settings.components.SettingseTopAppBar
 import `in`.surajsau.jisho.settings.navigation.settingsNavGraph
+import `in`.surajsau.jisho.tagged.components.TagsTopAppBar
+import `in`.surajsau.jisho.tagged.navigation.tagsNavGraph
 import `in`.surajsau.jisho.ui.theme.components.JishoScaffold
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -24,7 +24,7 @@ import `in`.surajsau.jisho.ui.theme.components.JishoScaffold
 fun HomeScreen(
     modifier: Modifier = Modifier,
     uiState: HomeState = rememberHomeState(),
-    onSearchItemClicked: (Long, String) -> Unit,
+    onSearchItemClicked: (String, String) -> Unit,
     onKanjiClicked: () -> Unit,
     onKanaClicked: () -> Unit,
     onJlptClicked: () -> Unit,

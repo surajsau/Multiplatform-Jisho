@@ -19,25 +19,28 @@ CREATE TABLE IF NOT EXISTS kanji(
 );
 
 selectKanji:
-SELECT * FROM kanji WHERE literal = :literal;
+SELECT * FROM kanji WHERE id = :id;
 
 getAllKanji:
-SELECT literal FROM kanji;
+SELECT id, literal FROM kanji;
+
+getKanjiForLiteral:
+SELECT * FROM kanji WHERE literal = :literal;
 
 getKanjiWithinFreqRange:
-SELECT literal FROM kanji WHERE freq >= :from AND freq <= :to;
+SELECT id, literal FROM kanji WHERE freq >= :from AND freq <= :to;
 
 getKanjiForGrade:
-SELECT literal FROM kanji WHERE grade = :grade;
+SELECT id, literal FROM kanji WHERE grade = :grade;
 
 getKanjiWithGrades:
-SELECT literal FROM kanji WHERE grade IS NOT NULL;
+SELECT id, literal FROM kanji WHERE grade IS NOT NULL;
 
 getKanjiWithJlpt:
-SELECT literal, reading, meaning FROM kanji WHERE jlpt = :query;
+SELECT id, literal, reading, meaning FROM kanji WHERE jlpt = :query;
 
 searchKanjiWithReading:
-SELECT literal, reading, meaning, note_id FROM kanji WHERE reading LIKE :query;
+SELECT id, literal, reading, meaning, note_id FROM kanji WHERE reading LIKE :query;
 
 totalKanjiCount:
 SELECT COUNT(*) FROM kanji;
