@@ -33,5 +33,3 @@ include(
     ":feature:kanji",
     ":feature:sentence"
 )
-include()
-include(":core:transition")

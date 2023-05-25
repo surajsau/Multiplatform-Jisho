@@ -32,9 +32,9 @@ public class KanjiListViewModel : BaseViewModel<KanjiListUiState>(), KoinCompone
             val state = KanjiListUiState(
                 items = items,
                 title = when (query) {
-                    is KanjiQuery.Grade -> "Kanjis for Grade ${query.grade}"
+                    is KanjiQuery.Grade -> "Kanjis for Grade ${query.grade + 1}"
                     is KanjiQuery.AllSchool -> "All school Kanjis"
-                    is KanjiQuery.Freq -> "Kanjis with frequency ${query.from}-${query.to}"
+                    is KanjiQuery.Freq -> "Kanjis with frequency ${query.from + 1}-${query.to + 1}"
                     is KanjiQuery.All -> "All Kanjis"
                 }
             )

@@ -1,6 +1,5 @@
 package `in`.surajsau.jisho.reference.kanji.navigation
 
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
@@ -10,7 +9,6 @@ import `in`.surajsau.jisho.model.KanjiResult
 import `in`.surajsau.jisho.reference.kanji.KanjiListScreen
 import `in`.surajsau.jisho.reference.kanji.KanjiResourceScreen
 
-@OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.kanjiNavGraph(
     onGradeItemClicked: (Int) -> Unit,
     onAllGradesClicked: () -> Unit,
@@ -21,21 +19,23 @@ fun NavGraphBuilder.kanjiNavGraph(
         KanjiResourceScreen(
             onGradeItemClicked = onGradeItemClicked,
             onAllGradesClicked = onAllGradesClicked,
-            onBackClicked = {}
+            onBackClicked = onBackClicked
         )
     }
 
     composable(route = KanjiNavGraph.kanjiAllGradesRoute()) {
         KanjiListScreen(
             query = KanjiQuery.AllSchool,
-            onGridItemTap = onKanjiGridItemClicked
+            onGridItemTap = onKanjiGridItemClicked,
+            onBackClicked = onBackClicked
         )
     }
 
     composable(route = KanjiNavGraph.kanjiAllRoute()) {
         KanjiListScreen(
             query = KanjiQuery.All,
-            onGridItemTap = onKanjiGridItemClicked
+            onGridItemTap = onKanjiGridItemClicked,
+            onBackClicked = onBackClicked
         )
     }
 
@@ -52,7 +52,8 @@ fun NavGraphBuilder.kanjiNavGraph(
 
         KanjiListScreen(
             query = KanjiQuery.Freq(from, to),
-            onGridItemTap = onKanjiGridItemClicked
+            onGridItemTap = onKanjiGridItemClicked,
+            onBackClicked = onBackClicked
         )
     }
 
@@ -67,7 +68,8 @@ fun NavGraphBuilder.kanjiNavGraph(
 
         KanjiListScreen(
             query = KanjiQuery.Grade(grade),
-            onGridItemTap = onKanjiGridItemClicked
+            onGridItemTap = onKanjiGridItemClicked,
+            onBackClicked = onBackClicked
         )
     }
 }
@@ -82,7 +84,7 @@ object KanjiNavGraph {
     }
 
     fun kanjiGradeRoute(grade: String): String {
-        return "kanji/grade?grade=$grade"
+        return "kanji/grade?grade=${grade}"
     }
 
     fun kanjiAllGradesRoute(): String {

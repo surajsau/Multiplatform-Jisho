@@ -1,12 +1,15 @@
 package `in`.surajsau.jisho.reference.kanji
 
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -24,6 +27,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import `in`.surajsau.jisho.model.KanjiGrade
 import `in`.surajsau.jisho.reference.kanji.components.AllSchoolItem
 import `in`.surajsau.jisho.reference.kanji.components.KanjiGradeItem
 import `in`.surajsau.jisho.ui.R
@@ -40,7 +44,8 @@ fun KanjiResourceScreen(
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
 
     Scaffold(
-        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        modifier = modifier
+            .nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             LargeTopAppBar(
                 title = { Text(text = "Kanji") },
@@ -56,76 +61,74 @@ fun KanjiResourceScreen(
             )
         }
     ) {
-        LazyColumn(modifier = Modifier.padding(it)) {
-            item {
-                Spacer(modifier = Modifier.height(16.dp))
-            }
+        Spacer(modifier = Modifier.height(8.dp))
 
-            item {
-                Text(
-                    modifier = Modifier.padding(horizontal = 16.dp),
-                    text = "小学校（1-6）",
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.SemiBold
-                )
+        Column(
+            modifier = Modifier
+                .padding(it)
+                .verticalScroll(state = rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            Text(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                text = "小学校（1-6）",
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold
+            )
 
-                Spacer(modifier = Modifier.height(16.dp))
-            }
-
-            items(6) { grade ->
+            arrayOf(
+                KanjiGrade.Grade1,
+                KanjiGrade.Grade2,
+                KanjiGrade.Grade3,
+                KanjiGrade.Grade4,
+                KanjiGrade.Grade5,
+                KanjiGrade.Grade6,
+            ).forEach { grade ->
                 KanjiGradeItem(
                     modifier = Modifier
                         .padding(horizontal = 16.dp)
                         .fillMaxWidth()
                         .height(56.dp),
-                    grade = "${grade + 1}",
-                    onItemClicked = { onGradeItemClicked(grade) }
+                    grade = grade.title,
+                    onItemClicked = { onGradeItemClicked(grade.grade) }
                 )
-
-                Spacer(modifier = Modifier.height(16.dp))
             }
 
-            item {
-                Spacer(modifier = Modifier.height(24.dp))
-                Text(
-                    modifier = Modifier.padding(horizontal = 16.dp),
-                    text = "中学校（7-9）",
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.SemiBold
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-            }
+            Spacer(modifier = Modifier.height(8.dp))
 
+            Text(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                text = "中学校（7-9）",
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold
+            )
 
-            items(3) { index ->
-                val grade = index + 6
+            arrayOf(
+                KanjiGrade.Grade7,
+                KanjiGrade.Grade8,
+                KanjiGrade.Grade9,
+            ).forEach { grade ->
                 KanjiGradeItem(
                     modifier = Modifier
                         .padding(horizontal = 16.dp)
                         .fillMaxWidth()
                         .height(56.dp),
-                    grade = "${grade + 1}",
-                    onItemClicked = { onGradeItemClicked(grade) }
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-            }
-
-            item {
-                Spacer(modifier = Modifier.height(24.dp))
-
-                AllSchoolItem(
-                    modifier = Modifier
-                        .padding(horizontal = 16.dp)
-                        .fillMaxWidth()
-                        .height(56.dp),
-                    onItemClicked = onAllGradesClicked
+                    grade = grade.title,
+                    onItemClicked = { onGradeItemClicked(grade.grade) }
                 )
             }
 
-            item {
-                Spacer(modifier = Modifier.height(72.dp))
-            }
+            Spacer(modifier = Modifier.height(8.dp))
+
+            AllSchoolItem(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .fillMaxWidth()
+                    .height(56.dp),
+                onItemClicked = onAllGradesClicked
+            )
+
+            Spacer(modifier = Modifier.height(24.dp))
         }
     }
 }

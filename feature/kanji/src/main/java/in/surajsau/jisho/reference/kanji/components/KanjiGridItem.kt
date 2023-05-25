@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import `in`.surajsau.jisho.fake.FakeKanjiResult
 import `in`.surajsau.jisho.model.KanjiResult
 import `in`.surajsau.jisho.ui.theme.PreviewContainer
 
@@ -57,7 +58,7 @@ private fun previewKanjiGridItem() {
         Surface {
             KanjiGridItem(
                 modifier = Modifier.size(56.dp),
-                item = KanjiResult("楽"),
+                item = FakeKanjiResult,
                 onClick = {}
             )
         }
