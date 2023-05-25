@@ -15,13 +15,13 @@ import `in`.surajsau.jisho.model.KanjiQuery
 import `in`.surajsau.jisho.model.KanjiResult
 import `in`.surajsau.jisho.reference.kanji.components.KanjiGridItem
 import `in`.surajsau.jisho.viewmodel.KanjiListViewModel
-import org.koin.androidx.compose.get
+import org.koin.compose.rememberKoinInject
 
 @Composable
 fun KanjiListScreen(
     modifier: Modifier = Modifier,
     query: KanjiQuery,
-    viewModel: KanjiListViewModel = get(),
+    viewModel: KanjiListViewModel = rememberKoinInject(),
     onGridItemTap: (KanjiResult) -> Unit
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()

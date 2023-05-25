@@ -51,7 +51,6 @@ dependencies {
 
     implementation(libs.compose.icons.core)
     implementation(libs.compose.icons.extended)
-    implementation(libs.accompanist.navigation.animation)
 }
 
 ktlint {

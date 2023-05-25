@@ -1,9 +1,8 @@
 package `in`.surajsau.jisho.android.ui
 
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import com.google.accompanist.navigation.animation.AnimatedNavHost
+import androidx.navigation.compose.NavHost
 import `in`.surajsau.jisho.android.model.rememberAppState
 import `in`.surajsau.jisho.details.navigation.detailsNavGraph
 import `in`.surajsau.jisho.feature.download.navigation.downlaodNavGraph
@@ -13,7 +12,6 @@ import `in`.surajsau.jisho.reference.kanji.navigation.kanjiNavGraph
 import `in`.surajsau.jisho.sentence.navigation.sentenceNavGraph
 import `in`.surajsau.jisho.ui.theme.JishoTheme
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun JishoApp(
     startDestination: String,
@@ -24,7 +22,7 @@ fun JishoApp(
         themePreference = appState.themePreference
     ) {
         Surface {
-            AnimatedNavHost(
+            NavHost(
                 navController = appState.navController,
                 startDestination = startDestination,
             ) {

@@ -3,8 +3,8 @@ package `in`.surajsau.jisho.reference.kanji.navigation
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
+import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.google.accompanist.navigation.animation.composable
 import `in`.surajsau.jisho.model.KanjiQuery
 import `in`.surajsau.jisho.model.KanjiResult
 import `in`.surajsau.jisho.reference.kanji.KanjiListScreen

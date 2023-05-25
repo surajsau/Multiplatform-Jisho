@@ -1,13 +1,12 @@
 package `in`.surajsau.jisho.android.model
 
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import androidx.navigation.compose.rememberNavController
 import `in`.surajsau.jisho.app.AppViewModel
 import `in`.surajsau.jisho.details.navigation.DetailsNavGraph
 import `in`.surajsau.jisho.feature.download.navigation.DownloadNavGraph
@@ -18,11 +17,10 @@ import `in`.surajsau.jisho.reference.kanji.navigation.KanjiNavGraph
 import `in`.surajsau.jisho.sentence.navigation.SentenceNavGraph
 import org.koin.androidx.compose.koinViewModel
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun rememberAppState(
     startDestination: String,
-    navController: NavHostController = rememberAnimatedNavController(),
+    navController: NavHostController = rememberNavController(),
     viewModel: AppViewModel = koinViewModel()
 ): AppState {
     return remember {
